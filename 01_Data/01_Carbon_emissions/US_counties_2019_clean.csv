@@ -1,0 +1,1146 @@
+,State,County,County_FIPS_Code,Population_2010,CO_8hr_ppm,Pb_3mo,NO2_Am_ppb,NO2_1h_ppb,O3_8hr_ppm,PM10_24hr,PM25_AM,PM25_24hr,SO2_1hr_ppb
+1,Alabama,Baldwin County,01003,182265,,,,,0.063,,7.5,15,
+2,Alabama,Clay County,01027,13932,,,,,,,7.4,15,
+3,Alabama,Colbert County,01033,54428,,,,,0.05600000000000001,,,,
+4,Alabama,DeKalb County,01049,71109,,,,,0.062,,,,
+5,Alabama,Elmore County,01051,79303,,,,,0.05899999999999998,,,,
+6,Alabama,Escambia County,01053,38319,,,,,,,,,
+7,Alabama,Etowah County,01055,104430,,,,,0.063,,8.3,16,
+8,Alabama,Houston County,01069,101547,,,,,0.05700000000000001,,8.1,17,
+9,Alabama,Jefferson County,01073,658466,1,,12,50,0.074,106,10.4,21,41
+10,Alabama,Madison County,01089,334811,,,,,0.063,34,7.4,14,
+11,Alabama,Mobile County,01097,412992,,,,,0.05899999999999998,,8.3,17,22
+12,Alabama,Montgomery County,01101,229363,,,,,0.06,33,9,16,
+13,Alabama,Morgan County,01103,119490,,,,,0.064,,7.6,14,
+14,Alabama,Pike County,01109,32899,,0.16,,,,,,,
+15,Alabama,Russell County,01113,52947,,,,,0.061,,9.4,21,
+16,Alabama,Shelby County,01117,195085,,,,,0.07000000000000002,,,,78
+17,Alabama,Sumter County,01119,13763,,,,,0.05700000000000001,,,,4
+18,Alabama,Talladega County,01121,82291,,,,,,,,,
+19,Alabama,Tuscaloosa County,01125,194656,,,,,0.06,,7.9,15,
+20,Alabama,Walker County,01127,67023,,,,,,,,,
+21,Alaska,Anchorage Municipality,02020,291826,2,,,,,98,8.2,42,
+22,Alaska,Bethel Census Area,02050,17013,,,,,,99,,,
+23,Alaska,Denali Borough,02068,1826,,,,,0.053000000000000005,,,,
+24,Alaska,Fairbanks North Star Borough,02090,97581,2,,,,0.04699999999999999,200,15.5,78,30
+25,Alaska,Juneau City and Borough,02110,31275,,,,,,50,6.8,25,
+26,Alaska,Kenai Peninsula Borough,02122,55400,,,,,,,,,
+27,Alaska,Ketchikan Gateway Borough,02130,13477,,,,,,,,,
+28,Alaska,Matanuska-Susitna Borough,02170,88995,,,,,,148,6.5,28,
+29,Alaska,Skagway Municipality,02232,968,,,,,,,,,
+30,Arizona,Apache County,04001,71518,,,,,,38,2.4,7,
+31,Arizona,Cochise County,04003,131346,,,,,0.066,97,5.1,10,
+32,Arizona,Coconino County,04005,134421,,,,,0.063,,,,
+33,Arizona,Gila County,04007,53597,,0.16,,,0.075,191,,,191
+34,Arizona,La Paz County,04012,20489,,,,,0.062,40,3.3,7,
+35,Arizona,Maricopa County,04013,3817117,2,0.05,25,52,0.076,183,8.4,23,5
+36,Arizona,Mohave County,04015,200186,,,,,,72,,,
+37,Arizona,Navajo County,04017,107449,,,,,0.066,35,,,
+38,Arizona,Pima County,04019,980263,1,,7,30,0.065,139,3.8,9,1
+39,Arizona,Pinal County,04021,375770,,,,,0.072,990,10.9,30,
+40,Arizona,Santa Cruz County,04023,47420,,,,,,108,8.8,25,
+41,Arizona,Yavapai County,04025,211033,,,,,0.061,,,,
+42,Arizona,Yuma County,04027,195751,,,,,0.065,174,7.9,16,
+43,Arkansas,Arkansas County,05001,19019,,,,,,,7.9,19,
+44,Arkansas,Ashley County,05003,21853,,,,,,,8.2,17,
+45,Arkansas,Benton County,05007,221339,,,,,,,,,
+46,Arkansas,Clark County,05019,22995,,,,,0.05700000000000001,,,,
+47,Arkansas,Craighead County,05031,96443,,,,,,,,,
+48,Arkansas,Crittenden County,05035,50902,,,8,40,0.064,,8.3,18,
+49,Arkansas,Faulkner County,05045,113237,,,,,,,,,
+50,Arkansas,Garland County,05051,96024,,,,,,,8.8,16,
+51,Arkansas,Jackson County,05067,17997,,,,,,,8.2,18,
+52,Arkansas,Jefferson County,05069,77435,,,,,,,,,
+53,Arkansas,Marion County,05089,16653,,,,,,,,,
+54,Arkansas,Miller County,05091,43462,,,,,,,,,
+55,Arkansas,Mississippi County,05093,46480,,,,,,,,,
+56,Arkansas,Newton County,05101,8330,,,,,0.05800000000000002,,,,
+57,Arkansas,Phillips County,05107,21757,,,,,,,,,
+58,Arkansas,Polk County,05113,20662,,,,,0.062,,8.6,17,
+59,Arkansas,Pope County,05115,61754,,,,,,,,,
+60,Arkansas,Pulaski County,05119,382748,1,,8,38,0.06,38,10.3,23,13
+61,Arkansas,Sebastian County,05131,125744,,,,,,,,,
+62,Arkansas,Union County,05139,41639,,,,,,,9,18,
+63,Arkansas,Washington County,05143,203065,,,,,0.061,26,8,19,
+64,Arkansas,White County,05145,77076,,,,,,,,,
+65,California,Alameda County,06001,1510271,2,,15,48,0.072,,9.4,19,9
+66,California,Amador County,06005,38091,,,,,0.067,,,,
+67,California,Butte County,06007,220000,1,,7,35,0.063,53,,,
+68,California,Calaveras County,06009,45578,,,,,0.066,43,5.5,13,
+69,California,Colusa County,06011,21419,,,,,0.053000000000000005,110,7,24,
+70,California,Contra Costa County,06013,1049025,2,,7,34,0.069,34,7.8,17,15
+71,California,Del Norte County,06015,28610,,,,,,,,,
+72,California,El Dorado County,06017,181058,,,,,0.071,43,,,
+73,California,Fresno County,06019,930450,1,,20,63,0.08,234,11.2,37,6
+74,California,Glenn County,06021,28122,,,,,0.05800000000000002,115,,,
+75,California,Humboldt County,06023,134623,1,,2,17,0.046,44,6.8,18,1
+76,California,Imperial County,06025,174528,3,,9,49,0.08,162,10.7,27,5
+77,California,Inyo County,06027,18546,1,,,,0.069,529,5.2,16,0
+78,California,Kern County,06029,839631,1,,12,56,0.084,382,13,47,
+79,California,Kings County,06031,152982,,,8,49,0.076,469,12.2,45,
+80,California,Lake County,06033,64665,,,,,0.051,21,3.1,8,
+81,California,Los Angeles County,06037,9818605,3,0.02,23,78,0.101,159,11,28,8
+82,California,Madera County,06039,150865,,,6,29,0.075,155,,,
+83,California,Marin County,06041,252409,1,,8,40,0.05899999999999998,30,6.4,14,
+84,California,Mariposa County,06043,18251,,,,,0.071,124,,,
+85,California,Mendocino County,06045,87841,,,,,0.051,38,6,16,
+86,California,Merced County,06047,255793,,,6,34,0.072,80,9.6,30,
+87,California,Modoc County,06049,9686,,,,,,,,,
+88,California,Mono County,06051,14202,,,,,,3427,8.5,33,
+89,California,Monterey County,06053,415057,1,,4,26,0.05800000000000002,76,5.5,12,
+90,California,Napa County,06055,136484,1,,5,29,0.06,29,5.9,14,
+91,California,Nevada County,06057,98764,,,,,0.072,,6.3,16,
+92,California,Orange County,06059,3010232,2,,19,50,0.08200000000000002,105,9.4,24,
+93,California,Placer County,06061,348432,,,7,43,0.079,54,7.2,20,
+94,California,Plumas County,06063,20007,,,,,,,12.2,43,
+95,California,Riverside County,06065,2189641,1,0.01,14,53,0.096,243,12.7,36,1
+96,California,Sacramento County,06067,1418788,1,,12,55,0.071,90,8.4,30,3
+97,California,San Benito County,06069,55269,,,,,0.062,75,4.9,11,
+98,California,San Bernardino County,06071,2035210,1,0.01,29,74,0.10600000000000002,165,12.8,36,7
+99,California,San Diego County,06073,3095313,2,0.02,14,47,0.076,153,13.7,27,1
+100,California,San Francisco County,06075,805235,1,,10,46,0.053000000000000005,,7.7,18,
+101,California,San Joaquin County,06077,685306,1,,12,58,0.069,123,9.3,33,
+102,California,San Luis Obispo County,06079,269637,,,4,27,0.07000000000000002,129,7,20,1
+103,California,San Mateo County,06081,718451,1,,9,44,0.054,,7,17,
+104,California,Santa Barbara County,06083,423895,1,,5,26,0.068,87,6.8,16,3
+105,California,Santa Clara County,06085,1781642,2,0.07000000000000002,14,52,0.064,53,9.1,21,2
+106,California,Santa Cruz County,06087,262382,,,,,0.052,,6.5,13,
+107,California,Shasta County,06089,177223,,,,,0.063,32,6.7,23,
+108,California,Siskiyou County,06093,44900,,,,,0.05600000000000001,,5.9,20,
+109,California,Solano County,06095,413344,2,,7,41,0.066,35,8.6,19,4
+110,California,Sonoma County,06097,483878,1,,4,28,0.05600000000000001,73,5.7,14,
+111,California,Stanislaus County,06099,514453,1,,9,44,0.079,104,10.6,36,
+112,California,Sutter County,06101,94737,,,6,40,0.065,78,8.4,27,
+113,California,Tehama County,06103,63463,,,,,0.066,33,5.4,15,
+114,California,Trinity County,06105,13786,,,,,,,,,
+115,California,Tulare County,06107,442179,,,10,55,0.083,284,12.9,46,
+116,California,Tuolumne County,06109,55365,,,,,0.069,,,,
+117,California,Ventura County,06111,823318,,,7,34,0.072,163,7.3,17,
+118,California,Yolo County,06113,200849,,,4,24,0.065,72,,,
+119,Colorado,Adams County,08001,441603,1,,17,62,0.06,111,9,23,6
+120,Colorado,Arapahoe County,08005,572003,,,,,0.073,,6,27,
+121,Colorado,Archuleta County,08007,12084,,,2,,0.062,50,,,
+122,Colorado,Boulder County,08013,294567,,,,,0.069,52,7.4,36,
+123,Colorado,Clear Creek County,08019,9088,,,,,0.067,,,,
+124,Colorado,Delta County,08029,30952,,,2,12,0.05899999999999998,25,3.7,7,
+125,Colorado,Denver County,08031,600158,2,,27,69,0.067,73,10,29,7
+126,Colorado,Douglas County,08035,285465,,,,,0.078,,6.2,25,
+127,Colorado,Elbert County,08039,23086,,,,,,,,,
+128,Colorado,El Paso County,08041,622263,2,,,,0.065,32,5,13,10
+129,Colorado,Fremont County,08043,46824,,,,,,,,,
+130,Colorado,Garfield County,08045,56389,,,4,,0.063,21,3.5,8,
+131,Colorado,Gilpin County,08047,5441,,,,,0.064,,,,
+132,Colorado,Gunnison County,08051,15324,,,,,0.066,,,,
+133,Colorado,Jefferson County,08059,534543,,,4,,0.075,,,,
+134,Colorado,La Plata County,08067,51334,0,,5,,0.063,26,,,
+135,Colorado,Larimer County,08069,299630,1,,,,0.071,,6,20,
+136,Colorado,Mesa County,08077,146723,1,,,,0.063,33,5,15,
+137,Colorado,Montezuma County,08083,25535,,,,,0.065,,,,
+138,Colorado,Park County,08093,16206,,,,,,,,,
+139,Colorado,Pitkin County,08097,17148,,,,,,34,,,
+140,Colorado,Prowers County,08099,12551,,,,,,95,,,
+141,Colorado,Pueblo County,08101,159063,,,,,,50,4.7,8,
+142,Colorado,Rio Blanco County,08103,6666,,,3,25,0.064,,7.9,12,
+143,Colorado,Routt County,08107,23509,,,,,,73,,,
+144,Colorado,San Miguel County,08113,7359,,,,,,47,,,
+145,Colorado,Weld County,08123,252825,1,,,,0.065,,9,26,
+146,Connecticut,Fairfield County,09001,916829,2,,8,,0.084,43,7.8,20,3
+147,Connecticut,Hartford County,09003,894014,1,,13,42,0.072,52,7.3,17,
+148,Connecticut,Litchfield County,09005,189927,0,,,,0.062,21,4.6,11,2
+149,Connecticut,Middlesex County,09007,165676,,,,,0.076,,,,
+150,Connecticut,New Haven County,09009,862477,1,,12,46,0.084,67,7.7,18,2
+151,Connecticut,New London County,09011,274055,,,,,0.075,30,6.5,16,
+152,Connecticut,Tolland County,09013,152691,,,,,0.073,,,,
+153,Connecticut,Windham County,09015,118428,,,,,0.066,,,,
+154,Delaware,Kent County,10001,162310,,,,,0.062,,7.6,19,
+155,Delaware,New Castle County,10003,538479,1,,10,,0.068,,7.8,21,10
+156,Delaware,Sussex County,10005,197145,,,,,0.065,,7.6,21,1
+157,District of Columbia,District of Columbia,11001,601723,2,,14,49,0.071,46,8.9,24,5
+158,Florida,Alachua County,12001,247336,,,,,0.06,,7.1,16,
+159,Florida,Baker County,12003,27115,,,,,0.061,,,,
+160,Florida,Bay County,12005,168852,,,,,0.062,,,,
+161,Florida,Brevard County,12009,543376,,,,,0.05800000000000002,47,,,
+162,Florida,Broward County,12011,1748066,2,,15,48,0.05800000000000002,49,8.9,18,1
+163,Florida,Citrus County,12017,141236,,,,,,,,,11
+164,Florida,Collier County,12021,321520,,,,,0.05899999999999998,,,,
+165,Florida,Columbia County,12023,67531,,,,,0.063,,,,
+166,Florida,Duval County,12031,864263,1,,11,39,0.065,57,8.6,20,22
+167,Florida,Escambia County,12033,297619,,,,,0.064,,8.4,20,12
+168,Florida,Flagler County,12035,95696,,,,,0.05600000000000001,,,,
+169,Florida,Hamilton County,12047,14799,,,,,,,,,10
+170,Florida,Highlands County,12055,98786,,,,,0.05899999999999998,,,,
+171,Florida,Hillsborough County,12057,1229226,1,0.09,10,37,0.07000000000000002,64,,,11
+172,Florida,Holmes County,12059,19927,,,,,0.06,,,,
+173,Florida,Indian River County,12061,138028,,,,,0.05899999999999998,,,,
+174,Florida,Lake County,12069,297052,,,,,0.067,,,,
+175,Florida,Lee County,12071,618754,,,,,0.062,51,7.4,14,
+176,Florida,Leon County,12073,275487,,,,,0.063,,7.7,20,
+177,Florida,Liberty County,12077,8365,,,,,0.05800000000000002,,,,
+178,Florida,Manatee County,12081,322833,,,,,0.068,,,,5
+179,Florida,Marion County,12083,331298,,,,,0.062,,,,
+180,Florida,Martin County,12085,146318,,,,,0.06,,,,
+181,Florida,Miami-Dade County,12086,2496435,1,,11,47,0.06,54,7.7,19,
+182,Florida,Nassau County,12089,73314,,,,,,,,,41
+183,Florida,Okaloosa County,12091,180822,,,,,0.063,65,,,
+184,Florida,Orange County,12095,1145956,1,,4,30,0.065,47,6.5,16,3
+185,Florida,Osceola County,12097,268685,,,,,0.072,,,,
+186,Florida,Palm Beach County,12099,1320134,,,,,0.05899999999999998,51,6.7,18,
+187,Florida,Pasco County,12101,464697,,,,,0.064,,,,
+188,Florida,Pinellas County,12103,916542,1,,8,28,0.067,58,7.7,17,8
+189,Florida,Polk County,12105,602095,,,,,0.067,57,7.7,19,26
+190,Florida,Putnam County,12107,74364,,,,,,60,,,9
+191,Florida,St. Lucie County,12111,277789,,,,,0.05899999999999998,,,,
+192,Florida,Santa Rosa County,12113,151372,,,,,0.065,,,,
+193,Florida,Sarasota County,12115,379448,,,,,0.065,54,6.8,15,
+194,Florida,Seminole County,12117,422718,,,,,0.062,49,6.9,15,
+195,Florida,Volusia County,12127,494593,,,,,0.05600000000000001,50,7.5,16,
+196,Florida,Wakulla County,12129,30776,1,,,,0.05800000000000002,,,,
+197,Georgia,Bibb County,13021,155547,,,,,0.066,,9.1,17,3
+198,Georgia,Chatham County,13051,265128,,,,,0.06,,,,50
+199,Georgia,Chattooga County,13055,26015,,,,,0.06,,,,
+200,Georgia,Clarke County,13059,116714,,,,,0.063,,9.8,21,
+201,Georgia,Clayton County,13063,259424,,,,,,,8.7,17,
+202,Georgia,Cobb County,13067,688078,,,,,0.067,,8.6,18,
+203,Georgia,Coffee County,13069,42356,,,,,,,7.2,17,
+204,Georgia,Columbia County,13073,124053,,,,,0.06,,,,
+205,Georgia,Dawson County,13085,22330,,,,,0.062,,,,
+206,Georgia,DeKalb County,13089,691893,1,,15,50,0.073,40,8.4,19,2
+207,Georgia,Dougherty County,13095,94565,,,,,,,9.3,26,
+208,Georgia,Douglas County,13097,132403,,,,,0.072,,,,
+209,Georgia,Floyd County,13115,96317,,,,,,,,,22
+210,Georgia,Fulton County,13121,920581,2,,16,,0.075,28,9.5,19,5
+211,Georgia,Glynn County,13127,79626,,,,,0.06,,7.6,17,
+212,Georgia,Gwinnett County,13135,805321,,,,,0.068,,10.8,24,
+213,Georgia,Hall County,13139,179684,,,,,,,9.3,19,
+214,Georgia,Henry County,13151,203922,,,,,0.075,,,,
+215,Georgia,Houston County,13153,139900,,,,,,,9.5,19,
+216,Georgia,Lowndes County,13185,109233,,,,,,,7.6,15,
+217,Georgia,Murray County,13213,39628,,,,,0.067,,,,
+218,Georgia,Muscogee County,13215,189885,,0.03,,,0.063,,9.1,20,
+219,Georgia,Paulding County,13223,142324,,,,,,,,,
+220,Georgia,Pike County,13231,17869,,,,,0.068,,,,
+221,Georgia,Richmond County,13245,200549,,,,,0.066,25,10.7,22,49
+222,Georgia,Rockdale County,13247,85215,,,,,0.072,,,,
+223,Georgia,Sumter County,13261,32819,,,,,0.062,,,,
+224,Georgia,Walker County,13295,68756,,,,,,,9,19,
+225,Georgia,Washington County,13303,21187,,,,,,,8.2,17,
+226,Georgia,Wilkinson County,13319,9563,,,,,,,,,
+227,Hawaii,Hawaii County,15001,185079,,,,,,,3.2,8,11
+228,Hawaii,Honolulu County,15003,953207,1,,4,28,0.053000000000000005,32,3.9,8,62
+229,Hawaii,Kauai County,15007,67091,,,4,38,,,2.9,8,
+230,Hawaii,Maui County,15009,154834,,,,,,,4.1,17,
+231,Idaho,Ada County,16001,392365,1,,,,0.05700000000000001,62,5.2,15,3
+232,Idaho,Bannock County,16005,82839,,,,,,67,,,39
+233,Idaho,Benewah County,16009,9285,,,,,,,9.9,35,
+234,Idaho,Boise County,16015,7028,,,,,,,,,
+235,Idaho,Bonner County,16017,40877,,,,,,40,,,
+236,Idaho,Bonneville County,16019,104234,,,,,,,,,
+237,Idaho,Boundary County,16021,10972,,,,,,,,,
+238,Idaho,Butte County,16023,2891,,,,,0.05800000000000002,,,,
+239,Idaho,Canyon County,16027,188923,,,,,,83,6.9,25,
+240,Idaho,Caribou County,16029,6963,,,,,,,,,44
+241,Idaho,Franklin County,16041,12786,,,,,,,5.8,30,
+242,Idaho,Gem County,16045,16719,,,,,,,,,
+243,Idaho,Idaho County,16049,16267,,,,,0.052,,,,
+244,Idaho,Jerome County,16053,22374,,,,,,,3.9,9,
+245,Idaho,Kootenai County,16055,138494,,,,,,,,,
+246,Idaho,Latah County,16057,37244,,,,,,,,,
+247,Idaho,Lemhi County,16059,7936,,,,,,,8.3,32,
+248,Idaho,Nez Perce County,16069,39265,,,,,,,,,
+249,Idaho,Power County,16077,7817,,,,,,,,,
+250,Idaho,Shoshone County,16079,12765,,,,,,43,9.6,32,
+251,Idaho,Twin Falls County,16083,77230,,,,,,,,,
+252,Idaho,Valley County,16085,9862,,,,,,,,,
+253,Illinois,Adams County,17001,67103,,,,,0.062,,,,
+254,Illinois,Champaign County,17019,201081,,,,,0.062,,7.8,20,4
+255,Illinois,Clark County,17023,16335,,,,,0.06,,,,
+256,Illinois,Cook County,17031,5194675,2,0.01,17,56,0.071,70,10.8,26,11
+257,Illinois,DuPage County,17043,916924,,,,,0.07000000000000002,,,,
+258,Illinois,Effingham County,17049,34242,,,,,0.063,,,,
+259,Illinois,Hamilton County,17065,8457,,,,,0.064,,8.3,17,
+260,Illinois,Jersey County,17083,22985,,,,,0.069,,8,17,
+261,Illinois,Jo Daviess County,17085,22678,,,,,0.05899999999999998,,,,
+262,Illinois,Kane County,17089,515269,,,,,0.071,,8.7,25,
+263,Illinois,Lake County,17097,703462,,,,,0.066,,,,
+264,Illinois,LaSalle County,17099,113924,,,,,,,,,22
+265,Illinois,McHenry County,17111,308760,,,,,0.07000000000000002,,7.8,19,
+266,Illinois,McLean County,17113,169572,,,,,0.063,,9.2,21,
+267,Illinois,Macon County,17115,110768,,,,,0.063,,9.5,20,42
+268,Illinois,Macoupin County,17117,47765,,,2,15,0.063,,,,5
+269,Illinois,Madison County,17119,269282,,0.15,,,0.07000000000000002,99,10.5,25,9
+270,Illinois,Monroe County,17133,32957,,,,,,,,,
+271,Illinois,Peoria County,17143,186494,,,,,0.064,,8,19,
+272,Illinois,Randolph County,17157,33476,,,,,0.06,,,,
+273,Illinois,Rock Island County,17161,147546,,,,,0.066,,8.6,20,
+274,Illinois,St. Clair County,17163,270056,1,,9,39,0.064,,9.1,23,11
+275,Illinois,Sangamon County,17167,197465,,,,,0.062,,8.2,18,
+276,Illinois,Tazewell County,17179,135394,,,,,,,,,17
+277,Illinois,Wabash County,17185,11947,,,,,,,,,31
+278,Illinois,Will County,17197,677560,,,,,0.06,,9.7,21,
+279,Illinois,Winnebago County,17201,295266,,,,,0.066,,,,
+280,Indiana,Allen County,18003,355329,,,,,0.063,,9,22,
+281,Indiana,Bartholomew County,18005,76794,,,,,0.062,,6.9,16,
+282,Indiana,Boone County,18011,56640,,,,,0.066,,,,
+283,Indiana,Brown County,18013,15242,,,,,0.05899999999999998,,,,
+284,Indiana,Carroll County,18015,20155,,,,,0.061,,,,
+285,Indiana,Clark County,18019,110232,,,,,0.064,,7.2,14,
+286,Indiana,Daviess County,18027,31648,,,,,,,,,12
+287,Indiana,Delaware County,18035,117671,,0.03,,,0.05899999999999998,,8.3,19,
+288,Indiana,Dubois County,18037,41889,,,,,,30,8.4,19,
+289,Indiana,Elkhart County,18039,197559,,,,,0.05800000000000002,,,,
+290,Indiana,Floyd County,18043,74578,,,,,0.063,,,,
+291,Indiana,Gibson County,18051,33503,,,,,,,,,41
+292,Indiana,Greene County,18055,33165,,,,,0.062,,7.7,16,
+293,Indiana,Hamilton County,18057,274569,,,,,0.064,,8.3,17,
+294,Indiana,Hendricks County,18063,145448,,,,,0.05899999999999998,,,,
+295,Indiana,Henry County,18065,49462,,,,,,,7.7,17,
+296,Indiana,Howard County,18067,82752,,,,,0.063,,7.3,18,
+297,Indiana,Huntington County,18069,37124,,,,,0.06,,,,
+298,Indiana,Jackson County,18071,42376,,,,,0.06,,,,
+299,Indiana,Knox County,18083,38440,,,,,0.061,,,,
+300,Indiana,Lake County,18089,496005,2,0.19,9,,0.065,73,10.3,25,20
+301,Indiana,LaPorte County,18091,111467,,,,,0.071,,7.9,24,
+302,Indiana,Madison County,18095,131636,,,,,0.064,,8.4,17,
+303,Indiana,Marion County,18097,903393,2,,9,37,0.067,57,12.6,27,
+304,Indiana,Monroe County,18105,137974,,,,,,,7.3,16,
+305,Indiana,Montgomery County,18107,38124,,,,,,,,,
+306,Indiana,Morgan County,18109,68894,,,,,0.064,,,,
+307,Indiana,Perry County,18123,19338,,,,,0.063,,,,
+308,Indiana,Pike County,18125,12845,,,,,,,,,
+309,Indiana,Porter County,18127,164343,,0.01,,,0.071,69,,,79
+310,Indiana,Posey County,18129,25910,,,,,0.061,,,,
+311,Indiana,St. Joseph County,18141,266931,,,9,40,0.065,,8.3,22,
+312,Indiana,Shelby County,18145,44436,,,,,0.063,,,,
+313,Indiana,Spencer County,18147,20952,,,,,,,8,18,
+314,Indiana,Sullivan County,18153,21475,,,,,,,8.1,16,
+315,Indiana,Tippecanoe County,18157,172780,,,,,,,8.8,18,
+316,Indiana,Vanderburgh County,18163,179703,1,,8,32,0.064,27,8.7,21,8
+317,Indiana,Vigo County,18167,107848,,,,,0.063,31,9.6,21,4
+318,Indiana,Wabash County,18169,32888,,,,,0.064,,,,
+319,Indiana,Warrick County,18173,59689,,,,,0.062,,,,
+320,Indiana,Whitley County,18183,33292,,,,,,,8,22,
+321,Iowa,Black Hawk County,19013,131090,,,,,,,7.7,20,
+322,Iowa,Bremer County,19017,24276,,,,,0.062,,,,
+323,Iowa,Cerro Gordo County,19033,44151,,,,,,41,,,
+324,Iowa,Clinton County,19045,49116,,,,,0.05800000000000002,,9,25,15
+325,Iowa,Delaware County,19055,17764,,,,,,,,,
+326,Iowa,Emmet County,19063,10302,,,,,,,,,
+327,Iowa,Harrison County,19085,14928,,,,,0.062,,,,
+328,Iowa,Johnson County,19103,130882,,,,,,,7.6,20,
+329,Iowa,Lee County,19111,35862,,,,,,,8.3,20,
+330,Iowa,Linn County,19113,211226,,,,,0.06,38,7.9,20,25
+331,Iowa,Montgomery County,19137,10740,,,,,0.05899999999999998,,6.5,15,
+332,Iowa,Muscatine County,19139,42745,,,,,,36,8.1,23,25
+333,Iowa,Palo Alto County,19147,9421,,,,,0.065,,6.4,20,
+334,Iowa,Polk County,19153,430640,1,,6,37,0.064,39,7,19,
+335,Iowa,Pottawattamie County,19155,93158,,0.06,,,,48,7.7,18,
+336,Iowa,Scott County,19163,165224,1,,,,0.062,129,8.5,22,5
+337,Iowa,Story County,19169,89542,,,,,,,,,
+338,Iowa,Tama County,19171,17767,,,,,,,,,
+339,Iowa,Van Buren County,19177,7570,,,2,9,0.061,37,7.2,16,1
+340,Iowa,Woodbury County,19193,102172,,,,,,,7.4,22,
+341,Iowa,Wright County,19197,13229,,,,,,,,,
+342,Kansas,Ford County,20057,33848,,,,,,60,,,
+343,Kansas,Johnson County,20091,544179,,,,,0.054,,,,
+344,Kansas,Leavenworth County,20103,76227,,,,,0.061,,,,
+345,Kansas,Linn County,20107,9656,,,,,,,,,
+346,Kansas,Neosho County,20133,16512,,,2,,0.06,56,8.9,20,3
+347,Kansas,Saline County,20169,55606,,0.05,,,,,,,
+348,Kansas,Sedgwick County,20173,498365,,,6,,0.062,51,,,
+349,Kansas,Shawnee County,20177,177934,,,,,0.061,52,,,
+350,Kansas,Sherman County,20181,6010,,,,,,60,,,
+351,Kansas,Sumner County,20191,24132,,,3,21,0.062,64,7.5,18,3
+352,Kansas,Trego County,20195,3001,,,1,,0.05800000000000002,37,,,
+353,Kansas,Wyandotte County,20209,157505,1,,8,,0.05800000000000002,53,,,
+354,Kentucky,Bell County,21013,28691,,,,,0.05899999999999998,,7.3,17,
+355,Kentucky,Boone County,21015,118811,,,,,0.062,,,,
+356,Kentucky,Boyd County,21019,49542,,,5,27,0.05899999999999998,40,7.6,15,4
+357,Kentucky,Bullitt County,21029,74319,,,,,0.063,,,,
+358,Kentucky,Campbell County,21037,90336,,,4,27,0.062,,8,17,8
+359,Kentucky,Carter County,21043,27720,,,,,0.055,16,5.7,12,
+360,Kentucky,Christian County,21047,73955,,,,,0.05600000000000001,,,,
+361,Kentucky,Daviess County,21059,96656,,,4,27,0.062,,8.5,20,34
+362,Kentucky,Edmonson County,21061,12161,0,,,,0.06,,,,2
+363,Kentucky,Fayette County,21067,295803,,,6,42,0.05800000000000002,28,8,17,4
+364,Kentucky,Franklin County,21073,49285,,,,,,,,,
+365,Kentucky,Greenup County,21089,36910,,,,,0.055,,,,9
+366,Kentucky,Hancock County,21091,8565,,,,,0.063,,,,
+367,Kentucky,Hardin County,21093,105543,,,,,0.05800000000000002,,7.3,15,
+368,Kentucky,Henderson County,21101,46250,,,,,,,,,99
+369,Kentucky,Jefferson County,21111,741096,2,,15,49,0.068,40,10.5,23,15
+370,Kentucky,Jessamine County,21113,48586,,,,,0.05899999999999998,,,,4
+371,Kentucky,Kenton County,21117,159720,,,,,,,,,
+372,Kentucky,Laurel County,21125,58849,,,,,,,,,
+373,Kentucky,Livingston County,21139,9519,,,,,0.06,24,,,
+374,Kentucky,McCracken County,21145,65565,,,5,32,0.061,28,9.3,21,13
+375,Kentucky,Madison County,21151,82916,,0.02,,,,,,,
+376,Kentucky,Morgan County,21175,13923,,,,,0.05800000000000002,,,,
+377,Kentucky,Ohio County,21183,23842,,,,,,,,,
+378,Kentucky,Oldham County,21185,60316,,,,,0.065,,,,
+379,Kentucky,Perry County,21193,28712,,,,,0.061,,7.7,15,
+380,Kentucky,Pike County,21195,65024,,,,,0.05600000000000001,,6.8,13,
+381,Kentucky,Pulaski County,21199,63063,,,,,0.05700000000000001,,7,14,
+382,Kentucky,Simpson County,21213,17327,,,,,0.05899999999999998,,,,
+383,Kentucky,Trigg County,21221,14339,,,,,0.061,,,,
+384,Kentucky,Warren County,21227,113792,,,,,0.05600000000000001,,8.1,17,
+385,Kentucky,Washington County,21229,11717,,,,,0.06,,,,
+386,Louisiana,Ascension Parish,22005,107215,,,6,30,0.065,,,,
+387,Louisiana,Bossier Parish,22015,116979,,,,,0.05899999999999998,44,,,5
+388,Louisiana,Caddo Parish,22017,254969,,,,,0.061,,10.7,23,
+389,Louisiana,Calcasieu Parish,22019,192768,,,8,39,0.065,,6.8,14,26
+390,Louisiana,Concordia Parish,22029,20822,,,,,,,,,
+391,Louisiana,East Baton Rouge Parish,22033,440171,1,0,10,45,0.066,51,9.2,23,15
+392,Louisiana,Iberville Parish,22047,33387,,,3,23,0.07000000000000002,,8.4,19,
+393,Louisiana,Jefferson Parish,22051,432552,,,5,36,0.063,,7.7,16,
+394,Louisiana,Lafayette Parish,22055,221578,,,,,0.063,52,7.9,17,
+395,Louisiana,Lafourche Parish,22057,96318,,,,,0.063,,,,
+396,Louisiana,Livingston Parish,22063,128026,,,2,13,0.063,,,,
+397,Louisiana,Orleans Parish,22071,343829,2,,10,43,,79,7.8,17,
+398,Louisiana,Ouachita Parish,22073,153720,,,,,0.05899999999999998,,7.2,15,
+399,Louisiana,Plaquemines Parish,22075,23042,,,,,,,,,
+400,Louisiana,Pointe Coupee Parish,22077,22802,,,,,0.069,,,,
+401,Louisiana,Rapides Parish,22079,131613,,,,,,,7.5,16,
+402,Louisiana,St. Bernard Parish,22087,35897,,,,,0.061,59,7.8,15,40
+403,Louisiana,St. Charles Parish,22089,52780,,,,,,,,,53
+404,Louisiana,St. James Parish,22093,22102,,,,,0.062,,,,2
+405,Louisiana,St. John the Baptist Parish,22095,45924,,0.09,,,0.061,,,,
+406,Louisiana,St. Martin Parish,22099,52160,,,,,0.06,,,,
+407,Louisiana,St. Tammany Parish,22103,233740,,,,,0.062,,,,
+408,Louisiana,Tangipahoa Parish,22105,121097,,,,,,,7.6,18,
+409,Louisiana,Terrebonne Parish,22109,111860,,,,,,,7.5,18,
+410,Louisiana,West Baton Rouge Parish,22121,23788,,,9,,0.063,,8.9,21,16
+411,Maine,Androscoggin County,23001,107702,,,,,0.05,37,5.2,14,
+412,Maine,Aroostook County,23003,71870,1,,,,0.053000000000000005,29,5.8,16,2
+413,Maine,Cumberland County,23005,281674,1,,7,40,0.062,91,8.7,20,
+414,Maine,Franklin County,23007,30768,,,,,,,,,
+415,Maine,Hancock County,23009,54418,0,,,,0.064,16,3.3,11,1
+416,Maine,Kennebec County,23011,122151,,,3,27,0.054,,,,1
+417,Maine,Knox County,23013,39736,,,,,0.05899999999999998,,,,
+418,Maine,Oxford County,23017,57833,,,,,0.054,,4.5,13,
+419,Maine,Penobscot County,23019,153923,,,,,0.054,43,4.3,13,
+420,Maine,Washington County,23029,32856,,,,,0.054,,,,
+421,Maine,York County,23031,197131,,,,,0.064,,,,
+422,Maryland,Allegany County,24001,75087,,,,,,,,,144
+423,Maryland,Anne Arundel County,24003,537656,,,,,0.076,27,,,
+424,Maryland,Baltimore County,24005,805029,2,,14,41,0.074,,8.2,31,11
+425,Maryland,Calvert County,24009,88737,,,,,0.05800000000000002,,,,
+426,Maryland,Carroll County,24013,167134,,,,,0.064,,,,
+427,Maryland,Cecil County,24015,101108,,,,,0.068,,6.4,18,
+428,Maryland,Charles County,24017,146551,,,,,0.061,,,,
+429,Maryland,Dorchester County,24019,32618,,,,,0.067,,5.9,14,2
+430,Maryland,Frederick County,24021,233385,,,,,0.065,,,,
+431,Maryland,Garrett County,24023,30097,0,,,,0.05899999999999998,,5.6,12,
+432,Maryland,Harford County,24025,244826,,,,,0.077,,7,19,
+433,Maryland,Howard County,24027,287085,1,,16,38,,,7.4,17,
+434,Maryland,Kent County,24029,20197,,,,,0.066,,5.9,15,
+435,Maryland,Montgomery County,24031,971777,,,,,0.062,,6.1,18,
+436,Maryland,Prince George's County,24033,863420,1,,5,,0.075,20,7,15,4
+437,Maryland,Washington County,24043,147430,,,,,0.05899999999999998,,6.9,24,
+438,Maryland,Baltimore city,24510,620961,,,12,,0.076,34,8.3,20,
+439,Massachusetts,Barnstable County,25001,215888,,,,,0.06,,,,
+440,Massachusetts,Berkshire County,25003,131219,,,,,0.06,,7.1,17,
+441,Massachusetts,Bristol County,25005,548285,,,,,0.062,,,,
+442,Massachusetts,Dukes County,25007,16535,,,,,0.071,,,,
+443,Massachusetts,Essex County,25009,743159,,,5,35,0.065,,6.6,16,
+444,Massachusetts,Franklin County,25011,71372,,,,,0.05600000000000001,,6.5,17,
+445,Massachusetts,Hampden County,25013,463490,1,,10,44,0.066,,7.7,17,3
+446,Massachusetts,Hampshire County,25015,158080,,,2,20,0.066,15,5.6,16,1
+447,Massachusetts,Middlesex County,25017,1503085,,,10,41,0.05700000000000001,,7,15,
+448,Massachusetts,Norfolk County,25021,670850,,,3,25,0.05899999999999998,,,,
+449,Massachusetts,Plymouth County,25023,494919,,,,,0.061,,6.8,14,
+450,Massachusetts,Suffolk County,25025,722023,1,,14,49,0.061,27,7.5,17,2
+451,Massachusetts,Worcester County,25027,798552,1,,10,48,0.06,37,8,16,2
+452,Michigan,Allegan County,26005,111408,,,,,0.071,,7.2,18,
+453,Michigan,Alpena County,26007,29598,,,,,,,,,
+454,Michigan,Bay County,26017,107771,,,,,,,6.8,18,
+455,Michigan,Benzie County,26019,17525,,,,,0.05700000000000001,,,,
+456,Michigan,Berrien County,26021,156813,,,,,0.066,,,,
+457,Michigan,Cass County,26027,52293,,,,,0.063,,,,
+458,Michigan,Chippewa County,26033,38520,,,,,,,,,
+459,Michigan,Clinton County,26037,75382,,,,,0.055,,,,
+460,Michigan,Dickinson County,26043,26168,,,,,,,,,
+461,Michigan,Emmet County,26047,32694,,,,,,,,,
+462,Michigan,Genesee County,26049,425790,,,,,0.06,,7.4,19,
+463,Michigan,Grand Traverse County,26055,86986,,,,,,,,,
+464,Michigan,Huron County,26063,33118,,,,,0.06,,,,
+465,Michigan,Ingham County,26065,280895,,,7,44,0.055,,,,4
+466,Michigan,Ionia County,26067,63905,,0.09,,,,,,,
+467,Michigan,Iron County,26071,11817,,,,,,,,,
+468,Michigan,Kalamazoo County,26077,250331,,,,,0.061,,,,
+469,Michigan,Kent County,26081,602622,1,0.01,,,0.065,49,8,23,2
+470,Michigan,Lenawee County,26091,99892,,,,,0.05899999999999998,,8.5,22,
+471,Michigan,Macomb County,26099,840978,,,,,0.063,,7.3,19,
+472,Michigan,Manistee County,26101,24733,,,,,0.062,,,,
+473,Michigan,Mason County,26105,28705,,,,,0.05700000000000001,,,,
+474,Michigan,Missaukee County,26113,14849,,,1,8,0.05800000000000002,,,,
+475,Michigan,Monroe County,26115,152021,,,,,,70,,,9
+476,Michigan,Muskegon County,26121,172188,,,,,0.068,,,,
+477,Michigan,Oakland County,26125,1202362,,,,,0.066,,7.7,18,
+478,Michigan,Ottawa County,26139,263801,,,6,36,0.065,104,8.3,24,14
+479,Michigan,Saginaw County,26145,200169,,,,,,,,,
+480,Michigan,St. Clair County,26147,163040,,0.02,,,0.07000000000000002,,7.6,20,64
+481,Michigan,Schoolcraft County,26153,8485,,,,,0.05899999999999998,,4.3,14,
+482,Michigan,Tuscola County,26157,55729,,,,,0.05899999999999998,,,,
+483,Michigan,Washtenaw County,26161,344791,,,,,0.06,,8.5,22,
+484,Michigan,Wayne County,26163,1820584,2,0.03,16,50,0.068,89,12.1,31,61
+485,Michigan,Wexford County,26165,32735,,,,,0.061,,,,
+486,Minnesota,Anoka County,27003,330844,1,0.01,7,41,0.062,32,6.7,19,2
+487,Minnesota,Becker County,27005,32504,,,,,0.05899999999999998,,5.1,16,
+488,Minnesota,Beltrami County,27007,44442,,,,,,,6,16,
+489,Minnesota,Carlton County,27017,35386,,,,,0.05700000000000001,,3.1,11,
+490,Minnesota,Cass County,27021,28567,,,,,,,4.2,16,
+491,Minnesota,Cook County,27031,5176,,,,,,,4.4,13,
+492,Minnesota,Crow Wing County,27035,62500,,,,,0.065,,4.3,17,
+493,Minnesota,Dakota County,27037,398552,1,0.07000000000000002,8,25,,,7,21,10
+494,Minnesota,Douglas County,27041,36009,,,,,,,,,
+495,Minnesota,Freeborn County,27047,31255,,,,,,,,,
+496,Minnesota,Goodhue County,27049,46183,,,,,0.062,,,,
+497,Minnesota,Hennepin County,27053,1152425,1,0.04,,,0.054,98,8,23,5
+498,Minnesota,Itasca County,27061,45058,,,,,,,,,
+499,Minnesota,Kandiyohi County,27067,42239,,,,,,,,,
+500,Minnesota,Lake County,27075,10866,,,,,0.055,74,4.2,13,
+501,Minnesota,Lyon County,27083,25857,,,,,0.06,,5.9,18,
+502,Minnesota,McLeod County,27085,36651,,,,,,,,,
+503,Minnesota,Mille Lacs County,27095,26097,,,,,0.06,,,,
+504,Minnesota,Nicollet County,27103,32727,,,,,,,,,
+505,Minnesota,Olmsted County,27109,144248,,,,,0.054,,,,
+506,Minnesota,Otter Tail County,27111,57303,,,,,,,,,
+507,Minnesota,Ramsey County,27123,508640,,0,,,,81,7.8,23,
+508,Minnesota,St. Louis County,27137,200226,,0,,,0.05600000000000001,81,5.5,18,
+509,Minnesota,Scott County,27139,129928,,,,,0.062,,6.8,19,
+510,Minnesota,Stearns County,27145,150642,,,,,0.061,,,,
+511,Minnesota,Washington County,27163,238136,,0,,,0.05800000000000002,70,,,9
+512,Minnesota,Winona County,27169,51461,,,,,,,,,
+513,Minnesota,Wright County,27171,124700,,,,,0.061,,5.5,19,
+514,Mississippi,Adams County,28001,32297,,,,,,,,,
+515,Mississippi,Bolivar County,28011,34145,,,,,0.062,,9,21,
+516,Mississippi,DeSoto County,28033,161252,,,,,0.066,,8.2,17,
+517,Mississippi,Forrest County,28035,74934,,,,,,,8.8,19,
+518,Mississippi,Grenada County,28043,21906,,,,,,,,,
+519,Mississippi,Hancock County,28045,43929,,,,,0.06,,7.6,18,
+520,Mississippi,Harrison County,28047,187105,,,,,0.06,,9.2,20,
+521,Mississippi,Hinds County,28049,245285,1,,7,37,0.064,60,9.8,23,2
+522,Mississippi,Jackson County,28059,139668,,,4,28,0.061,,8.6,20,5
+523,Mississippi,Jones County,28067,67761,,,,,,,,,
+524,Mississippi,Lauderdale County,28075,80261,,,,,0.05899999999999998,,,,
+525,Mississippi,Lee County,28081,82910,,,,,0.061,,,,
+526,Mississippi,Lowndes County,28087,59779,,,,,,,,,
+527,Mississippi,Pearl River County,28109,55834,,,,,,,,,
+528,Mississippi,Rankin County,28121,141617,,,,,,,,,
+529,Mississippi,Scott County,28123,28264,,,,,,,,,
+530,Mississippi,Warren County,28149,48773,,,,,,,,,
+531,Mississippi,Yalobusha County,28161,12678,,,,,0.05800000000000002,,,,
+532,Missouri,Andrew County,29003,17291,,,,,0.061,,,,
+533,Missouri,Boone County,29019,162642,,,,,0.05800000000000002,,,,
+534,Missouri,Buchanan County,29021,89201,,,,,,94,8.5,18,
+535,Missouri,Callaway County,29027,44332,,,,,0.05800000000000002,,,,
+536,Missouri,Cass County,29037,99478,,,,,0.064,,6.3,16,
+537,Missouri,Cedar County,29039,13982,,,,,0.05800000000000002,,7.5,18,
+538,Missouri,Clay County,29047,221939,,,,,0.063,,6.2,16,
+539,Missouri,Clinton County,29049,20743,,,,,0.062,,,,
+540,Missouri,Franklin County,29071,101492,,,,,,,,,30
+541,Missouri,Greene County,29077,275174,,,,,0.06,33,,,
+542,Missouri,Holt County,29087,4912,,0.02,,,,,,,
+543,Missouri,Howell County,29091,40400,,,,,,,,,
+544,Missouri,Iron County,29093,10630,,0.22,,,,,,,50
+545,Missouri,Jackson County,29095,674158,1,,11,47,,71,7.6,17,7
+546,Missouri,Jasper County,29097,117404,,,,,0.061,88,,,
+547,Missouri,Jefferson County,29099,218733,,0.1,,,0.066,27,6.6,17,24
+548,Missouri,Lincoln County,29113,52566,,,,,0.064,,,,
+549,Missouri,Maries County,29125,9176,,,,,,,,,
+550,Missouri,Mercer County,29129,3785,,,,,,,,,
+551,Missouri,Monroe County,29137,8840,,,2,8,0.05700000000000001,26,,,4
+552,Missouri,New Madrid County,29143,18956,,,,,,,,,428
+553,Missouri,Perry County,29157,18971,,,,,0.061,,,,
+554,Missouri,Reynolds County,29179,6696,,0.02,,,,,,,
+555,Missouri,St. Charles County,29183,360485,,,,,0.069,,,,36
+556,Missouri,Ste. Genevieve County,29186,18145,,,,,0.06,,,,
+557,Missouri,St. Francois County,29187,65359,,0.01,,,,,,,
+558,Missouri,St. Louis County,29189,998954,,,10,40,0.069,,9.1,21,14
+559,Missouri,St. Louis city,29510,319294,2,,11,45,0.064,91,9.3,23,9
+560,Montana,Cascade County,30013,81327,,,,,,,,,
+561,Montana,Fergus County,30027,11586,,,1,11,0.05800000000000002,34,3.8,11,
+562,Montana,Flathead County,30029,90928,,,,,0.053000000000000005,83,6.6,24,
+563,Montana,Gallatin County,30031,89513,0,,2,,,,0.9,5,
+564,Montana,Lake County,30047,28746,,,,,,,,,
+565,Montana,Lewis and Clark County,30049,63395,0,,,,0.062,,8.6,30,3
+566,Montana,Lincoln County,30053,19687,,,,,,62,11.4,30,
+567,Montana,Missoula County,30063,109299,,,,,0.03500000000000001,77,8.5,21,
+568,Montana,Phillips County,30071,4253,,,1,7,0.05600000000000001,28,4.1,11,
+569,Montana,Powder River County,30075,1743,,,,,0.064,101,5.3,14,
+570,Montana,Ravalli County,30081,40212,,,,,,,4.6,18,
+571,Montana,Richland County,30083,9746,,,1,11,0.06,58,4.5,11,9
+572,Montana,Rosebud County,30087,9233,,,1,6,0.05700000000000001,78,4.3,13,
+573,Montana,Sanders County,30089,11413,,,,,,43,,,
+574,Montana,Silver Bow County,30093,34200,,,,,,56,5.3,21,
+575,Montana,Yellowstone County,30111,147972,,,,,,,,,18
+576,Nebraska,Cass County,31025,25241,,,,,,50,,,
+577,Nebraska,Cedar County,31027,8852,,,,,,,,,
+578,Nebraska,Cherry County,31031,5713,,,,,,,,,
+579,Nebraska,Deuel County,31049,1941,,,,,,,,,
+580,Nebraska,Douglas County,31055,517110,2,,,,0.062,49,6.9,19,38
+581,Nebraska,Hall County,31079,58607,,,,,,,,,
+582,Nebraska,Knox County,31107,8701,,,,,0.062,,,,
+583,Nebraska,Lancaster County,31109,285407,,,,,0.05600000000000001,,6.5,17,33
+584,Nebraska,Lincoln County,31111,36288,,,,,,,,,
+585,Nebraska,Sarpy County,31153,158840,,,,,,,7.8,22,
+586,Nebraska,Scotts Bluff County,31157,36970,,,,,,,4.8,12,
+587,Nebraska,Washington County,31177,20234,,,,,,,6.6,18,
+588,Nevada,Churchill County,32001,24877,,,,,0.061,,,,
+589,Nevada,Clark County,32003,1951269,2,,24,58,0.07000000000000002,104,8,26,5
+590,Nevada,Douglas County,32005,46997,,,,,,,3.8,13,
+591,Nevada,Elko County,32007,48818,,,,,,68,,,
+592,Nevada,Lyon County,32019,51980,,,,,0.05700000000000001,50,,,
+593,Nevada,Nye County,32023,43946,,,,,,132,,,
+594,Nevada,Washoe County,32031,421407,2,,11,46,0.066,78,6,16,3
+595,Nevada,White Pine County,32033,10030,,,,,0.066,,,,
+596,Nevada,Carson City,32510,55274,,,,,0.063,,4.5,11,
+597,New Hampshire,Belknap County,33001,60088,,,,,0.052,,3.6,15,
+598,New Hampshire,Cheshire County,33005,77117,,,,,0.053000000000000005,,4.8,14,
+599,New Hampshire,Coos County,33007,33055,,,,,0.055,,,,
+600,New Hampshire,Grafton County,33009,89118,,,,,0.05,,4.9,14,
+601,New Hampshire,Hillsborough County,33011,400721,0,,,,0.05700000000000001,,3,10,1
+602,New Hampshire,Merrimack County,33013,146445,,,,,0.055,,,,19
+603,New Hampshire,Rockingham County,33015,295223,0,,3,20,0.06,34,4.7,12,10
+604,New Hampshire,Sullivan County,33019,43742,,,,,,,,,
+605,New Jersey,Atlantic County,34001,274549,,,,,0.05899999999999998,,6.7,17,1
+606,New Jersey,Bergen County,34003,905116,1,,17,66,0.071,,11,23,
+607,New Jersey,Camden County,34007,513657,1,,11,45,0.07000000000000002,44,9.8,26,6
+608,New Jersey,Cumberland County,34011,156898,,,6,35,0.068,,7.8,19,
+609,New Jersey,Essex County,34013,783969,2,,16,61,0.065,33,8.6,20,2
+610,New Jersey,Gloucester County,34015,288288,,,,,0.068,,7.2,22,
+611,New Jersey,Hudson County,34017,634266,1,,21,58,0.065,34,7.9,23,5
+612,New Jersey,Hunterdon County,34019,128349,,,,,0.066,,7.8,19,
+613,New Jersey,Mercer County,34021,366513,,,,,0.068,,7.6,17,
+614,New Jersey,Middlesex County,34023,809858,,,,,0.07000000000000002,,7.8,17,
+615,New Jersey,Monmouth County,34025,630380,,,,,0.067,,,,
+616,New Jersey,Morris County,34027,492276,,,3,26,0.062,,5.6,13,3
+617,New Jersey,Ocean County,34029,576567,,,,,0.068,,6.2,16,
+618,New Jersey,Passaic County,34031,501226,,,,,0.064,,7.7,20,
+619,New Jersey,Union County,34039,536499,2,,20,62,,,8.8,24,4
+620,New Jersey,Warren County,34041,108692,,,11,43,0.05800000000000002,,7.2,19,6
+621,New Mexico,Bernalillo County,35001,662564,1,,9,44,0.069,141,7.7,20,4
+622,New Mexico,Chaves County,35005,65645,,,,,,,,,
+623,New Mexico,Doña Ana County,35013,209233,,,7,46,0.077,488,7.2,21,
+624,New Mexico,Eddy County,35015,53829,,,5,28,0.08,,,,
+625,New Mexico,Grant County,35017,29514,,,,,,,,,
+626,New Mexico,Lea County,35025,64727,,,5,37,0.07000000000000002,,,,
+627,New Mexico,Luna County,35029,25095,,,,,,187,,,
+628,New Mexico,Rio Arriba County,35039,40246,,,,,0.061,,,,
+629,New Mexico,Sandoval County,35043,131561,,,,,0.065,54,,,
+630,New Mexico,San Juan County,35045,130044,,,10,35,0.069,23,,,1
+631,New Mexico,Santa Fe County,35049,144170,,,,,0.066,,2.9,7,
+632,New Mexico,Taos County,35055,32937,,,,,,,5,16,
+633,New Mexico,Valencia County,35061,76569,,,,,0.066,,,,
+634,New York,Albany County,36001,304204,1,,,,0.05600000000000001,,7,18,3
+635,New York,Bronx County,36005,1385108,1,,17,50,0.069,30,8.2,19,5
+636,New York,Broome County,36007,200600,,,,,,,,,
+637,New York,Chautauqua County,36013,134905,,,,,0.065,,5.9,14,3
+638,New York,Dutchess County,36027,297488,,,,,0.061,,,,2
+639,New York,Erie County,36029,919040,1,,9,45,0.063,24,7,17,13
+640,New York,Essex County,36031,39370,,,,,0.061,,,,1
+641,New York,Franklin County,36033,51599,,,,,,,,,1
+642,New York,Hamilton County,36041,4836,,,,,0.054,,,,1
+643,New York,Herkimer County,36043,64519,,,,,0.048,,,,
+644,New York,Jefferson County,36045,116229,,,,,0.05600000000000001,,,,
+645,New York,Kings County,36047,2504700,,,,,,,7.6,18,
+646,New York,Monroe County,36055,744344,1,,8,39,0.05899999999999998,24,6.6,16,2
+647,New York,Nassau County,36059,1339532,,,,,,,,,11
+648,New York,New York County,36061,1585873,1,,,,0.066,29,8.6,20,
+649,New York,Niagara County,36063,216469,,,,,0.05899999999999998,,,,
+650,New York,Oneida County,36065,234878,,,,,,,,,
+651,New York,Onondaga County,36067,467026,,,,,0.05800000000000002,,6.1,15,1
+652,New York,Orange County,36071,372813,,,,,0.05800000000000002,,5.8,15,
+653,New York,Oswego County,36075,122109,,,,,0.05600000000000001,,,,
+654,New York,Putnam County,36079,99710,,,,,0.062,,,,2
+655,New York,Queens County,36081,2230722,1,,17,54,0.071,23,7.8,18,5
+656,New York,Richmond County,36085,468730,,,,,0.065,,7.6,21,
+657,New York,Rockland County,36087,311687,,,,,0.066,,,,
+658,New York,St. Lawrence County,36089,111944,,,,,,,,,82
+659,New York,Saratoga County,36091,219607,,,,,0.054,,,,
+660,New York,Schenectady County,36093,154727,,,,,,,,,
+661,New York,Seneca County,36099,35251,,,,,,,,,2
+662,New York,Steuben County,36101,98990,0,,,,0.054,,5.6,13,2
+663,New York,Suffolk County,36103,1493350,,,,,0.073,,6.4,17,3
+664,New York,Tompkins County,36109,101564,,,,,0.05600000000000001,,,,21
+665,New York,Wayne County,36117,93772,,,,,0.06,,,,
+666,New York,Westchester County,36119,949113,,,,,0.069,,,,
+667,North Carolina,Alamance County,37001,151131,,,,,,,,,
+668,North Carolina,Alexander County,37003,37198,,,,,0.061,21,,,
+669,North Carolina,Avery County,37011,17797,,,,,0.05899999999999998,,,,
+670,North Carolina,Beaufort County,37013,47759,,,,,,,,,13
+671,North Carolina,Brunswick County,37019,107431,,,,,,,,,60
+672,North Carolina,Buncombe County,37021,238318,,,,,0.061,,6.1,14,8
+673,North Carolina,Cabarrus County,37025,178011,,,,,,,,,
+674,North Carolina,Caldwell County,37027,83029,,,,,0.06,,,,
+675,North Carolina,Carteret County,37031,66469,,,,,0.061,,,,
+676,North Carolina,Caswell County,37033,23719,,,,,0.05600000000000001,,,,
+677,North Carolina,Catawba County,37035,154358,,,,,,,8.3,17,
+678,North Carolina,Chatham County,37037,63505,,,,,,,,,
+679,North Carolina,Cumberland County,37051,319431,,,,,0.061,30,7.4,16,
+680,North Carolina,Davidson County,37057,162878,,,,,,,8.8,19,
+681,North Carolina,Duplin County,37061,58505,,,,,,,,,
+682,North Carolina,Durham County,37063,267587,,,,,0.061,27,7.7,15,2
+683,North Carolina,Edgecombe County,37065,56552,,,,,0.06,,,,
+684,North Carolina,Forsyth County,37067,350670,,,7,34,0.065,33,9.5,24,5
+685,North Carolina,Gaston County,37071,206086,,,,,,,,,
+686,North Carolina,Graham County,37075,8861,,,,,0.064,,,,
+687,North Carolina,Granville County,37077,59916,,,,,0.062,,,,
+688,North Carolina,Guilford County,37081,488406,,,,,0.064,33,6.8,15,
+689,North Carolina,Haywood County,37087,59036,,,,,0.062,,,,35
+690,North Carolina,Jackson County,37099,40271,,,,,,,,,
+691,North Carolina,Johnston County,37101,168878,,,,,0.061,,8.1,16,
+692,North Carolina,Lee County,37105,57866,,,,,,,,,
+693,North Carolina,Lenoir County,37107,59495,,,,,0.062,,,,
+694,North Carolina,Lincoln County,37109,78265,,,,,0.065,,,,
+695,North Carolina,McDowell County,37111,44996,,,,,,,,,
+696,North Carolina,Macon County,37113,33922,,,,,0.05800000000000002,,,,
+697,North Carolina,Martin County,37117,24505,,,,,0.062,13,,,
+698,North Carolina,Mecklenburg County,37119,919628,1,,11,37,0.074,36,9.5,18,3
+699,North Carolina,Mitchell County,37121,15579,,,,,,,5.6,12,
+700,North Carolina,Montgomery County,37123,27798,,,,,0.05800000000000002,,7.9,16,
+701,North Carolina,Nash County,37127,95840,,,,,,,,,
+702,North Carolina,New Hanover County,37129,202667,,,,,0.05899999999999998,,,,
+703,North Carolina,Northampton County,37131,22099,,,,,,,,,
+704,North Carolina,Onslow County,37133,177772,,,,,,,,,
+705,North Carolina,Orange County,37135,133801,,,,,,,,,
+706,North Carolina,Pasquotank County,37139,40661,,,,,,,,,
+707,North Carolina,Person County,37145,39464,,,,,0.063,,,,41
+708,North Carolina,Pitt County,37147,168148,,,,,0.061,,6.7,15,
+709,North Carolina,Robeson County,37155,134168,,,,,,,,,
+710,North Carolina,Rockingham County,37157,93643,,,,,0.062,,,,
+711,North Carolina,Rowan County,37159,138428,,,,,0.066,,,,
+712,North Carolina,Swain County,37173,13981,,,,,0.05899999999999998,,7.2,14,
+713,North Carolina,Union County,37179,201292,,,,,0.07000000000000002,,,,
+714,North Carolina,Wake County,37183,900993,1,,9,34,0.064,30,8.9,17,2
+715,North Carolina,Watauga County,37189,51079,,,,,,,,,
+716,North Carolina,Wayne County,37191,122623,,,,,,,,,
+717,North Carolina,Yancey County,37199,17818,,,,,0.061,,,,
+718,North Dakota,Billings County,38007,783,,,,,0.05800000000000002,,3.4,9,4
+719,North Dakota,Burke County,38013,1968,,,2,12,0.05600000000000001,31,3.4,10,23
+720,North Dakota,Burleigh County,38015,81308,1,,5,40,0.05899999999999998,47,4.4,13,11
+721,North Dakota,Cass County,38017,149778,,,4,39,0.062,78,6.5,18,3
+722,North Dakota,Dunn County,38025,3536,,,2,17,0.063,18,4.1,11,6
+723,North Dakota,Grand Forks County,38035,66861,,,,,,,,,
+724,North Dakota,McKenzie County,38053,6360,,,2,13,0.06,23,3.6,11,5
+725,North Dakota,Mercer County,38057,8424,,,3,17,0.05899999999999998,11,4.6,12,22
+726,North Dakota,Oliver County,38065,1846,,,2,13,0.061,37,4.6,13,8
+727,North Dakota,Stark County,38089,24199,,,,,,,,,
+728,North Dakota,Steele County,38091,1975,,,,,,,,,
+729,North Dakota,Ward County,38101,61675,,,2,14,0.063,27,4.5,11,8
+730,North Dakota,Williams County,38105,22398,,,,,0.05800000000000002,22,4.1,13,70
+731,Ohio,Adams County,39001,28550,,,,,,,,,
+732,Ohio,Allen County,39003,106331,,,,,0.064,,7.4,17,3
+733,Ohio,Ashtabula County,39007,101497,,,,,0.068,,,,3
+734,Ohio,Athens County,39009,64757,,,,,,,6.4,13,
+735,Ohio,Belmont County,39013,70400,1,,7,31,,35,,,2
+736,Ohio,Butler County,39017,368130,,,,,0.067,108,11.9,26,134
+737,Ohio,Clark County,39023,138333,,,,,0.066,,9.8,22,3
+738,Ohio,Clermont County,39025,197363,,,,,0.071,,,,
+739,Ohio,Clinton County,39027,42040,,,,,0.065,,,,
+740,Ohio,Columbiana County,39029,107841,,0.01,,,,26,,,3
+741,Ohio,Cuyahoga County,39035,1280122,2,0.01,10,45,0.07000000000000002,79,10.8,26,23
+742,Ohio,Delaware County,39041,174214,,,,,0.063,,,,
+743,Ohio,Fayette County,39047,29030,,,,,0.061,,,,
+744,Ohio,Franklin County,39049,1163414,1,,10,42,0.068,39,9.7,22,
+745,Ohio,Fulton County,39051,42698,,0.08,,,,,,,
+746,Ohio,Gallia County,39053,30934,,,,,,,,,54
+747,Ohio,Geauga County,39055,93389,,,,,0.068,,,,
+748,Ohio,Greene County,39057,161573,,,,,0.062,,,,
+749,Ohio,Hamilton County,39061,802374,2,,18,49,0.072,39,11.9,25,26
+750,Ohio,Harrison County,39067,15864,1,,,,,36,7.6,14,
+751,Ohio,Jefferson County,39081,69709,,,,,0.05700000000000001,40,9,21,32
+752,Ohio,Knox County,39083,60921,,,,,0.063,,,,
+753,Ohio,Lake County,39085,230041,0,,,,0.071,33,6.5,15,16
+754,Ohio,Lawrence County,39087,62450,,,,,0.05899999999999998,23,6.7,13,
+755,Ohio,Licking County,39089,166492,,,,,0.062,,,,
+756,Ohio,Lorain County,39093,301356,,,,,0.05800000000000002,19,7.2,20,
+757,Ohio,Lucas County,39095,441815,,,,,0.065,,8.8,25,22
+758,Ohio,Madison County,39097,43435,,,,,0.063,,,,
+759,Ohio,Mahoning County,39099,238823,,,,,0.064,34,8.3,19,5
+760,Ohio,Marion County,39101,66501,,0.02,,,,,,,
+761,Ohio,Medina County,39103,172332,,,,,0.054,,8.1,20,
+762,Ohio,Miami County,39109,102506,,,,,0.05899999999999998,,,,
+763,Ohio,Montgomery County,39113,535153,1,,,,0.064,54,9.4,22,
+764,Ohio,Morgan County,39115,15054,,,,,,,,,15
+765,Ohio,Noble County,39121,14645,,,,,0.061,,,,
+766,Ohio,Portage County,39133,161419,,,,,0.05800000000000002,,,,
+767,Ohio,Preble County,39135,42270,0,,,,0.065,,8.3,17,6
+768,Ohio,Scioto County,39145,79499,,,,,,77,6.7,13,32
+769,Ohio,Stark County,39151,375586,1,0.21,,,0.065,,9.6,22,
+770,Ohio,Summit County,39153,541781,,,,,0.066,,8.7,22,3
+771,Ohio,Trumbull County,39155,210312,,,,,0.067,23,7.2,18,
+772,Ohio,Warren County,39165,212693,,,,,0.07000000000000002,,,,
+773,Ohio,Washington County,39167,61778,,0,,,0.062,,,,
+774,Ohio,Wood County,39173,125488,,,,,0.061,,,,
+775,Oklahoma,Adair County,40001,22683,0,,,,0.05800000000000002,44,,,2
+776,Oklahoma,Caddo County,40015,29600,,,,,,,,,
+777,Oklahoma,Canadian County,40017,115541,,,,,0.065,,,,
+778,Oklahoma,Carter County,40019,47557,,,,,0.065,,7.7,16,
+779,Oklahoma,Cherokee County,40021,46987,,,,,,,,,
+780,Oklahoma,Choctaw County,40023,15205,,,,,0.062,,,,
+781,Oklahoma,Cleveland County,40027,255755,,,,,0.064,,10,20,
+782,Oklahoma,Comanche County,40031,124098,,,,,0.066,,8.2,17,
+783,Oklahoma,Creek County,40037,69967,,0.01,,,0.066,,,,
+784,Oklahoma,Custer County,40039,27469,,,,,,54,,,
+785,Oklahoma,Dewey County,40043,4810,,,,,0.062,,7.9,17,
+786,Oklahoma,Garfield County,40047,60580,,,,,,,,,45
+787,Oklahoma,Johnston County,40069,10957,,,,,0.05899999999999998,,,,
+788,Oklahoma,Kay County,40071,46562,,,,,0.061,,7.9,19,23
+789,Oklahoma,Le Flore County,40079,50384,,,,,,,,,
+790,Oklahoma,Lincoln County,40081,34273,,,,,,,,,
+791,Oklahoma,Love County,40085,9423,,,,,,,,,
+792,Oklahoma,Mayes County,40097,41259,,,,,0.06,,,,16
+793,Oklahoma,Muskogee County,40101,70990,,,,,,173,,,
+794,Oklahoma,Nowata County,40105,10536,,,,,0.064,,8.3,18,
+795,Oklahoma,Oklahoma County,40109,718633,1,,12,,0.066,63,9.7,21,1
+796,Oklahoma,Osage County,40113,47472,,,,,0.064,,,,
+797,Oklahoma,Ottawa County,40115,31848,,0.05,,,0.055,52,,,
+798,Oklahoma,Pawnee County,40117,16577,,,,,,,,,
+799,Oklahoma,Payne County,40119,77350,,,,,,,,,
+800,Oklahoma,Pittsburg County,40121,45837,,0,,,0.065,,8.1,17,
+801,Oklahoma,Pottawatomie County,40125,69442,,,,,,,,,
+802,Oklahoma,Seminole County,40133,25482,,,,,,,,,
+803,Oklahoma,Sequoyah County,40135,42391,,,5,25,0.05899999999999998,,8.1,17,
+804,Oklahoma,Tulsa County,40143,603403,1,,7,,0.066,36,8.7,22,6
+805,Oklahoma,Washington County,40147,50976,,,,,,,,,
+806,Oregon,Benton County,41003,85579,,,,,,,,,
+807,Oregon,Clackamas County,41005,375992,,,,,0.065,,,,
+808,Oregon,Columbia County,41009,49351,,,,,0.051,,,,
+809,Oregon,Crook County,41013,20978,,,,,,,7.6,28,
+810,Oregon,Deschutes County,41017,157733,,,,,,,,,
+811,Oregon,Douglas County,41019,107667,,,,,,,,,
+812,Oregon,Harney County,41025,7422,,,,,,64,10.1,28,
+813,Oregon,Jackson County,41029,203206,,,,,0.062,54,8.7,37,
+814,Oregon,Josephine County,41033,82713,,,,,,,9.7,30,
+815,Oregon,Klamath County,41035,66380,,,,,,58,10.5,34,
+816,Oregon,Lake County,41037,7895,,,,,,,6.6,26,
+817,Oregon,Lane County,41039,351715,,,,,0.055,72,9.2,37,
+818,Oregon,Linn County,41043,116672,,,,,,,,,
+819,Oregon,Marion County,41047,315335,,,,,0.055,,,,
+820,Oregon,Multnomah County,41051,735334,1,,8,32,0.05800000000000002,29,6.5,20,3
+821,Oregon,Umatilla County,41059,75889,,,,,0.05899999999999998,,,,
+822,Oregon,Union County,41061,25748,,,,,,36,,,
+823,Oregon,Wasco County,41065,25213,,,,,,,,,
+824,Oregon,Washington County,41067,529710,1,,11,33,0.05,32,6.9,24,
+825,Pennsylvania,Adams County,42001,101407,0,,2,12,0.062,,,,4
+826,Pennsylvania,Allegheny County,42003,1223348,3,,10,35,0.064,86,12.2,39,80
+827,Pennsylvania,Armstrong County,42005,68941,,,,,0.05800000000000002,,7.7,15,
+828,Pennsylvania,Beaver County,42007,170539,,0,7,37,0.063,40,9.1,21,15
+829,Pennsylvania,Berks County,42011,411442,,0.03,,,0.066,,8.5,28,
+830,Pennsylvania,Blair County,42013,127089,,,,,0.064,,,,8
+831,Pennsylvania,Bradford County,42015,62622,,,3,,0.053000000000000005,,7.4,17,
+832,Pennsylvania,Bucks County,42017,625249,,,,,0.067,,,,
+833,Pennsylvania,Cambria County,42021,143679,1,,6,34,0.054,27,9,24,13
+834,Pennsylvania,Carbon County,42025,65249,,0.04,,,,,,,
+835,Pennsylvania,Centre County,42027,153990,,,3,29,0.05899999999999998,,9.8,25,3
+836,Pennsylvania,Chester County,42029,498886,,,,,0.068,,,,
+837,Pennsylvania,Clearfield County,42033,81642,,,,,0.054,,,,
+838,Pennsylvania,Cumberland County,42041,235406,,,,,,,8.3,30,
+839,Pennsylvania,Dauphin County,42043,268100,,,,,0.063,36,8.5,24,
+840,Pennsylvania,Delaware County,42045,558979,,0,8,,0.069,,8,22,
+841,Pennsylvania,Elk County,42047,31946,,,,,0.05800000000000002,,,,
+842,Pennsylvania,Erie County,42049,280566,1,,4,,0.063,32,,,
+843,Pennsylvania,Fayette County,42051,136606,,,3,18,0.05800000000000002,,,,
+844,Pennsylvania,Franklin County,42055,149618,,,,,0.05899999999999998,,,,
+845,Pennsylvania,Greene County,42059,38686,,,,,0.05700000000000001,,6.5,13,
+846,Pennsylvania,Indiana County,42063,88880,,,,,0.065,,,,27
+847,Pennsylvania,Lackawanna County,42069,214437,1,,8,42,0.063,,,,
+848,Pennsylvania,Lancaster County,42071,519445,,0.07000000000000002,,,0.065,51,9.7,30,
+849,Pennsylvania,Lawrence County,42073,91108,,0.01,,,0.05600000000000001,,,,
+850,Pennsylvania,Lebanon County,42075,133568,,,,,0.065,,8.8,29,
+851,Pennsylvania,Lehigh County,42077,349497,,,,,0.064,31,8.5,26,
+852,Pennsylvania,Luzerne County,42079,320918,,,,,0.05899999999999998,26,,,3
+853,Pennsylvania,Lycoming County,42081,116111,,,,,0.05600000000000001,,,,
+854,Pennsylvania,Mercer County,42085,116638,,,,,0.065,,8,19,
+855,Pennsylvania,Monroe County,42089,169842,,,,,0.06,,,,
+856,Pennsylvania,Montgomery County,42091,799874,,,,,0.065,,7.5,18,
+857,Pennsylvania,Northampton County,42095,297735,,,,,0.065,,7.9,24,6
+858,Pennsylvania,Perry County,42099,45969,,,,,,,,,
+859,Pennsylvania,Philadelphia County,42101,1526006,2,,13,52,0.072,49,8.7,23,17
+860,Pennsylvania,Somerset County,42111,77742,,,,,0.06,,,,
+861,Pennsylvania,Susquehanna County,42115,43356,,,,,,,6.6,15,
+862,Pennsylvania,Tioga County,42117,41981,,,1,9,0.055,,5.5,14,
+863,Pennsylvania,Warren County,42123,41815,,,,,,,,,55
+864,Pennsylvania,Washington County,42125,207820,,,5,33,0.064,,8.9,19,16
+865,Pennsylvania,Westmoreland County,42129,365169,,0,,,0.061,,7,13,
+866,Pennsylvania,Wyoming County,42131,28276,,,,,,,,,
+867,Pennsylvania,York County,42133,434972,,,,,0.062,,,,8
+868,Rhode Island,Kent County,44003,166158,,,,,0.064,,3.9,11,
+869,Rhode Island,Providence County,44007,626667,2,,17,52,0.064,37,8.3,18,2
+870,Rhode Island,Washington County,44009,126979,,,,,0.066,,3.9,13,
+871,South Carolina,Aiken County,45003,160099,,,,,0.066,,,,
+872,South Carolina,Anderson County,45007,187126,,,,,0.065,,,,
+873,South Carolina,Beaufort County,45013,162233,,,,,,,,,
+874,South Carolina,Berkeley County,45015,177843,,,,,0.064,,,,
+875,South Carolina,Charleston County,45019,350209,,,,,0.064,54,6.9,14,14
+876,South Carolina,Chesterfield County,45025,46734,,,,,0.065,,,,
+877,South Carolina,Colleton County,45029,38892,,,,,0.026,,,,
+878,South Carolina,Darlington County,45031,68681,,,,,0.065,,,,
+879,South Carolina,Edgefield County,45037,26985,,,,,0.065,,7.7,16,
+880,South Carolina,Florence County,45041,136885,,0.11,,,,,7.7,16,
+881,South Carolina,Georgetown County,45043,60158,,,,,,36,,,
+882,South Carolina,Greenville County,45045,451225,,,8,,0.068,31,8.2,19,1
+883,South Carolina,Greenwood County,45047,69661,,,,,,,,,
+884,South Carolina,Horry County,45051,269291,,,,,0.064,,,,
+885,South Carolina,Lexington County,45063,262391,,,,,,35,7.2,15,2
+886,South Carolina,Oconee County,45073,74273,,,,,0.065,,,,1
+887,South Carolina,Orangeburg County,45075,92501,,,,,,,,,
+888,South Carolina,Pickens County,45077,119224,,,,,0.068,,,,
+889,South Carolina,Richland County,45079,384504,1,,3,31,0.067,,,,3
+890,South Carolina,Spartanburg County,45083,284307,,,,,0.068,,7.7,15,
+891,South Carolina,York County,45091,226073,,,,,0.072,,7.8,16,2
+892,South Dakota,Brookings County,46011,31965,,,,,0.071,62,4.2,15,
+893,South Dakota,Brown County,46013,36531,,,,,,35,5.9,18,
+894,South Dakota,Codington County,46029,27227,,,,,,87,6.3,18,
+895,South Dakota,Custer County,46033,8216,,,,,0.05700000000000001,23,2.6,8,
+896,South Dakota,Hughes County,46065,17022,,,,,,,3.3,11,
+897,South Dakota,Jackson County,46071,3031,,,1,8,0.05800000000000002,29,3.7,9,19
+898,South Dakota,Meade County,46093,25434,,,,,0.055,37,,,
+899,South Dakota,Minnehaha County,46099,169468,1,,5,31,0.065,37,3.9,16,2
+900,South Dakota,Pennington County,46103,100948,,,6,,,170,5.9,16,7
+901,South Dakota,Union County,46127,14399,,,2,12,0.064,56,5.8,17,3
+902,Tennessee,Anderson County,47001,75129,,,,,0.066,,,,7
+903,Tennessee,Blount County,47009,123010,1,,1,5,0.064,,6.6,14,1
+904,Tennessee,Claiborne County,47025,32213,,,,,0.06,,,,
+905,Tennessee,Davidson County,47037,626681,1,,14,51,0.065,32,9.2,18,
+906,Tennessee,DeKalb County,47041,18723,,,,,0.06,,,,
+907,Tennessee,Dyer County,47045,38335,,,,,,,6.7,15,
+908,Tennessee,Hamilton County,47065,336463,,,,,0.065,,8.7,18,
+909,Tennessee,Jefferson County,47089,51407,,,,,0.065,,,,
+910,Tennessee,Knox County,47093,432226,,0.03,,,0.063,37,8.9,17,
+911,Tennessee,Lawrence County,47099,41869,,,,,,,,,
+912,Tennessee,Loudon County,47105,48556,,,,,0.063,,7.2,14,
+913,Tennessee,McMinn County,47107,52266,,,,,,,7.4,15,
+914,Tennessee,Madison County,47113,98294,,,,,,,7.5,15,
+915,Tennessee,Maury County,47119,80956,,,,,,,6,13,
+916,Tennessee,Montgomery County,47125,172331,,,,,,,,,
+917,Tennessee,Putnam County,47141,72321,,,,,,,6.2,13,
+918,Tennessee,Roane County,47145,54181,,,,,,,7.1,14,
+919,Tennessee,Sevier County,47155,89889,,,,,0.062,,,,
+920,Tennessee,Shelby County,47157,927644,1,,10,39,0.07000000000000002,54,8.8,19,2
+921,Tennessee,Sullivan County,47163,156823,,0,,,0.064,,7.1,14,104
+922,Tennessee,Sumner County,47165,160645,,,,,0.066,,6.7,15,
+923,Tennessee,Williamson County,47187,183182,,,,,0.06,,,,
+924,Tennessee,Wilson County,47189,113993,,,,,0.06,,,,
+925,Texas,Bell County,48027,310235,,,3,27,0.067,,8.3,19,
+926,Texas,Bexar County,48029,1714773,1,,7,40,0.075,42,8.9,21,4
+927,Texas,Bowie County,48037,92565,,,,,,,9.3,19,
+928,Texas,Brazoria County,48039,313166,,,5,32,0.079,,,,
+929,Texas,Brewster County,48043,9232,,,,,0.064,,5.7,15,
+930,Texas,Caldwell County,48055,38066,,,,,,,,,
+931,Texas,Cameron County,48061,406220,,,,,0.05899999999999998,,9.7,25,
+932,Texas,Collin County,48085,782341,,0.02,,,0.076,,,,
+933,Texas,Culberson County,48109,2398,,,,,0.068,,,,
+934,Texas,Dallas County,48113,2368139,1,,10,44,0.073,40,9,19,
+935,Texas,Denton County,48121,662614,,,6,33,0.073,,,,
+936,Texas,Ector County,48135,137130,,,,,,,7.6,17,
+937,Texas,Ellis County,48139,149610,,,5,32,0.063,,,,4
+938,Texas,El Paso County,48141,800647,2,0.01,14,,0.075,79,8.5,25,
+939,Texas,Freestone County,48161,19816,,,,,,,,,6
+940,Texas,Galveston County,48167,291309,,,3,28,0.079,45,7.6,19,5
+941,Texas,Gregg County,48183,121730,,,3,18,0.067,,,,46
+942,Texas,Harris County,48201,4092459,2,,17,56,0.08100000000000002,63,10.7,27,14
+943,Texas,Harrison County,48203,65631,,,2,16,0.062,,,,54
+944,Texas,Hidalgo County,48215,774769,,,,,0.053000000000000005,50,10.7,30,
+945,Texas,Hood County,48221,51182,,,,,0.066,,,,
+946,Texas,Howard County,48227,35012,,,,,,,,,80
+947,Texas,Hunt County,48231,86129,,,4,24,0.061,,,,
+948,Texas,Hutchinson County,48233,22150,,,,,,,,,168
+949,Texas,Jeff Davis County,48243,2342,,,,,,,,,
+950,Texas,Jefferson County,48245,252273,,,6,31,0.074,,8.5,19,37
+951,Texas,Johnson County,48251,150934,,,,,0.073,,,,
+952,Texas,Kaufman County,48257,103350,,0.23000000000000004,4,28,0.063,,,,7
+953,Texas,Kleberg County,48273,32061,,,,,,,,,
+954,Texas,Lubbock County,48303,278831,,,,,,,6.4,14,
+955,Texas,McLennan County,48309,234906,1,,,,0.063,,,,6
+956,Texas,Marion County,48315,10546,,,,,,,,,
+957,Texas,Maverick County,48323,54258,,,,,,,7.5,21,
+958,Texas,Milam County,48331,24757,,,,,,,,,2
+959,Texas,Montgomery County,48339,455746,,,2,19,0.074,,,,
+960,Texas,Navarro County,48349,47735,,,,,0.062,,,,37
+961,Texas,Nueces County,48355,340223,,,,,0.062,44,8.7,21,9
+962,Texas,Orange County,48361,81837,,,3,,0.064,,8.2,16,62
+963,Texas,Parker County,48367,116927,,,,,0.068,,,,
+964,Texas,Polk County,48373,45413,,,,,0.05899999999999998,,,,
+965,Texas,Potter County,48375,121073,,,,,,,5.2,13,8
+966,Texas,Randall County,48381,120725,,,,,0.068,,,,
+967,Texas,Robertson County,48395,16622,,,,,,,,,8
+968,Texas,Rockwall County,48397,78337,,,,,0.064,,,,
+969,Texas,Rusk County,48401,53330,,,,,,,,,115
+970,Texas,Smith County,48423,209714,,,2,14,0.067,,,,
+971,Texas,Tarrant County,48439,1809034,1,,12,46,0.075,,8.7,19,
+972,Texas,Titus County,48449,32334,,,,,,,,,31
+973,Texas,Travis County,48453,1024266,2,,12,32,0.065,38,9.5,21,2
+974,Texas,Victoria County,48469,86793,,,,,0.062,,,,
+975,Texas,Webb County,48479,250304,3,,,,0.05899999999999998,48,10.7,29,
+976,Utah,Box Elder County,49003,49975,,,0,,0.062,,,,
+977,Utah,Cache County,49005,112656,,,4,33,0.062,67,6.2,35,
+978,Utah,Carbon County,49007,21403,,,2,16,0.068,,,,
+979,Utah,Davis County,49011,306479,,,12,46,0.073,,5.7,19,
+980,Utah,Duchesne County,49013,18607,,,5,19,0.087,,6.1,22,
+981,Utah,Garfield County,49017,5172,,,,,0.062,,,,
+982,Utah,Iron County,49021,46163,,,6,,0.06,,4.3,11,
+983,Utah,Salt Lake County,49035,1029655,1,,18,55,0.073,67,9,31,13
+984,Utah,San Juan County,49037,14746,,,,,0.064,,,,
+985,Utah,Tooele County,49045,58218,,,3,24,0.065,,5.3,23,
+986,Utah,Uintah County,49047,32588,,,4,28,0.098,18,5.1,16,
+987,Utah,Utah County,49049,516564,1,,9,42,0.066,53,6.1,21,
+988,Utah,Washington County,49053,138115,,,3,26,0.064,,,,
+989,Utah,Weber County,49057,231236,1,,11,,0.064,50,,,
+990,Vermont,Addison County,50001,36821,,,,,,,,,
+991,Vermont,Bennington County,50003,37125,,,,,0.05600000000000001,,5.6,14,
+992,Vermont,Chittenden County,50007,156545,1,,6,30,0.054,14,6.6,16,1
+993,Vermont,Rutland County,50021,61642,1,,7,35,0.052,34,7.5,20,3
+994,Vermont,Washington County,50023,59534,,,,,,,,,
+995,Virginia,Albemarle County,51003,98970,,,,,0.05700000000000001,,6.4,13,
+996,Virginia,Arlington County,51013,207627,1,,10,45,0.068,,8,19,
+997,Virginia,Botetourt County,51023,33148,,,,,,,,,36
+998,Virginia,Caroline County,51033,28545,,,,,0.06,,,,
+999,Virginia,Carroll County,51035,30042,,,,,,18,,,
+1000,Virginia,Charles City County,51036,7256,,,5,,0.061,,6.7,14,14
+1001,Virginia,Chesterfield County,51041,316236,,,,,0.05899999999999998,,6.7,12,
+1002,Virginia,Fairfax County,51059,1081726,1,,16,48,0.07000000000000002,19,9.1,25,4
+1003,Virginia,Fauquier County,51061,65203,,,,,0.055,,,,
+1004,Virginia,Frederick County,51069,78305,,,,,0.055,,7.6,23,
+1005,Virginia,Giles County,51071,17286,,,,,0.06,,,,80
+1006,Virginia,Hanover County,51085,99863,,,,,0.061,,,,
+1007,Virginia,Henrico County,51087,306935,1,,6,,0.064,27,6.9,14,3
+1008,Virginia,Loudoun County,51107,312311,,,7,38,0.06,,7.2,20,
+1009,Virginia,Madison County,51113,13308,,,,,0.05800000000000002,,,,
+1010,Virginia,Montgomery County,51121,94392,,0,,,,,,,
+1011,Virginia,Page County,51139,24042,,,,,,,,,
+1012,Virginia,Prince Edward County,51147,23368,,,,,0.05800000000000002,,,,
+1013,Virginia,Prince William County,51153,402002,,,4,24,0.06,,,,
+1014,Virginia,Roanoke County,51161,92376,1,,5,32,0.05899999999999998,,6.3,13,3
+1015,Virginia,Rockbridge County,51163,22307,,,,,0.05700000000000001,,,,
+1016,Virginia,Rockingham County,51165,76314,,,9,38,0.055,,7.1,18,2
+1017,Virginia,Stafford County,51179,128961,,,,,0.05899999999999998,16,,,
+1018,Virginia,Wythe County,51197,29235,,,,,0.05700000000000001,,,,
+1019,Virginia,Alexandria city,51510,139966,,,,,,13,,,
+1020,Virginia,Bristol city,51520,17835,,,,,,,6.4,13,
+1021,Virginia,Chesapeake city,51550,222209,,,,,,,,,
+1022,Virginia,Covington city,51580,5961,,,,,,,,,42
+1023,Virginia,Hampton city,51650,137436,1,,3,24,0.061,18,6.3,14,3
+1024,Virginia,Hopewell city,51670,22591,,,,,,17,,,
+1025,Virginia,Lynchburg city,51680,75568,,,,,,,6.2,12,
+1026,Virginia,Newport News city,51700,180719,,,,,,,,,
+1027,Virginia,Norfolk city,51710,242803,1,,8,40,,20,7.1,17,2
+1028,Virginia,Richmond city,51760,204214,1,,12,43,,,8.4,20,
+1029,Virginia,Roanoke city,51770,97032,,0.01,,,,,,,
+1030,Virginia,Salem city,51775,24802,,,,,,,6.6,13,
+1031,Virginia,Suffolk city,51800,84585,,,,,0.05899999999999998,,,,
+1032,Virginia,Virginia Beach city,51810,437994,,,,,,,6.8,18,
+1033,Virginia,Winchester city,51840,26203,,,,,,25,,,
+1034,Washington,Adams County,53001,18728,,,,,,,,,
+1035,Washington,Asotin County,53003,21623,,,,,,,,,
+1036,Washington,Benton County,53005,175177,,,,,0.061,65,,,
+1037,Washington,Chelan County,53007,72453,,,,,,,,,1
+1038,Washington,Clallam County,53009,71404,0,,,,0.051,,,,1
+1039,Washington,Clark County,53011,425363,,,,,0.05800000000000002,,7,25,
+1040,Washington,Cowlitz County,53015,102410,,,,,,,,,
+1041,Washington,Grant County,53025,89120,,,,,,,,,
+1042,Washington,Grays Harbor County,53027,72797,,,,,,,,,
+1043,Washington,Jefferson County,53031,29872,,,,,,,,,
+1044,Washington,King County,53033,1931249,1,,18,57,0.055,22,8.3,20,6
+1045,Washington,Kitsap County,53035,251133,,,,,,,4.9,12,
+1046,Washington,Kittitas County,53037,40915,,,,,,,7,19,
+1047,Washington,Lewis County,53041,75455,,,,,,,,,
+1048,Washington,Mason County,53045,60699,,,,,,,,,
+1049,Washington,Okanogan County,53047,41120,,,,,,,7.4,21,
+1050,Washington,Pierce County,53053,795225,,,15,40,0.05600000000000001,,8.1,28,
+1051,Washington,Skagit County,53057,116901,,,,,0.04,,5.5,12,3
+1052,Washington,Skamania County,53059,11066,,,,,,,,,
+1053,Washington,Snohomish County,53061,713335,,,,,,,8.5,28,
+1054,Washington,Spokane County,53063,471221,,,,,0.05700000000000001,87,7.5,25,
+1055,Washington,Stevens County,53065,43531,,,,,,107,,,
+1056,Washington,Thurston County,53067,252264,1,,,,0.052,,,,
+1057,Washington,Walla Walla County,53071,58781,,,,,,79,,,
+1058,Washington,Whatcom County,53073,201140,,,,,0.04399999999999999,,4.6,12,105
+1059,Washington,Whitman County,53075,44776,,,,,,,,,
+1060,Washington,Yakima County,53077,243231,,,,,,60,9.8,34,
+1061,West Virginia,Berkeley County,54003,104169,,,,,0.055,,8.9,25,
+1062,West Virginia,Brooke County,54009,24069,,,,,,49,9.5,21,75
+1063,West Virginia,Cabell County,54011,96319,,,,,0.05800000000000002,,7,13,
+1064,West Virginia,Gilmer County,54021,8693,,,,,0.054,,,,
+1065,West Virginia,Greenbrier County,54025,35480,,,,,0.061,,,,
+1066,West Virginia,Hancock County,54029,30676,,,,,0.05899999999999998,32,,,16
+1067,West Virginia,Harrison County,54033,69099,,,,,,,7.3,14,
+1068,West Virginia,Kanawha County,54039,193063,1,,,,0.065,,7.5,14,6
+1069,West Virginia,Marion County,54049,56418,,,,,,,,,
+1070,West Virginia,Marshall County,54051,33107,,,,,,,9.2,22,9
+1071,West Virginia,Mason County,54053,27324,,,,,,,,,61
+1072,West Virginia,Mercer County,54055,62264,,,,,,,,,
+1073,West Virginia,Mineral County,54057,28212,,,,,,,,,135
+1074,West Virginia,Monongalia County,54061,96189,,,,,0.06,,7.2,15,14
+1075,West Virginia,Ohio County,54069,44443,,,,,0.06,,8.1,18,
+1076,West Virginia,Raleigh County,54081,78859,,,,,,,,,
+1077,West Virginia,Summers County,54089,13927,,,,,,,,,
+1078,West Virginia,Tucker County,54093,7141,,,,,0.05600000000000001,,,,
+1079,West Virginia,Wood County,54107,86956,,,,,0.061,,,,22
+1080,Wisconsin,Ashland County,55003,16157,,,,,0.05700000000000001,,5,17,
+1081,Wisconsin,Brown County,55009,248007,,,,,0.05800000000000002,,7.3,19,5
+1082,Wisconsin,Columbia County,55021,56833,,,,,0.05800000000000002,,,,
+1083,Wisconsin,Dane County,55025,488073,,,,,0.05899999999999998,35,8,21,2
+1084,Wisconsin,Dodge County,55027,88759,0,,,,0.062,34,,,1
+1085,Wisconsin,Door County,55029,27785,,,,,0.066,,,,
+1086,Wisconsin,Douglas County,55031,44159,,,,,,,,,
+1087,Wisconsin,Eau Claire County,55035,98736,,,,,0.05600000000000001,41,7.7,22,
+1088,Wisconsin,Fond du Lac County,55039,101633,,,,,0.05700000000000001,,,,
+1089,Wisconsin,Forest County,55041,9304,,,,,0.05800000000000002,,5.4,19,2
+1090,Wisconsin,Grant County,55043,51208,,,,,,,8.4,25,
+1091,Wisconsin,Jefferson County,55055,83686,,,,,0.061,,,,
+1092,Wisconsin,Kenosha County,55059,166426,,,,,0.067,,7.4,21,
+1093,Wisconsin,Kewaunee County,55061,20574,,,,,0.061,,,,
+1094,Wisconsin,La Crosse County,55063,114638,,,,,0.05800000000000002,,7.6,22,
+1095,Wisconsin,Manitowoc County,55071,81442,,,,,0.066,,,,
+1096,Wisconsin,Marathon County,55073,134063,,,,,0.05899999999999998,,,,
+1097,Wisconsin,Milwaukee County,55079,947735,1,,13,47,0.064,58,8.7,22,4
+1098,Wisconsin,Oneida County,55085,35998,,,,,,,,,30
+1099,Wisconsin,Outagamie County,55087,176695,,,,,0.05700000000000001,,8,26,32
+1100,Wisconsin,Ozaukee County,55089,86395,,,,,0.068,,6.9,20,
+1101,Wisconsin,Racine County,55101,195408,,,,,0.066,,,,
+1102,Wisconsin,Rock County,55105,160331,,,,,0.061,,,,
+1103,Wisconsin,St. Croix County,55109,84345,,,,,,,,,
+1104,Wisconsin,Sauk County,55111,61976,,,,,0.061,35,7.3,21,
+1105,Wisconsin,Sheboygan County,55117,115507,,,,,0.068,,,,
+1106,Wisconsin,Taylor County,55119,20689,,,,,0.05800000000000002,,6.4,20,
+1107,Wisconsin,Vilas County,55125,21430,,,,,0.05700000000000001,,4.9,17,
+1108,Wisconsin,Walworth County,55127,102228,,,,,0.062,,,,
+1109,Wisconsin,Waukesha County,55133,389891,,,,,0.05800000000000002,40,9.3,24,
+1110,Wisconsin,Waupaca County,55135,52410,,,,,,,,,
+1111,Wisconsin,Winnebago County,55139,166994,,,,,,,,,
+1112,Wisconsin,Wood County,55141,74749,,,,,,,,,
+1113,Wyoming,Albany County,56001,36299,,,,,0.065,82,3.7,10,
+1114,Wyoming,Big Horn County,56003,11668,,,,,0.05700000000000001,,,,
+1115,Wyoming,Campbell County,56005,46133,,,4,31,0.055,115,1.9,7,
+1116,Wyoming,Carbon County,56007,15885,,,3,31,0.066,,,,28
+1117,Wyoming,Converse County,56009,13833,0,,3,29,0.05899999999999998,147,2.2,7,13
+1118,Wyoming,Fremont County,56013,40123,,,1,4,0.065,34,2.5,6,64
+1119,Wyoming,Goshen County,56015,13249,,,,,,,,,
+1120,Wyoming,Johnson County,56019,8569,,,1,,0.06,36,,,
+1121,Wyoming,Laramie County,56021,91738,0,,3,31,0.06,83,3.7,10,6
+1122,Wyoming,Lincoln County,56023,18106,,,,,,50,,,
+1123,Wyoming,Natrona County,56025,75450,,,4,33,0.06,22,3.8,9,21
+1124,Wyoming,Park County,56029,28205,,,,,0.05700000000000001,37,2.9,8,
+1125,Wyoming,Platte County,56031,8667,,,,,,111,,,
+1126,Wyoming,Sheridan County,56033,29116,,,,,0.06,40,6,18,
+1127,Wyoming,Sublette County,56035,10247,,,2,21,0.085,18,,,
+1128,Wyoming,Sweetwater County,56037,43806,,,3,38,0.065,87,4.4,15,13
+1129,Wyoming,Teton County,56039,21294,0,,,,0.061,40,3.6,12,
+1130,Wyoming,Uinta County,56041,21118,,,2,13,0.067,23,,,
+1131,Wyoming,Weston County,56045,7208,,,,,0.05899999999999998,,,,4
+1132,Puerto Rico,"Adjuntas Municipio, Puerto Rico",72001,19483,,,,,,,5.5,16,
+1133,Puerto Rico,"Arecibo Municipio, Puerto Rico",72013,96440,,0.07000000000000002,,,,,,,
+1134,Puerto Rico,"Bayamón Municipio, Puerto Rico",72021,208116,1,,,,0.032,,7,19,
+1135,Puerto Rico,"Caguas Municipio, Puerto Rico",72025,142893,3,,,,,,7.2,20,
+1136,Puerto Rico,"Cataño Municipio, Puerto Rico",72033,28140,,,,,0.034,91,,,
+1137,Puerto Rico,"Fajardo Municipio, Puerto Rico",72053,36993,,,,,,,6.8,20,
+1138,Puerto Rico,"Guayama Municipio, Puerto Rico",72057,45362,,,,,,,,,
+1139,Puerto Rico,"Guayanilla Municipio, Puerto Rico",72059,21581,,,,,,,,,
+1140,Puerto Rico,"Guaynabo Municipio, Puerto Rico",72061,97924,2,,14,83,,70,7.5,19,
+1141,Puerto Rico,"Humacao Municipio, Puerto Rico",72069,58466,,,,,,,,,
+1142,Puerto Rico,"Lares Municipio, Puerto Rico",72081,30753,,,,,,,,,
+1143,Puerto Rico,"Mayagüez Municipio, Puerto Rico",72097,89080,,,,,0.014000000000000002,,,,
+1144,Puerto Rico,"Ponce Municipio, Puerto Rico",72113,166327,1,,,,,94,6.3,17,
+1145,Puerto Rico,"San Juan Municipio, Puerto Rico",72127,395326,3,,,,,,,,
