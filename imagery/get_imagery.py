@@ -44,4 +44,3 @@ tasks = geetools.batch.Export.imagecollection.toDrive(
             maxPixels=int(1e13)
         )
 
-#issues: work properly with date, limit (how to apply it so we can get the desired number of images)
