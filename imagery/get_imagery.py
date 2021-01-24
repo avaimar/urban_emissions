@@ -22,7 +22,7 @@ fake_data=fake_data.drop_duplicates(subset='uniqueea')[:2000]
 
 # for i in range(10): #we are only taking 
 #     #generating a point for every longitude/latitude pair
-#     point=ee.Geometry.Point( fake_data.iloc[i, 1:3].tolist() ).buffer(500)
+#     point=ee.Geometry.Point( fake_data.iloc[i, 1:3].tolist() ).buffer(500).bounds()
 #     #getting the images. Filter bounds pass the geographic points to the satellite image. Limit puts a limit to the number of images per pixel
 #     imagery=ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").filterBounds(point).filterDate('2020-01-01', '2020-12-31').select(['B3','B4','B2']).mean()
 #     #locally saving the image
@@ -34,7 +34,7 @@ fake_data=fake_data.drop_duplicates(subset='uniqueea')[:2000]
 
 i=0
 #converting first lon/lat pair to a point (with 500 meters augmented to each side)
-point=ee.Geometry.Point( fake_data.iloc[i, 1:3].tolist() ).buffer(500)
+point=ee.Geometry.Point( fake_data.iloc[i, 1:3].tolist() ).buffer(500).bounds()
 #getting the images. Filter bounds pass the geographic points to the satellite image. We also filter the bands and the date, and then we take an average of the images
 imagery=ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").filterBounds(point).filterDate('2020-01-01', '2020-12-31').select(['B3','B4','B2']).mean()
 #saving the image to Drive (the only option)
