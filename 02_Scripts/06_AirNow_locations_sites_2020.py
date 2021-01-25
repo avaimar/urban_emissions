@@ -36,6 +36,9 @@ combined_data = pd.concat([city_data, site_data], axis=0)
 # Drop missing 'value' rows
 combined_data.dropna(subset=['value'], axis=0, inplace=True)
 
+# Drop location_type col
+combined_data.drop('location_type', axis=1, inplace=True)
+
 # Save combined data
 combined_data.to_csv(
     '../01_Data/01_Carbon_emissions/AirNow/World_locations_2020_avg.csv',
