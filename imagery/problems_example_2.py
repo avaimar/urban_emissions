@@ -113,7 +113,7 @@ menlo_park_image=image_to_np(dataset,rectangle,region,directory)
 
 
 #now testing with point in London
-# london = ee.Geometry.Point( [51.5073509,-0.1277583] )
-# region, rectangle = point_box(london,1000)
+london = ee.Geometry.Point( [-0.1277583, 51.5073509] )
+region, rectangle = point_box(london,1000)
 
-# london_image=image_to_np(dataset,rectangle,region,directory)
+london_image=image_to_np(dataset,rectangle,region,directory)
