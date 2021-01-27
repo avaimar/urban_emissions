@@ -41,6 +41,7 @@ imagery=ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").filterBounds(point).filterD
 task=ee.batch.Export.image.toDrive(image=imagery, folder="Carbon_emissions_fake_images", 
                         description='LANDSTAT_img_id'+str(int(fake_data.iloc[i,0])), 
                         region=point,fileFormat='TFRecord')
+#run the following to start exporting the file
 task.start()
 #check status with task.status()
 
