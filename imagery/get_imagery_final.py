@@ -100,8 +100,9 @@ ee.Initialize()
 
 #reading data
 dataset=pd.read_csv(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\01_Carbon_emissions\AirNow\World_locations_2020_avg.csv')
-#keeping the first 20 non na points
-dataset=dataset.dropna().iloc[0:20,:].reset_index(drop=True)
+#keeping NO2 only
+dataset=dataset[dataset['type']=='NO2'].reset_index(drop=True)
+
 
 #adding column for imagery
 dataset['imagery']=np.nan
@@ -132,9 +133,4 @@ for i in range(len(dataset)):
 
 #exporting the dataset as pickle
 dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\02_Imagery\data_and_imagery_test.pkl')
-
-
-point=ee.Geometry.Point(dataset['lon'][i],dataset['lat'][i] )
-#generating bounding box for the point
-region, rectangle = point_box(point,1000)     
 
