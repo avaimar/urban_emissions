@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 """
+Created on Wed Jan 27 23:39:47 2021
+
+@author: nsuar
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Tue Jan 26 04:31:43 2021
 
 @author: nsuar
 """
 
 import numpy as np
+import pandas as pd
 import os
 import imageio
 import requests, zipfile, io
-
-#importing Earth Engine
-import ee #install in the console with "pip install earthengine-api --upgrade"
-ee.Authenticate() #every person needs an Earth Engine account to do this part
-ee.Initialize()
-
-#testing point in Menlo Park
-point=ee.Geometry.Point( [-122.2036486, 37.4237011] )
+import pickle
 
 #function to get a rectangle around a point
 def point_box(point,len):
@@ -33,8 +34,6 @@ def point_box(point,len):
     rectangle=ee.Geometry.Rectangle(coords)
     return str(region), rectangle
     
-#testing the new function
-region, rectangle = point_box(point,1000)
 
 #img dimensions
 def img_dim(image):
@@ -43,14 +42,6 @@ def img_dim(image):
         print( 'image dimensions: '+str(image.getInfo()['bands'][0]['dimensions']) )
     except KeyError:
         print('image size not displaying, probably 1*1')
-
-#testing
-imagery=ee.ImageCollection("LANDSAT/LC08/C01/T1").filterDate('2020-01-01', '2020-12-31').select(['B3','B4','B2'])
-
-#should not be 1*1
-img_dim(imagery.first())
-#should be 1*1
-img_dim(imagery.mean())
 
 
 def image_to_np(image,rectangle,region,directory):
@@ -100,23 +91,52 @@ def image_to_np(image,rectangle,region,directory):
     return np_image
 
 
-#example of previous function
+
+
+#importing Earth Engine
+import ee #install in the console with "pip install earthengine-api --upgrade"
+ee.Authenticate() #every person needs an Earth Engine account to do this part
+ee.Initialize()
+
+#reading data
+dataset=pd.read_csv(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\01_Carbon_emissions\AirNow\World_locations_2020_avg.csv')
+#keeping the first 20 non na points
+dataset=dataset.dropna().iloc[0:20,:].reset_index(drop=True)
+
+#adding column for imagery
+dataset['imagery']=np.nan
+dataset['imagery']=dataset['imagery'].astype(object)
+
+#defining image
 startDate = '2020-01-01'
-endDate = '2020-12-01'
-dataset = ee.ImageCollection("LANDSAT/LC08/C01/T2")
-dataset = dataset.filterDate(startDate, endDate).sort('system:time_start', True) # filter date
-dataset = dataset.select(["B2","B3","B4"]) # select RGB channels
+endDate = '2020-12-31'
+landsat = ee.ImageCollection("LANDSAT/LC08/C01/T1_TOA")
+landsat = landsat.filterDate(startDate, endDate).sort('system:time_start', True) # filter date
+landsat = landsat.select(["B4","B3","B2"]) # select RGB channels
 
 directory=r'C:\Users\nsuar\Google Drive\Carbon_emissions\data\fake_images'
 
-menlo_park_image=image_to_np(dataset,rectangle,region,directory)
+#loop to get images
+for i in range(len(dataset)):
+    #passing lon lat coordinates to point
+    point=ee.Geometry.Point(dataset['lon'][i],dataset['lat'][i] )
+    #generating bounding box for the point
+    region, rectangle = point_box(point,1000)        
+    #downloading image
+    print('getting image '+str(i+1)+' of '+str(len(dataset)))
+    temp_image=image_to_np(landsat,rectangle,region,directory)
+    #resizing the images for the temporary dataset
+    dataset['imagery'][i]=temp_image[0:34,0:34,:]
 
 
-#now testing with point in London
-london = ee.Geometry.Point( [-0.1277583, 51.5073509] )
-region, rectangle = point_box(london,1000)
+#exporting the dataset as pickle
+dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\02_Imagery\data_and_imagery_test.pkl')
 
-london_image=image_to_np(dataset,rectangle,region,directory)
+
+
+
+
+
 
 
 
