@@ -1,0 +1,57 @@
+Size of x_train: torch.Size([1543, 3468])
+Size of y_train: torch.Size([1543, 1])
+
+ Train loss
+Loss at epoch 0: 269.459778
+Loss at epoch 10: 269.459778
+Loss at epoch 20: 269.459778
+Loss at epoch 30: 269.459778
+Loss at epoch 40: 269.459778
+Loss at epoch 50: 269.459778
+Loss at epoch 60: 269.459778
+Loss at epoch 70: 269.459778
+Loss at epoch 80: 269.459778
+Loss at epoch 90: 269.459778
+Loss at epoch 100: 269.459778
+Loss at epoch 110: 269.459778
+Loss at epoch 120: 269.459778
+Loss at epoch 130: 269.459778
+Loss at epoch 140: 269.459778
+Loss at epoch 150: 269.459778
+Loss at epoch 160: 269.459778
+Loss at epoch 170: 269.459778
+Loss at epoch 180: 269.459778
+Loss at epoch 190: 269.459778
+Loss at epoch 200: 269.459778
+Loss at epoch 210: 269.459778
+Loss at epoch 220: 269.459778
+Loss at epoch 230: 269.459778
+Loss at epoch 240: 269.459778
+ Test loss
+Test Loss at epoch 0: 106.450745
+Test Loss at epoch 10: 106.450745
+Test Loss at epoch 20: 106.450745
+Test Loss at epoch 30: 106.450745
+Test Loss at epoch 40: 106.450745
+Test Loss at epoch 50: 106.450745
+Test Loss at epoch 60: 106.450745
+Test Loss at epoch 70: 106.450745
+Test Loss at epoch 80: 106.450745
+Test Loss at epoch 90: 106.450745
+Test Loss at epoch 100: 106.450745
+Test Loss at epoch 110: 106.450745
+Test Loss at epoch 120: 106.450745
+Test Loss at epoch 130: 106.450745
+Test Loss at epoch 140: 106.450745
+Test Loss at epoch 150: 106.450745
+Test Loss at epoch 160: 106.450745
+Test Loss at epoch 170: 106.450745
+Test Loss at epoch 180: 106.450745
+Test Loss at epoch 190: 106.450745
+Test Loss at epoch 200: 106.450745
+Test Loss at epoch 210: 106.450745
+Test Loss at epoch 220: 106.450745
+Test Loss at epoch 230: 106.450745
+Test Loss at epoch 240: 106.450745
+
+Total train time: 128.621493s

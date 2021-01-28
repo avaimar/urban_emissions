@@ -1,0 +1,207 @@
+Size of x_train: torch.Size([1543, 3468])
+Size of y_train: torch.Size([1543, 1])
+
+ Train loss
+Loss at epoch 0: 269.459778
+Loss at epoch 10: 269.459778
+Loss at epoch 20: 269.459778
+Loss at epoch 30: 269.459778
+Loss at epoch 40: 269.459778
+Loss at epoch 50: 269.459778
+Loss at epoch 60: 269.459778
+Loss at epoch 70: 269.459778
+Loss at epoch 80: 269.459778
+Loss at epoch 90: 269.459778
+Loss at epoch 100: 269.459778
+Loss at epoch 110: 269.459778
+Loss at epoch 120: 269.459778
+Loss at epoch 130: 269.459778
+Loss at epoch 140: 269.459778
+Loss at epoch 150: 269.459778
+Loss at epoch 160: 269.459778
+Loss at epoch 170: 269.459778
+Loss at epoch 180: 269.459778
+Loss at epoch 190: 269.459778
+Loss at epoch 200: 269.459778
+Loss at epoch 210: 269.459778
+Loss at epoch 220: 269.459778
+Loss at epoch 230: 269.459778
+Loss at epoch 240: 269.459778
+Loss at epoch 250: 269.459778
+Loss at epoch 260: 269.459778
+Loss at epoch 270: 269.459778
+Loss at epoch 280: 269.459778
+Loss at epoch 290: 269.459778
+Loss at epoch 300: 269.459778
+Loss at epoch 310: 269.459778
+Loss at epoch 320: 269.459778
+Loss at epoch 330: 269.459778
+Loss at epoch 340: 269.459778
+Loss at epoch 350: 269.459778
+Loss at epoch 360: 269.459778
+Loss at epoch 370: 269.459778
+Loss at epoch 380: 269.459778
+Loss at epoch 390: 269.459778
+Loss at epoch 400: 269.459778
+Loss at epoch 410: 269.459778
+Loss at epoch 420: 269.459778
+Loss at epoch 430: 269.459778
+Loss at epoch 440: 269.459778
+Loss at epoch 450: 269.459778
+Loss at epoch 460: 269.459778
+Loss at epoch 470: 269.459778
+Loss at epoch 480: 269.459778
+Loss at epoch 490: 269.459778
+Loss at epoch 500: 269.459778
+Loss at epoch 510: 269.459778
+Loss at epoch 520: 269.459778
+Loss at epoch 530: 269.459778
+Loss at epoch 540: 269.459778
+Loss at epoch 550: 269.459778
+Loss at epoch 560: 269.459778
+Loss at epoch 570: 269.459778
+Loss at epoch 580: 269.459778
+Loss at epoch 590: 269.459778
+Loss at epoch 600: 269.459778
+Loss at epoch 610: 269.459778
+Loss at epoch 620: 269.459778
+Loss at epoch 630: 269.459778
+Loss at epoch 640: 269.459778
+Loss at epoch 650: 269.459778
+Loss at epoch 660: 269.459778
+Loss at epoch 670: 269.459778
+Loss at epoch 680: 269.459778
+Loss at epoch 690: 269.459778
+Loss at epoch 700: 269.459778
+Loss at epoch 710: 269.459778
+Loss at epoch 720: 269.459778
+Loss at epoch 730: 269.459778
+Loss at epoch 740: 269.459778
+Loss at epoch 750: 269.459778
+Loss at epoch 760: 269.459778
+Loss at epoch 770: 269.459778
+Loss at epoch 780: 269.459778
+Loss at epoch 790: 269.459778
+Loss at epoch 800: 269.459778
+Loss at epoch 810: 269.459778
+Loss at epoch 820: 269.459778
+Loss at epoch 830: 269.459778
+Loss at epoch 840: 269.459778
+Loss at epoch 850: 269.459778
+Loss at epoch 860: 269.459778
+Loss at epoch 870: 269.459778
+Loss at epoch 880: 269.459778
+Loss at epoch 890: 269.459778
+Loss at epoch 900: 269.459778
+Loss at epoch 910: 269.459778
+Loss at epoch 920: 269.459778
+Loss at epoch 930: 269.459778
+Loss at epoch 940: 269.459778
+Loss at epoch 950: 269.459778
+Loss at epoch 960: 269.459778
+Loss at epoch 970: 269.459778
+Loss at epoch 980: 269.459778
+Loss at epoch 990: 269.459778
+ Test loss
+Test Loss at epoch 0: 106.450745
+Test Loss at epoch 10: 106.450745
+Test Loss at epoch 20: 106.450745
+Test Loss at epoch 30: 106.450745
+Test Loss at epoch 40: 106.450745
+Test Loss at epoch 50: 106.450745
+Test Loss at epoch 60: 106.450745
+Test Loss at epoch 70: 106.450745
+Test Loss at epoch 80: 106.450745
+Test Loss at epoch 90: 106.450745
+Test Loss at epoch 100: 106.450745
+Test Loss at epoch 110: 106.450745
+Test Loss at epoch 120: 106.450745
+Test Loss at epoch 130: 106.450745
+Test Loss at epoch 140: 106.450745
+Test Loss at epoch 150: 106.450745
+Test Loss at epoch 160: 106.450745
+Test Loss at epoch 170: 106.450745
+Test Loss at epoch 180: 106.450745
+Test Loss at epoch 190: 106.450745
+Test Loss at epoch 200: 106.450745
+Test Loss at epoch 210: 106.450745
+Test Loss at epoch 220: 106.450745
+Test Loss at epoch 230: 106.450745
+Test Loss at epoch 240: 106.450745
+Test Loss at epoch 250: 106.450745
+Test Loss at epoch 260: 106.450745
+Test Loss at epoch 270: 106.450745
+Test Loss at epoch 280: 106.450745
+Test Loss at epoch 290: 106.450745
+Test Loss at epoch 300: 106.450745
+Test Loss at epoch 310: 106.450745
+Test Loss at epoch 320: 106.450745
+Test Loss at epoch 330: 106.450745
+Test Loss at epoch 340: 106.450745
+Test Loss at epoch 350: 106.450745
+Test Loss at epoch 360: 106.450745
+Test Loss at epoch 370: 106.450745
+Test Loss at epoch 380: 106.450745
+Test Loss at epoch 390: 106.450745
+Test Loss at epoch 400: 106.450745
+Test Loss at epoch 410: 106.450745
+Test Loss at epoch 420: 106.450745
+Test Loss at epoch 430: 106.450745
+Test Loss at epoch 440: 106.450745
+Test Loss at epoch 450: 106.450745
+Test Loss at epoch 460: 106.450745
+Test Loss at epoch 470: 106.450745
+Test Loss at epoch 480: 106.450745
+Test Loss at epoch 490: 106.450745
+Test Loss at epoch 500: 106.450745
+Test Loss at epoch 510: 106.450745
+Test Loss at epoch 520: 106.450745
+Test Loss at epoch 530: 106.450745
+Test Loss at epoch 540: 106.450745
+Test Loss at epoch 550: 106.450745
+Test Loss at epoch 560: 106.450745
+Test Loss at epoch 570: 106.450745
+Test Loss at epoch 580: 106.450745
+Test Loss at epoch 590: 106.450745
+Test Loss at epoch 600: 106.450745
+Test Loss at epoch 610: 106.450745
+Test Loss at epoch 620: 106.450745
+Test Loss at epoch 630: 106.450745
+Test Loss at epoch 640: 106.450745
+Test Loss at epoch 650: 106.450745
+Test Loss at epoch 660: 106.450745
+Test Loss at epoch 670: 106.450745
+Test Loss at epoch 680: 106.450745
+Test Loss at epoch 690: 106.450745
+Test Loss at epoch 700: 106.450745
+Test Loss at epoch 710: 106.450745
+Test Loss at epoch 720: 106.450745
+Test Loss at epoch 730: 106.450745
+Test Loss at epoch 740: 106.450745
+Test Loss at epoch 750: 106.450745
+Test Loss at epoch 760: 106.450745
+Test Loss at epoch 770: 106.450745
+Test Loss at epoch 780: 106.450745
+Test Loss at epoch 790: 106.450745
+Test Loss at epoch 800: 106.450745
+Test Loss at epoch 810: 106.450745
+Test Loss at epoch 820: 106.450745
+Test Loss at epoch 830: 106.450745
+Test Loss at epoch 840: 106.450745
+Test Loss at epoch 850: 106.450745
+Test Loss at epoch 860: 106.450745
+Test Loss at epoch 870: 106.450745
+Test Loss at epoch 880: 106.450745
+Test Loss at epoch 890: 106.450745
+Test Loss at epoch 900: 106.450745
+Test Loss at epoch 910: 106.450745
+Test Loss at epoch 920: 106.450745
+Test Loss at epoch 930: 106.450745
+Test Loss at epoch 940: 106.450745
+Test Loss at epoch 950: 106.450745
+Test Loss at epoch 960: 106.450745
+Test Loss at epoch 970: 106.450745
+Test Loss at epoch 980: 106.450745
+Test Loss at epoch 990: 106.450745
+
+Total train time: 542.458229s
