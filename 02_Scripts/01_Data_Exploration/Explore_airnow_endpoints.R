@@ -92,3 +92,18 @@ length(unique(dat$AQSID))
 
 # We have many missings even though number of unique sites is 3k
 colSums(is.na(dat))
+
+# 9. Zip code mappings to reporting areas
+# Note: this is only for the US
+dat <- fread('https://files.airnowtech.org/airnow/today/cityzipcodes.csv')
+
+# Number of zip codes: 16187
+length(unique(dat$Zipcode))
+
+# Locations
+unique(dat$State)
+
+# Number of sites
+length(unique(dat$City))
+
+
