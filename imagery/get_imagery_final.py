@@ -101,7 +101,7 @@ ee.Initialize()
 #reading data
 dataset=pd.read_csv(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\01_Carbon_emissions\AirNow\World_locations_2020_avg.csv')
 #keeping NO2 only
-dataset=dataset[dataset['type']=='NO2'].reset_index(drop=True)
+dataset=dataset[(dataset['type']=='NO2') | (dataset['type']=='OZONE_AQI')].reset_index(drop=True)
 
 
 #adding column for imagery
@@ -118,7 +118,8 @@ landsat = landsat.select(["B4","B3","B2"]) # select RGB channels
 directory=r'C:\Users\nsuar\Google Drive\Carbon_emissions\data\fake_images'
 
 #loop to get images
-for i in range(len(dataset)):
+#for i in range(len(dataset)):
+for i in range(2491,len(dataset)):
     #passing lon lat coordinates to point
     point=ee.Geometry.Point(dataset['lon'][i],dataset['lat'][i] )
     #generating bounding box for the point
@@ -129,6 +130,82 @@ for i in range(len(dataset)):
     #temp_image=image_to_np(landsat,rectangle,region,directory)
     #resizing the images for the temporary dataset
     #dataset['imagery'][i]=temp_image[0:34,0:34,:]
+
+#exporting the dataset as pickle
+dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\02_Imagery\data_and_imagery_test.pkl')
+
+
+
+
+
+
+
+
+
+
+
+
+#attempt to parallelize (fix image_to_np, it is not parallel right now)
+
+def image_to_np_1(image,rectangle,region,directory,i):
+    """
+    function to download a clip of "region" from "image". We download a ZIP with all the bands,
+    then we convert each band to a numpy array, and the we stack them togheter into a final
+    numpy array.
+    
+    Inputs:
+    -image= ee.Image object
+    -rectangle= rectangle around our point from point_box function
+    -region= string with a list of points defining a rectangle, obtained from the point_box function
+    -directory= directory to store TIFF files
+    
+    Output:
+    -np_image= numpy array with 3 dimensions, where the first 2 are the size of the patches, and the 3rd is the number of bands
+    """    
+    
+    
+    #download the zip file containing the images, and clipping the image
+    image = image.filterBounds(rectangle).mean()
+    r = requests.get(image.getDownloadURL({'region': region, 'dimensions': [34,34] }))
+    #r = requests.get(image.getDownloadURL({'region': region, 'scale': 30 }))
+    #unzip it to the selected directory
+    z = zipfile.ZipFile(io.BytesIO(r.content))
+    os.mkdir(directory+'\\'+'folder_'+str(i))
+    z.extractall(directory+'\\'+'folder_'+str(i))
+    
+    #empty list to store the bands
+    bandas=[]
+    
+    #iterating through all the bands we extracted
+    for band in os.listdir(directory+'\\'+'folder_'+str(i)):
+        #path of band TIFF file
+        file_path=directory+'\\'+'folder_'+str(i)+"\\"+band
+        #adding a numpy array with the band to a list
+        bandas.append(np.array(imageio.imread(file_path)))
+    
+    #stacking list with bands to a 3-d array
+    np_image=np.stack(bandas,axis=2)
+    
+
+    #returning output
+    return np_image
+
+
+
+from joblib import Parallel, delayed
+import multiprocessing
+
+def lonlat_to_point(i):
+    global dataset
+    point=ee.Geometry.Point(dataset['lon'][i],dataset['lat'][i] )
+    #generating bounding box for the point
+    region, rectangle = point_box(point,1000)        
+    #downloading image
+    dataset['imagery'][i]=image_to_np_1(landsat,rectangle,region,directory,i)
+
+
+results = Parallel(n_jobs=16)(delayed(lonlat_to_point)(i) for i in range(len(dataset)))
+
 
 
 #exporting the dataset as pickle
