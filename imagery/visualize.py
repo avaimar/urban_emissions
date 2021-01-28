@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
-selected_output_variable = "OZONE"
+selected_output_variable = "NO2"
 data_file = "../01_Data/02_Imagery/data_and_imagery_test.pkl"
 
 def visualize(data_file, selected_output_variable, image_index):
