@@ -2,26 +2,26 @@ Size of x_train: torch.Size([1543, 3468])
 Size of y_train: torch.Size([1543, 1])
 
  Train loss
-Loss at epoch 0: 268.466980
-Loss at epoch 10: 267.632477
-Loss at epoch 20: 265.267090
-Loss at epoch 30: 261.531738
-Loss at epoch 40: 256.737366
-Loss at epoch 50: 251.300812
-Loss at epoch 60: 245.714828
-Loss at epoch 70: 240.495941
-Loss at epoch 80: 236.127258
-Loss at epoch 90: 233.012726
+Loss at epoch 0: 222.061096
+Loss at epoch 10: 222.060837
+Loss at epoch 20: 222.060104
+Loss at epoch 30: 222.058945
+Loss at epoch 40: 222.057526
+Loss at epoch 50: 222.055939
+Loss at epoch 60: 222.054306
+Loss at epoch 70: 222.052841
+Loss at epoch 80: 222.051636
+Loss at epoch 90: 222.050827
  Test loss
-Test Loss at epoch 0: 105.395195
-Test Loss at epoch 10: 104.507118
-Test Loss at epoch 20: 101.984573
-Test Loss at epoch 30: 97.985138
-Test Loss at epoch 40: 92.818031
-Test Loss at epoch 50: 86.899849
-Test Loss at epoch 60: 80.725761
-Test Loss at epoch 70: 74.817619
-Test Loss at epoch 80: 69.667000
-Test Loss at epoch 90: 65.689819
+Test Loss at epoch 0: 52.143177
+Test Loss at epoch 10: 52.142925
+Test Loss at epoch 20: 52.142235
+Test Loss at epoch 30: 52.141182
+Test Loss at epoch 40: 52.139866
+Test Loss at epoch 50: 52.138405
+Test Loss at epoch 60: 52.136978
+Test Loss at epoch 70: 52.135704
+Test Loss at epoch 80: 52.134727
+Test Loss at epoch 90: 52.134129
 
-Total train time: 45.808756s
+Total train time: 32.582619s

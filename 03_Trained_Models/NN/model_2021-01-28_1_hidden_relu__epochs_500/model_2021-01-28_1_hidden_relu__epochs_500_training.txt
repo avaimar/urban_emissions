@@ -2,106 +2,106 @@ Size of x_train: torch.Size([1543, 3468])
 Size of y_train: torch.Size([1543, 1])
 
  Train loss
-Loss at epoch 0: 269.459778
-Loss at epoch 10: 269.459778
-Loss at epoch 20: 269.459778
-Loss at epoch 30: 269.459778
-Loss at epoch 40: 269.459778
-Loss at epoch 50: 269.459778
-Loss at epoch 60: 269.459778
-Loss at epoch 70: 269.459778
-Loss at epoch 80: 269.459778
-Loss at epoch 90: 269.459778
-Loss at epoch 100: 269.459778
-Loss at epoch 110: 269.459778
-Loss at epoch 120: 269.459778
-Loss at epoch 130: 269.459778
-Loss at epoch 140: 269.459778
-Loss at epoch 150: 269.459778
-Loss at epoch 160: 269.459778
-Loss at epoch 170: 269.459778
-Loss at epoch 180: 269.459778
-Loss at epoch 190: 269.459778
-Loss at epoch 200: 269.459778
-Loss at epoch 210: 269.459778
-Loss at epoch 220: 269.459778
-Loss at epoch 230: 269.459778
-Loss at epoch 240: 269.459778
-Loss at epoch 250: 269.459778
-Loss at epoch 260: 269.459778
-Loss at epoch 270: 269.459778
-Loss at epoch 280: 269.459778
-Loss at epoch 290: 269.459778
-Loss at epoch 300: 269.459778
-Loss at epoch 310: 269.459778
-Loss at epoch 320: 269.459778
-Loss at epoch 330: 269.459778
-Loss at epoch 340: 269.459778
-Loss at epoch 350: 269.459778
-Loss at epoch 360: 269.459778
-Loss at epoch 370: 269.459778
-Loss at epoch 380: 269.459778
-Loss at epoch 390: 269.459778
-Loss at epoch 400: 269.459778
-Loss at epoch 410: 269.459778
-Loss at epoch 420: 269.459778
-Loss at epoch 430: 269.459778
-Loss at epoch 440: 269.459778
-Loss at epoch 450: 269.459778
-Loss at epoch 460: 269.459778
-Loss at epoch 470: 269.459778
-Loss at epoch 480: 269.459778
-Loss at epoch 490: 269.459778
+Loss at epoch 0: 270.407990
+Loss at epoch 10: 270.407990
+Loss at epoch 20: 270.407990
+Loss at epoch 30: 270.407990
+Loss at epoch 40: 270.407990
+Loss at epoch 50: 270.407990
+Loss at epoch 60: 270.407990
+Loss at epoch 70: 270.407990
+Loss at epoch 80: 270.407990
+Loss at epoch 90: 270.407990
+Loss at epoch 100: 270.407990
+Loss at epoch 110: 270.407990
+Loss at epoch 120: 270.407990
+Loss at epoch 130: 270.407990
+Loss at epoch 140: 270.407990
+Loss at epoch 150: 270.407990
+Loss at epoch 160: 270.407990
+Loss at epoch 170: 270.407990
+Loss at epoch 180: 270.407990
+Loss at epoch 190: 270.407990
+Loss at epoch 200: 270.407990
+Loss at epoch 210: 270.407990
+Loss at epoch 220: 270.407990
+Loss at epoch 230: 270.407990
+Loss at epoch 240: 270.407990
+Loss at epoch 250: 270.407990
+Loss at epoch 260: 270.407990
+Loss at epoch 270: 270.407990
+Loss at epoch 280: 270.407990
+Loss at epoch 290: 270.407990
+Loss at epoch 300: 270.407990
+Loss at epoch 310: 270.407990
+Loss at epoch 320: 270.407990
+Loss at epoch 330: 270.407990
+Loss at epoch 340: 270.407990
+Loss at epoch 350: 270.407990
+Loss at epoch 360: 270.407990
+Loss at epoch 370: 270.407990
+Loss at epoch 380: 270.407990
+Loss at epoch 390: 270.407990
+Loss at epoch 400: 270.407990
+Loss at epoch 410: 270.407990
+Loss at epoch 420: 270.407990
+Loss at epoch 430: 270.407990
+Loss at epoch 440: 270.407990
+Loss at epoch 450: 270.407990
+Loss at epoch 460: 270.407990
+Loss at epoch 470: 270.407990
+Loss at epoch 480: 270.407990
+Loss at epoch 490: 270.407990
  Test loss
-Test Loss at epoch 0: 106.450745
-Test Loss at epoch 10: 106.450745
-Test Loss at epoch 20: 106.450745
-Test Loss at epoch 30: 106.450745
-Test Loss at epoch 40: 106.450745
-Test Loss at epoch 50: 106.450745
-Test Loss at epoch 60: 106.450745
-Test Loss at epoch 70: 106.450745
-Test Loss at epoch 80: 106.450745
-Test Loss at epoch 90: 106.450745
-Test Loss at epoch 100: 106.450745
-Test Loss at epoch 110: 106.450745
-Test Loss at epoch 120: 106.450745
-Test Loss at epoch 130: 106.450745
-Test Loss at epoch 140: 106.450745
-Test Loss at epoch 150: 106.450745
-Test Loss at epoch 160: 106.450745
-Test Loss at epoch 170: 106.450745
-Test Loss at epoch 180: 106.450745
-Test Loss at epoch 190: 106.450745
-Test Loss at epoch 200: 106.450745
-Test Loss at epoch 210: 106.450745
-Test Loss at epoch 220: 106.450745
-Test Loss at epoch 230: 106.450745
-Test Loss at epoch 240: 106.450745
-Test Loss at epoch 250: 106.450745
-Test Loss at epoch 260: 106.450745
-Test Loss at epoch 270: 106.450745
-Test Loss at epoch 280: 106.450745
-Test Loss at epoch 290: 106.450745
-Test Loss at epoch 300: 106.450745
-Test Loss at epoch 310: 106.450745
-Test Loss at epoch 320: 106.450745
-Test Loss at epoch 330: 106.450745
-Test Loss at epoch 340: 106.450745
-Test Loss at epoch 350: 106.450745
-Test Loss at epoch 360: 106.450745
-Test Loss at epoch 370: 106.450745
-Test Loss at epoch 380: 106.450745
-Test Loss at epoch 390: 106.450745
-Test Loss at epoch 400: 106.450745
-Test Loss at epoch 410: 106.450745
-Test Loss at epoch 420: 106.450745
-Test Loss at epoch 430: 106.450745
-Test Loss at epoch 440: 106.450745
-Test Loss at epoch 450: 106.450745
-Test Loss at epoch 460: 106.450745
-Test Loss at epoch 470: 106.450745
-Test Loss at epoch 480: 106.450745
-Test Loss at epoch 490: 106.450745
+Test Loss at epoch 0: 102.660469
+Test Loss at epoch 10: 102.660469
+Test Loss at epoch 20: 102.660469
+Test Loss at epoch 30: 102.660469
+Test Loss at epoch 40: 102.660469
+Test Loss at epoch 50: 102.660469
+Test Loss at epoch 60: 102.660469
+Test Loss at epoch 70: 102.660469
+Test Loss at epoch 80: 102.660469
+Test Loss at epoch 90: 102.660469
+Test Loss at epoch 100: 102.660469
+Test Loss at epoch 110: 102.660469
+Test Loss at epoch 120: 102.660469
+Test Loss at epoch 130: 102.660469
+Test Loss at epoch 140: 102.660469
+Test Loss at epoch 150: 102.660469
+Test Loss at epoch 160: 102.660469
+Test Loss at epoch 170: 102.660469
+Test Loss at epoch 180: 102.660469
+Test Loss at epoch 190: 102.660469
+Test Loss at epoch 200: 102.660469
+Test Loss at epoch 210: 102.660469
+Test Loss at epoch 220: 102.660469
+Test Loss at epoch 230: 102.660469
+Test Loss at epoch 240: 102.660469
+Test Loss at epoch 250: 102.660469
+Test Loss at epoch 260: 102.660469
+Test Loss at epoch 270: 102.660469
+Test Loss at epoch 280: 102.660469
+Test Loss at epoch 290: 102.660469
+Test Loss at epoch 300: 102.660469
+Test Loss at epoch 310: 102.660469
+Test Loss at epoch 320: 102.660469
+Test Loss at epoch 330: 102.660469
+Test Loss at epoch 340: 102.660469
+Test Loss at epoch 350: 102.660469
+Test Loss at epoch 360: 102.660469
+Test Loss at epoch 370: 102.660469
+Test Loss at epoch 380: 102.660469
+Test Loss at epoch 390: 102.660469
+Test Loss at epoch 400: 102.660469
+Test Loss at epoch 410: 102.660469
+Test Loss at epoch 420: 102.660469
+Test Loss at epoch 430: 102.660469
+Test Loss at epoch 440: 102.660469
+Test Loss at epoch 450: 102.660469
+Test Loss at epoch 460: 102.660469
+Test Loss at epoch 470: 102.660469
+Test Loss at epoch 480: 102.660469
+Test Loss at epoch 490: 102.660469
 
-Total train time: 260.686805s
+Total train time: 152.533787s
