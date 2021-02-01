@@ -40,11 +40,12 @@ city_data = city_data[['location_type', 'id', 'name', 'type', 'measurement',
                        'value', 'lat', 'lon']]
 
 # Modify site dataset
+# We start by dropping rows with NULL values
+site_data.dropna(subset=['value'], axis=0, inplace=True)
 site_data['location_type'] = 'site'
 site_data.rename(columns={'AQSID': 'id', 'SiteName': 'name',
                           'Latitude': 'lat', 'Longitude': 'lon',
-                          'measurement': 'type'},
-                 inplace=True)
+                          'measurement': 'type'}, inplace=True)
 
 # Add measurements to site dataset
 measurement_map = pd.Series({'PM10_AQI': 'AQI', 'PM25_AQI': 'AQI',
@@ -59,28 +60,45 @@ site_data = site_data[['location_type', 'id', 'name', 'type', 'measurement',
 
 # Create a map of ID, lat and lon so as to add missing location information
 # in city_data from site_data
+# NOTE: The majority of missings are related to 'JPN Site XXXX'
 location_map = site_data[['id', 'lat', 'lon']].copy()
-city_data = city_data[['location_type', 'id', 'name', 'type',
+location_map.drop_duplicates(['id'], inplace=True)
+
+city_data_non_missing = city_data.dropna(subset=['lat'], axis=0)
+city_data_missing = city_data[city_data['lat'].isna()]
+
+city_data_missing = city_data_missing[['location_type', 'id', 'name', 'type',
                        'measurement', 'value']]\
-    .merge(location_map, how='left', on='id')
+    .merge(location_map, how='left', on='id', validate='many_to_one')
+city_data = pd.concat([city_data_non_missing, city_data_missing])
 
 # Concatenate city and site datasets
 combined_data = pd.concat([city_data, site_data], axis=0)
 
-# Drop missing 'value', 'lat', 'lon' rows
-# Note: this drops two rows with missing location information
-# and 52,887 rows with missing value information
-combined_data.dropna(subset=['value', 'lat', 'lon'], axis=0, inplace=True)
+# Drop missing 'lat', 'lon' rows
+combined_data.dropna(subset=['lat', 'lon'], axis=0, inplace=True)
 
 # Check for duplicates
-combined_data.drop_duplicates(subset=['id', 'name', 'type', 'measurement'],
-                              inplace=True)
+# Note: We add keep='last' so as to use information from the site dataset
+# as the city dataset tends to have distinct values for some of the sites. Site
+# data tends to coincide with one of these city data values
+combined_data.drop_duplicates(subset=['id', 'type', 'lat', 'lon'],
+                              inplace=True, keep='last')
+
+# Note: Some sites such as MMGBU1000 share the same ID but have different
+# names and coordinates as shown with the code below. Other sites appear to be
+# the same; they have slightly different coordinates their names seem to be
+# spelled differently.
+# combined_data.groupby(['id', 'type']).count().sort_values('name', ascending=False)
+# We will use the average of these sites to map {'id', 'type'} to a single value.
+# This seems to be a sensible choice as it is likely that these sites' names
+# changed over time, or that they are near geographically.
+combined_data = combined_data.groupby(
+    ['id', 'type', 'measurement'], as_index=False).agg(
+    dict(name='first', value='mean', lat='mean', lon='mean'))
 
 # Compute qualitative AQI level for AQI variables
 combined_data['AQI_level'] = combined_data.apply(get_aqi_level, axis=1)
-
-# Drop location_type col
-combined_data.drop('location_type', axis=1, inplace=True)
 
 # Save combined data
 combined_data.to_csv(
