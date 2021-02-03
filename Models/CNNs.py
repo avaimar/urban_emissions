@@ -53,11 +53,11 @@ class ResNetClassifier(nn.Module):
     """
     Define the wrapper model to train BaseResNet as a classifier
     """
-    def __init__(self, no_channels=3, out_features=1000, no_classes=3):
+    def __init__(self, no_channels=3, out_features=1000, num_classes=3):
         super(ResNetClassifier, self).__init__()
         self.model = BaseResNet(no_channels, out_features)
         self.final_fc = nn.Linear(
-            in_features=out_features, out_features=no_classes, bias=False)
+            in_features=out_features, out_features=num_classes, bias=False)
 
     def forward(self, x):
         x = self.model(x)
@@ -89,6 +89,9 @@ def accuracy(outputs, labels):
     return np.sum(outputs == labels) / float(labels.size)
 
 
-metrics = {
+metrics_regression = {
+}
+
+metrics_classification = {
     'accuracy': accuracy
 }
