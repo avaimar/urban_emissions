@@ -69,6 +69,10 @@ def process_sat_data(base_data_file, data_dir, output_variable, data_split):
     # Get features and labels
     X = np.array(data['imagery'].to_list())
 
+    # Ensure dimension ordering is in line with PyTorch
+    if X.shape[1] > X.shape[3]:
+        X = np.moveaxis(X, source=3, destination=1)
+
     # Distinguish between preprocessing for classification and regression
     if "AQI" in output_variable:
         Y = data['AQI_level'].to_numpy().reshape(m, 1)

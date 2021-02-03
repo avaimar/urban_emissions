@@ -26,7 +26,7 @@ class BaseResNet(nn.Module):
             stride=2, padding=3, bias=False)
 
         # Modify the feature size in the final output layer
-        self.model.fc = nn.Linear(out_features=out_features)
+        self.model.fc = nn.Linear(in_features=512, out_features=out_features)
 
     def forward(self, x):
         return self.model(x)
