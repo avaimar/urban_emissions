@@ -30,9 +30,7 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
     :param loss_fn: a function to compute the loss based on outputs and labels
     :param dataloader:
     :param metrics: (dict) a dictionary including relevant metrics
-    :param params: a dictionary of hyper-parameters ['learning_rate',
-     'batch_size', 'num_epochs', 'num_channels', 'save_summary_steps',
-     'num_workers', 'cuda']
+    :param params: a dictionary of hyper-parameters
     :return: metrics_mean: (dict)
     """
 
@@ -52,9 +50,9 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
             model.cuda()
             eval_batch, labels_batch = eval_batch.cuda(), labels_batch.cuda()
 
-        # Convert data to torch variables
-        eval_batch = torch.tensor(eval_batch.astype(float))
-        labels_batch = torch.tensor(labels_batch.astype(float)) ## Is this okay for classification?
+        # Prepare data
+        if not 'AQI' in params['output_variable']:
+            labels_batch = labels_batch.float()
 
         # Forward propagation and loss computation
         output_batch = model(eval_batch)
@@ -63,7 +61,8 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
         # Convert output_batch and labels_batch to np
         if use_cuda:
             output_batch, labels_batch = output_batch.cpu(), labels_batch.cpu()
-        output_batch, labels_batch = output_batch.numpy(), labels_batch.numpy()
+        output_batch, labels_batch = output_batch.detach().numpy(), \
+                                     labels_batch.detach().numpy()
 
         # Compute metrics
         summary_batch = {metric: metrics[metric](output_batch, labels_batch)
@@ -111,17 +110,17 @@ if __name__ == '__main__':
         params['base_data_file'], params['data_split'])
     test_dl = dataloaders['test']
 
+    # Get number of channels
+    no_channels = next(iter(test_dl))[0].shape[1]
+
     # Define model, and fetch loss function and metrics
-    if params['model_type'] == 'regression':
-        model = Models.CNNs.ResNetRegression(
-            no_channels=3, out_features=1000) # TODO change num channels to depend on train
+    if not 'AQI' in params['output_variable']:
+        model = Models.CNNs.ResNetRegression(no_channels=no_channels)
         loss_fn = Models.CNNs.loss_fn_regression
         metrics = Models.CNNs.metrics_regression
     else:
         model = Models.CNNs.ResNetClassifier(
-            no_channels=3, out_features=1000, # TODO change num channels to depend on train
-            num_classes=params['num_classes']
-        )
+            no_channels=no_channels, num_classes=params['num_classes'])
         loss_fn = Models.CNNs.loss_fn_classification
         metrics = Models.CNNs.metrics_classification
     if use_cuda:

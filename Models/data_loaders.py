@@ -49,7 +49,7 @@ class SatelliteData(Dataset):
         :param item: (int)
         :return: a tuple containing the image (res, res, num_bands) and label
         """
-        return self.X[item, :], self.Y[item, :].item()
+        return self.X[item, :], self.Y[item, :]
 
 
 def fetch_dataloader(dataset_types, data_dir, output_variable, params,
