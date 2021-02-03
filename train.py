@@ -9,6 +9,7 @@ import numpy as np
 import utils
 import Models.CNNs
 from evaluate import evaluate
+from Models.data_loaders import data_loader
 
 
 # Set up command line arguments
@@ -53,7 +54,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
 
         # Convert data to torch variables
         train_batch = torch.tensor(train_batch.astype(float))
-        labels_batch = torch.tensor(labels_batch.astype(float)) ## Is this okay for classification?
+        labels_batch = torch.tensor(labels_batch.astype(float)) ## TODO Is this okay for classification?
 
         # Forward propagation, loss computation and backpropagation
         output_batch = model(train_batch)
@@ -64,20 +65,20 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
         # Update parameters
         optimizer.step()
 
-    # Log progress and compute statistics
-    if i % params['save_summary_steps'] == 0:
-        # Convert output_batch and labels_batch to np
-        if use_cuda:
-            output_batch, labels_batch = output_batch.cpu(), labels_batch.cpu()
-        output_batch, labels_batch = output_batch.numpy(), labels_batch.numpy()
+        # Log progress and compute statistics
+        if i % params['save_summary_steps'] == 0:
+            # Convert output_batch and labels_batch to np
+            if use_cuda:
+                output_batch, labels_batch = output_batch.cpu(), labels_batch.cpu()
+            output_batch, labels_batch = output_batch.numpy(), labels_batch.numpy()
 
-        # Compute metrics
-        summary_batch = {metric: metrics[metric](output_batch, labels_batch)
-                         for metric in metrics}
-        metrics_summary.append(summary_batch)
-        summary_batch['loss'] = loss.item()
-        losses.append(loss.item())
-        loss_avg = np.mean(losses)
+            # Compute metrics
+            summary_batch = {metric: metrics[metric](output_batch, labels_batch)
+                             for metric in metrics}
+            metrics_summary.append(summary_batch)
+            summary_batch['loss'] = loss.item()
+            losses.append(loss.item())
+            loss_avg = np.mean(losses)
 
 
 def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
@@ -99,7 +100,12 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
     :return: void
     """
 
-    # TODO reload weights if specified
+    # Reload weights if specified
+    if restore_file is not None:
+        try:
+            utils.load_checkpoint(restore_file, model, optimizer)
+        except FileNotFoundError:
+            print('[ERROR] Model weights file not found.')
 
     # Initiate best validation accuracy
     best_val_metric = 0.0
@@ -116,7 +122,11 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
         is_best = val_metric >= best_val_metric
 
         # Save weights
-        # TODO save weights
+        utils.save_checkpoint(
+           {'epoch': epoch + 1,
+            'state_dict': model.state_dict(),
+            'optim_dict': optimizer.state_dict()},
+           is_best=is_best, checkpoint=model_output)
 
         # Save superior models
         if is_best:
@@ -124,14 +134,15 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
                 params['validation_metric'], val_metric))
             best_val_metric = val_metric
 
-            # TODO save best val metrics
+            # Save best val metrics
             best_json_path = os.path.join(
                 model_dir, 'metrics_val_best_weights.json')
+            utils.save_dict(val_metric, best_json_path)
 
         # Save metrics
         last_json_path = os.path.join(
             model_dir, 'metrics_val_last_weights.json')
-        # TODO save last val metrics
+        utils.save_dict(val_metric, last_json_path)
 
 
 if __name__ == '__main__':
@@ -139,7 +150,13 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
     data_directory = args['data_directory']
     model_output = args['model_output']
-    params = args['model_parameters']
+    params_file = args['model_parameters']
+
+    # Verify parameter file
+    try:
+        params = utils.load_dict(params_file)
+    except FileNotFoundError:
+        print("[ERROR] Parameter file not found.")
 
     # Use GPU if available
     use_cuda = torch.cuda.is_available()
