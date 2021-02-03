@@ -24,14 +24,17 @@ def load_dict(path):
 
 
 def load_checkpoint():
+    # TODO implement
     pass
 
 
 def save_checkpoint():
+    # TODO implement
     pass
 
 
 def plot_learning(train_loss, test_loss, model_tag):
+    # TODO implement
     plt.plot(train_loss)
     plt.plot(test_loss)
     plt.legend(['Train loss', 'Test loss'])
