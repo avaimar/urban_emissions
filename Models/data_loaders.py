@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import random
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -8,7 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 import build_dataset
 
 
-class SatelliteData:
+class SatelliteData(Dataset):
     """
     Define the Satellite Dataset.
     """
@@ -73,6 +72,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
     file_path = os.path.join(data_dir,
                              '{}_{}_split.npz'.format(output_variable, 'train'))
     if not os.path.exists(file_path):
+        print('[INFO] Building dataset...')
         build_dataset.process_sat_data(
             base_data_file, data_dir, output_variable, data_split)
 
@@ -86,7 +86,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
         if split in dataset_types:
             data = SatelliteData(data_dir, output_variable, split)
             dl = DataLoader(
-                data, batch_size=params['batch_size'], shuffle=True,
+                dataset=data, batch_size=params['batch_size'], shuffle=True,
                 num_workers=params['num_workers'], pin_memory=use_cuda)
             dataloaders[split] = dl
 

@@ -6,7 +6,7 @@ import numpy as np
 
 import utils
 import Models.CNNs
-import Models.data_loaders as data_loader
+from Models.data_loaders import fetch_dataloader
 
 
 # Set up command line arguments
@@ -106,7 +106,9 @@ if __name__ == '__main__':
 
     # Fetch dataloaders
     print('[INFO] Loading the test set...')
-    dataloaders = data_loader.fetch_dataloader(['test'], data_directory, params)
+    dataloaders = fetch_dataloader(
+        ['test'], data_directory, params['output_variable'], params,
+        params['base_data_file'], params['data_split'])
     test_dl = dataloaders['test']
 
     # Define model, and fetch loss function and metrics
