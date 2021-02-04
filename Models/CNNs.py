@@ -89,7 +89,17 @@ def accuracy(outputs, labels):
     return np.sum(outputs == labels) / float(labels.size)
 
 
+def rmse(outputs, labels):
+    """
+    Compute the root mean square error of model outputs given example labels
+    :param outputs: (np.array)
+    :param labels: (np.array)
+    :return:
+    """
+    return np.sqrt(np.sum(np.square(outputs - labels)))
+
 metrics_regression = {
+    'RMSE': rmse
 }
 
 metrics_classification = {

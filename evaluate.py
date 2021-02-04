@@ -67,8 +67,8 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
         # Compute metrics
         summary_batch = {metric: metrics[metric](output_batch, labels_batch)
                          for metric in metrics}
-        metrics_summary.append(summary_batch)
         summary_batch['loss'] = loss.item()
+        metrics_summary.append(summary_batch)
         losses.append(loss.item())
 
     # Compute mean of metrics

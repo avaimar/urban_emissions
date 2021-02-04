@@ -121,9 +121,9 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
 
         # Save weights
         utils.save_checkpoint(
-            {'epoch': epoch + 1,
-             'state_dict': model.state_dict(),
-             'optim_dict': optimizer.state_dict()},
+            state={'epoch': epoch + 1,
+                   'state_dict': model.state_dict(),
+                   'optim_dict': optimizer.state_dict()},
             is_best=is_best, checkpoint=model_output)
 
         # Save superior models
