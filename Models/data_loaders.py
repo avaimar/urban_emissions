@@ -1,3 +1,4 @@
+import glob
 import numpy as np
 import os
 
@@ -23,7 +24,7 @@ data_transforms = {
     ])
 }
 
-# TODO this is a very inefficient way of accessing our dataset because we need to load it all into memory. Should we find a way of saving each img file separately?
+
 # Satellite Data class for dataloaders
 class SatelliteData(Dataset):
     """
@@ -38,22 +39,11 @@ class SatelliteData(Dataset):
         :param split: (str) one of ['train', 'val', 'test']
         :param transform (torchvision.transforms)
         """
-        # Load file
-        data_path = os.path.join(data_dir, '{}_{}_split.npz'.format(
-            output_variable, split))
-        try:
-            data = np.load(data_path)
-        except FileNotFoundError:
-            print('[ERROR] Dataset not found.')
-
-        # Get features and labels
-        self.X = data['X']
-        self.m = self.X.shape[0]
-        self.Y = data['y'].reshape(self.m, 1)
-
-        # Get image information
-        self.res = self.X.shape[1]
-        self.num_channels = self.X.shape[3]
+        # Load files in path
+        data_path = os.path.join(data_dir, '{}_{}/*'.format(output_variable, split))
+        data_points = glob.glob(data_path)
+        self.data_points = data_points
+        self.m = len(data_points)
 
         # Get transforms
         self.transform = transform
@@ -71,7 +61,17 @@ class SatelliteData(Dataset):
         :param item: (int)
         :return: a tuple containing the image (res, res, num_bands) and label
         """
-        X_item, Y_item = self.X[item, :], self.Y[item, :]
+        # Grab data point and load
+        try:
+            data = np.load(self.data_points[item])
+        except FileNotFoundError:
+            print('[ERROR] Data point not found.')
+
+        # Get features and labels
+        X_item = data['X']
+        Y_item = data['y'].reshape(1, 1)
+
+        # Apply transforms
         if self.transform:
             X_item, Y_item = self.transform(X_item), self.transform(Y_item)
         return X_item, Y_item
@@ -94,8 +94,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
     """
 
     # Build datasets for selected output variable if they do not exist
-    file_path = os.path.join(data_dir,
-                             '{}_{}_split.npz'.format(output_variable, 'train'))
+    file_path = os.path.join(data_dir, '{}_{}'.format(output_variable, 'train'))
     if not os.path.exists(file_path):
         print('[INFO] Building dataset...')
         build_dataset.process_sat_data(
