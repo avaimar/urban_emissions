@@ -81,13 +81,20 @@ def process_sat_data(base_data_file, data_dir, output_variable, data_split):
 
     # Create train/test/split
     split_data = create_data_split(X, Y, m, data_split)
-    X_train, y_train = split_data[0]
-    X_val, y_val = split_data[1]
-    X_test, y_test = split_data[2]
 
-    # Save each split
-    for split in ['train', 'val', 'test']:
-        path = os.path.join(data_dir, '{}_{}_split.npz'.format(
-            output_variable, split))
-        exec('np.savez_compressed(path, X=X_{}, y=y_{})'.format(
-            split, split))
+    # Create directories for each split and save each data point separately
+    # for efficient access
+    for i, split in enumerate(['train', 'val', 'test']):
+        # Make directory
+        path = os.path.join(data_dir, '{}_{}'.format(output_variable, split))
+        if not os.path.exists(path):
+            os.mkdir(path)
+
+        # Get data
+        X_split, Y_split = split_data[i][0], split_data[i][1]
+
+        # Save each data point
+        for j in range(Y_split.shape[0]):
+            x, y = X_split[j], Y_split[j]
+            example_path = os.path.join(path, '{:05d}.npz'.format(j))
+            np.savez_compressed(example_path, X=x, y=y)

@@ -11,6 +11,7 @@ import Models.CNNs
 from evaluate import evaluate
 from Models.data_loaders import fetch_dataloader
 
+
 # Set up command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--data_directory', default='01_Data/02_Imagery',
@@ -55,7 +56,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
 
         # Forward propagation, loss computation and backpropagation
         output_batch = model(train_batch)
-        loss = loss_fn(output_batch, labels_batch)
+        loss = loss_fn(output_batch, labels_batch) # TODO getting error: Using a target size (torch.Size([1, 1, 1])) that is different to the input size when computing MSE Loss
         optimizer.zero_grad()
         loss.backward()
 
@@ -85,16 +86,15 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
     """
     Train the model and evaluate on a validation dataset using the parameters
     specified in the params file path.
-    :param validation_metric:
     :param model: (torch.nn.Module) the model to be trained
     :param optimizer: (torch.optim)
-    :param loss_fn:
-    :param train_dataloader:
-    :param val_dataloader:
-    :param metrics:
-    :param params:
-    :param model_dir:
-    :param restore_file:
+    :param loss_fn: (nn.MSEloss or nn.CrossEntropyLoss)
+    :param train_dataloader: (torch.utils.data.Dataloader)
+    :param val_dataloader: (torch.utils.data.Dataloader)
+    :param metrics: (dict) metrics to be computed
+    :param params: (dict) model parameters
+    :param model_dir: (str) directory to output model performance
+    :param restore_file: (str) path to model reload model weights
     :return: void
     """
 
@@ -135,12 +135,12 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
             # Save best val metrics
             best_json_path = os.path.join(
                 model_dir, 'metrics_val_best_weights.json')
-            utils.save_dict(val_metric, best_json_path)
+            utils.save_dict(int(round(val_metric, 4)), best_json_path) # TODO save correct output
 
         # Save metrics
         last_json_path = os.path.join(
             model_dir, 'metrics_val_last_weights.json')
-        utils.save_dict(val_metric, last_json_path)
+        utils.save_dict(int(round(val_metric, 4)), last_json_path) # TODO save correct output--- work on output in general
 
 
 if __name__ == '__main__':
