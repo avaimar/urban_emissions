@@ -9,8 +9,7 @@ import numpy as np
 import utils
 import Models.CNNs
 from evaluate import evaluate
-from Models.data_loaders import data_loader
-
+from Models.data_loaders import fetch_dataloader
 
 # Set up command line arguments
 parser = argparse.ArgumentParser()
@@ -32,9 +31,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
     :param loss_fn: a function to compute the loss based on outputs and labels
     :param dataloader:
     :param metrics: (dict) a dictionary including relevant metrics
-    :param params: a dictionary of parameters ['learning_rate', 'batch_size',
-    'num_epochs', 'num_channels', 'save_summary_steps', 'num_workers', 'cuda']
-    :param num_steps: (int)
+    :param params: a dictionary of parameters
     :return: void
     """
 
@@ -44,7 +41,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
     # Set summary lists
     metrics_summary = []
     losses = []
-    loss_avg=0
+    loss_avg = 0
 
     for i, (train_batch, labels_batch) in enumerate(dataloader):
         # Check for GPU and send variables
@@ -52,9 +49,9 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             model.cuda()
             train_batch, labels_batch = train_batch.cuda(), labels_batch.cuda()
 
-        # Convert data to torch variables
-        train_batch = torch.tensor(train_batch.astype(float))
-        labels_batch = torch.tensor(labels_batch.astype(float)) ## TODO Is this okay for classification?
+        # Prepare data
+        if not 'AQI' in params['output_variable']:
+            labels_batch = labels_batch.float()
 
         # Forward propagation, loss computation and backpropagation
         output_batch = model(train_batch)
@@ -70,7 +67,8 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             # Convert output_batch and labels_batch to np
             if use_cuda:
                 output_batch, labels_batch = output_batch.cpu(), labels_batch.cpu()
-            output_batch, labels_batch = output_batch.numpy(), labels_batch.numpy()
+            output_batch, labels_batch = output_batch.detach().numpy(), \
+                                         labels_batch.detach().numpy()
 
             # Compute metrics
             summary_batch = {metric: metrics[metric](output_batch, labels_batch)
@@ -123,10 +121,10 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
 
         # Save weights
         utils.save_checkpoint(
-           {'epoch': epoch + 1,
-            'state_dict': model.state_dict(),
-            'optim_dict': optimizer.state_dict()},
-           is_best=is_best, checkpoint=model_output)
+            {'epoch': epoch + 1,
+             'state_dict': model.state_dict(),
+             'optim_dict': optimizer.state_dict()},
+            is_best=is_best, checkpoint=model_output)
 
         # Save superior models
         if is_best:
@@ -166,26 +164,28 @@ if __name__ == '__main__':
     if use_cuda:
         torch.cuda.manual_seed(42)
 
-    # TODO create logger ?
+    # TODO create logger
 
     # Fetch dataloaders
     print('[INFO] Loading the datasets...')
-    dataloaders = data_loader.fetch_dataloader(
-        ['train', 'val'], data_directory, params)
+    dataloaders = fetch_dataloader(
+        ['train', 'val'], data_directory, params['output_variable'], params,
+        params['base_data_file'], params['data_split'])
     train_dl = dataloaders['train']
     val_dl = dataloaders['val']
 
+    # Get number of channels
+    no_channels = next(iter(train_dl))[0].shape[1]
+
     # Define model, and fetch loss function and metrics
-    if params['model_type'] == 'regression':
+    if not 'AQI' in params['output_variable']:
         model = Models.CNNs.ResNetRegression(
-            no_channels=3, out_features=1000) # TODO change num channels to depend on train
+            no_channels=no_channels)
         loss_fn = Models.CNNs.loss_fn_regression
         metrics = Models.CNNs.metrics_regression
     else:
         model = Models.CNNs.ResNetClassifier(
-            no_channels=3, out_features=1000, # TODO change num channels to depend on train
-            num_classes=params['num_classes']
-        )
+            no_channels=no_channels, num_classes=params['num_classes'])
         loss_fn = Models.CNNs.loss_fn_classification
         metrics = Models.CNNs.metrics_classification
     if use_cuda:
