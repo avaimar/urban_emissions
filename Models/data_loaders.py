@@ -3,21 +3,40 @@ import os
 
 import torch
 from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms
 
 import build_dataset
 
 
+# Define data transforms
+# TODO Seems like we do need to normalize inputs --- should we compute and use the mean for each of the remaining bands?
+data_transforms = {
+    'train': transforms.Compose([
+        # mean-subtraction normalization https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ]),
+    'val': transforms.Compose([
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ]),
+    'test': transforms.Compose([
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+}
+
+# TODO this is a very inefficient way of accessing our dataset because we need to load it all into memory. Should we find a way of saving each img file separately?
+# Satellite Data class for dataloaders
 class SatelliteData(Dataset):
     """
     Define the Satellite Dataset.
     """
 
-    def __init__(self, data_dir, output_variable, split):
+    def __init__(self, data_dir, output_variable, split, transform=None):
         """
         Store the data filtered by the selected output variable.
         :param data_dir: (str) path to split dataset locations
         :param output_variable: (str) output variable
         :param split: (str) one of ['train', 'val', 'test']
+        :param transform (torchvision.transforms)
         """
         # Load file
         data_path = os.path.join(data_dir, '{}_{}_split.npz'.format(
@@ -36,6 +55,9 @@ class SatelliteData(Dataset):
         self.res = self.X.shape[1]
         self.num_channels = self.X.shape[3]
 
+        # Get transforms
+        self.transform = transform
+
     def __len__(self):
         """
         Returns the size of the dataset
@@ -49,7 +71,10 @@ class SatelliteData(Dataset):
         :param item: (int)
         :return: a tuple containing the image (res, res, num_bands) and label
         """
-        return self.X[item, :], self.Y[item, :]
+        X_item, Y_item = self.X[item, :], self.Y[item, :]
+        if self.transform:
+            X_item, Y_item = self.transform(X_item), self.transform(Y_item)
+        return X_item, Y_item
 
 
 def fetch_dataloader(dataset_types, data_dir, output_variable, params,

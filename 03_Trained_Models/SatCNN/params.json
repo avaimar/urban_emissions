@@ -1,12 +1,12 @@
 {
-    "learning_rate": 1e-3,
-    "batch_size": 32,
+    "learning_rate": 1e-4,
+    "batch_size": 1,
     "num_epochs": 10,
     "save_summary_steps": 100,
     "num_workers": 0,
     "output_variable": "NO2",
     "base_data_file": "../Data_exploration/Satellite_imagery_test/imagery_7bands_test.pkl",
     "data_split": [0.8, 0.1, 0.1],
-    "optimizer": "SGD"
-    
+    "optimizer": "SGD",
+    "validation_metric": "rmse"
 }
