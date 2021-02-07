@@ -23,7 +23,7 @@ parser.add_argument('-m', '--model_parameters',
 
 
 # Define training function
-def train(model, optimizer, loss_fn, dataloader, metrics, params):
+def train(model, optimizer, loss_fn, dataloader, metrics, params, logger):
     """
     Trains model on training data using the parameters specified in the
     params file path for a single epoch
@@ -33,7 +33,8 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
     :param dataloader:
     :param metrics: (dict) a dictionary including relevant metrics
     :param params: a dictionary of parameters
-    :return: void
+    :param logger: (utils.Logger) file to output training information
+    :return: (float) average training loss for the epoch
     """
 
     # Set model to train mode
@@ -76,19 +77,23 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             summary_batch['loss'] = loss.item()
             metrics_summary.append(summary_batch)
 
-            # Append loss and compute average loss
-            losses.append(loss.item())
-            print("Running average training loss: {:2f}".format(np.mean(losses)))
-            logger.write("Running average training loss: {:2f}".format(np.mean(losses)))
+        # Append loss
+        losses.append(loss.item())
 
     # Compute metrics mean and add to logger
     metrics_mean = {metric: np.mean([x[metric] for x in metrics_summary]) for metric in metrics}
-    logger.write(metrics_mean)
-    return losses
+    logger.write('[MODEL INFO] Training metrics mean...')
+    logger.write_dict(metrics_mean)
+
+    # Compute average loss
+    avg_loss = np.mean(losses)
+    logger.write("[MODEL INFO] Running average training loss: {:2f}".format(avg_loss))
+
+    return avg_loss
 
 
 def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
-                       val_dataloader, metrics, params, model_dir,
+                       val_dataloader, metrics, params, model_dir, logger,
                        restore_file=None):
     """
     Train the model and evaluate on a validation dataset using the parameters
@@ -105,26 +110,41 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
     :return: void
     """
 
+    train_losses = []
+    eval_losses = []
+
     # Reload weights if specified
     if restore_file is not None:
         try:
             utils.load_checkpoint(restore_file, model, optimizer)
         except FileNotFoundError:
             print('[ERROR] Model weights file not found.')
+        logger.write('[INFO] Restoring weights from file ' + restore_file)
 
     # Initiate best validation accuracy
-    best_val_metric = 0.0
+    if params['validation_metric'] == 'RMSE':
+        best_val_metric = np.Inf
+    else:
+        best_val_metric = 0.0
 
     for epoch in range(params['num_epochs']):
         # Train single epoch on the training set
-        print('[INFO] Training Epoch {}/{}'.format(
-            epoch + 1, params['num_epochs']))
-        train_losses = train(model, optimizer, loss_fn, train_dataloader, metrics, params)
+        logger.write('[INFO] Training Epoch {}/{}'.format(epoch + 1, params['num_epochs']))
+        train_loss = train(
+            model, optimizer, loss_fn, train_dataloader, metrics, params, logger)
+        train_losses.append(train_loss)
 
         # Evaluate single epoch on the validation set
-        val_metrics = evaluate(model, loss_fn, val_dataloader, metrics, params)
+        val_metrics, eval_loss = evaluate(
+            model, loss_fn, val_dataloader, metrics, params, logger)
+        eval_losses.append(eval_loss)
         val_metric = val_metrics[params['validation_metric']]
-        is_best = val_metric >= best_val_metric
+
+        # Determine if model is superior
+        if params['validation_metric'] == 'RMSE':
+            is_best = val_metric <= best_val_metric
+        else:
+            is_best = val_metric >= best_val_metric
 
         # Save weights
         utils.save_checkpoint(
@@ -135,19 +155,25 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
 
         # Save superior models
         if is_best:
-            print('[INFO] New best {}: {}'.format(
+            logger.write('[INFO] New best {}: {}'.format(
                 params['validation_metric'], val_metric))
             best_val_metric = val_metric
 
             # Save best val metrics
             best_json_path = os.path.join(
                 model_dir, 'metrics_val_best_weights.json')
-            utils.save_dict(int(round(val_metric, 4)), best_json_path) # TODO save correct output
+            utils.save_dict(
+                {params['validation_metric']: str(val_metric)},
+                best_json_path)
 
         # Save metrics
         last_json_path = os.path.join(
             model_dir, 'metrics_val_last_weights.json')
-        utils.save_dict(int(round(val_metric, 4)), last_json_path) # TODO save correct output--- work on output in general
+        utils.save_dict(
+            {params['validation_metric']: str(val_metric)}, last_json_path)
+
+    # Save learning plot
+    utils.plot_learning(train_losses, eval_losses, model_dir)
 
 
 if __name__ == '__main__':
@@ -171,15 +197,17 @@ if __name__ == '__main__':
     if use_cuda:
         torch.cuda.manual_seed(42)
 
-    # TODO create logger
+    # Set up logger
+    logger = utils.Logger(os.path.join(model_output, 'logger.txt'))
 
     # Fetch dataloaders
-    print('[INFO] Loading the datasets...')
+    logger.write('[INFO] Loading the datasets...')
     dataloaders = fetch_dataloader(
         ['train', 'val'], data_directory, params['output_variable'], params,
         params['base_data_file'], params['data_split'])
     train_dl = dataloaders['train']
     val_dl = dataloaders['val']
+    logger.write('[INFO] Datasets loaded successfully...')
 
     # Get number of channels
     no_channels = next(iter(train_dl))[0].shape[1]
@@ -203,11 +231,11 @@ if __name__ == '__main__':
         params=model.parameters(), lr=params['learning_rate'])
 
     # Train
-    print('[INFO] Starting training for {} epoch(s)'.format(
+    logger.write('[INFO] Starting training for {} epoch(s)'.format(
         params['num_epochs']))
     t0 = time.time()
     train_and_evaluate(model, optimizer, loss_fn, train_dl,
-                       val_dl, metrics, params, model_output,
+                       val_dl, metrics, params, model_output, logger,
                        restore_file=None)
-    print('[INFO] Training completed in {:2f} minute(s)'.format(
+    logger.write('[INFO] Training completed in {:2f} minute(s)'.format(
         (time.time() - t0) / 60))

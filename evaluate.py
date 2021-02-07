@@ -22,7 +22,7 @@ parser.add_argument('-r', '--restore_file',
 
 
 # Define training function
-def evaluate(model, loss_fn, dataloader, metrics, params):
+def evaluate(model, loss_fn, dataloader, metrics, params, logger):
     """
     Evaluate the model using the parameters specified in the params file path
     for a single epoch
@@ -31,6 +31,7 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
     :param dataloader:
     :param metrics: (dict) a dictionary including relevant metrics
     :param params: a dictionary of hyper-parameters
+    :param logger: (utils.Logger) file to output training information
     :return: metrics_mean: (dict)
     """
 
@@ -73,8 +74,14 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
 
     # Compute mean of metrics
     metrics_mean = {metric: np.mean([x[metric] for x in metrics_summary]) for metric in metrics}
+    logger.write('[MODEL INFO] Evaluation metrics mean...')
+    logger.write_dict(metrics_mean)
 
-    return metrics_mean
+    # Compute average loss
+    avg_loss = np.mean(losses)
+    logger.write("[MODEL INFO] Running average evaluation loss: {:2f}".format(avg_loss))
+
+    return metrics_mean, avg_loss
 
 
 if __name__ == '__main__':
@@ -103,12 +110,16 @@ if __name__ == '__main__':
     if use_cuda:
         torch.cuda.manual_seed(42)
 
+    # Set up logger
+    logger = utils.Logger(os.path.join(eval_output, 'logger.txt'))
+
     # Fetch dataloaders
-    print('[INFO] Loading the test set...')
+    logger.write('[INFO] Loading the test set...')
     dataloaders = fetch_dataloader(
         ['test'], data_directory, params['output_variable'], params,
         params['base_data_file'], params['data_split'])
     test_dl = dataloaders['test']
+    logger.write('[INFO] Test set loaded successfully...')
 
     # Get number of channels
     no_channels = next(iter(test_dl))[0].shape[1]
@@ -127,14 +138,16 @@ if __name__ == '__main__':
         model = model.cuda()
 
     # Reload weights
+    logger.write('[INFO] Loading weights from file ' + restore_file)
     try:
         utils.load_checkpoint(restore_file, model)
     except FileNotFoundError:
         print('[ERROR] Model weights path not found.')
+    logger.write('[INFO] Weights loaded successfully...')
 
     # Evaluate
-    print('[INFO] Starting evaluation...')
-    test_metrics = evaluate(model, loss_fn, test_dl, metrics, params)
+    logger.write('[INFO] Starting evaluation...')
+    test_metrics, _ = evaluate(model, loss_fn, test_dl, metrics, params, logger)
 
     # Save performance metrics
     save_metrics_path = os.path.join(eval_output, 'metrics_test.json')
@@ -142,4 +155,4 @@ if __name__ == '__main__':
         utils.save_dict(test_metrics, save_metrics_path)
     except FileNotFoundError:
         print("[ERROR] Output path cannot be accessed.")
-    print('[INFO] Evaluation completed.')
+    logger.write('[INFO] Evaluation completed.')
