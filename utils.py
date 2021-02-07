@@ -1,3 +1,4 @@
+from datetime import date, time
 import json
 import matplotlib.pyplot as plt
 import os
@@ -66,18 +67,54 @@ def load_checkpoint(checkpoint, model, optimizer=None):
 
 class Logger:
     def __init__(self, path):
+        """
+        Instantiates the logger as a .txt file at the specified path
+        :param path: (str) path to model outputs
+        """
         self.path = path
 
         # Create text file
+        with open(self.path, 'w') as file:
+            file.write('Logger initiated: {} \n \n'.format(date.today()))
+
+    def write(self, text):
+        """
+        Writes text to logger and prints text.
+        :param text: (str)
+        :return: void
+        """
+        with open(self.path, 'a+') as file:
+            file.write(text + '\n')
+        print(text)
+
+    def write_dict(self, dict):
+        """
+        Writes a dictionary to the logger and prints its contents
+        :param dict: (dict) to be written to logger
+        :return: void
+        """
+        text = ""
+        for key, value in dict.items():
+            text = text + "{}: {} \n".format(key, value)
+
+        with open(self.path, 'a+') as file:
+            file.write(text)
+        print(text)
 
 
-def plot_learning(train_loss, test_loss, model_tag):
-    # TODO implement
+def plot_learning(train_loss, eval_loss, path_to_save):
+    """
+    Generates and saves a plot of training and development set loss curves
+    to file.
+    :param train_loss: (list) training losses
+    :param eval_loss: (list) dev set losses
+    :param path_to_save: (str) output directory
+    :return: void
+    """
     plt.plot(train_loss)
-    plt.plot(test_loss)
-    plt.legend(['Train loss', 'Test loss'])
-    path = os.path.join('03_Trained_Models', 'NN', 'images', 'model_%s_%s.png' %(date.today(), model_tag.replace('.', '-')))
+    plt.plot(eval_loss)
+    plt.legend(['Train loss', 'Dev loss'])
+    path = os.path.join(path_to_save, 'learning_plot.png')
     plt.savefig(path)
-    plt.show()
     plt.clf()
 
