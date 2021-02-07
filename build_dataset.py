@@ -2,6 +2,7 @@ import numpy as np
 import os
 import pickle
 import random
+import utils
 
 
 def create_data_split(X, Y, m, data_split):
@@ -40,6 +41,27 @@ def create_data_split(X, Y, m, data_split):
 
     split_data = (X_train, Y_train), (X_val, Y_val), (X_test, Y_test)
     return split_data
+
+
+def save_normalization_metrics(X_train, data_dir, output_variable):
+    """
+    Save a dictionary including the means and std deviations for each band
+    given an array of training images.
+    :param X_train: (np.array) with the shape (num images, num channels, res, res)
+    :param data_dir: (str)
+    :param output_variable: (str)
+    :return: Void (saves to file)
+    """
+    band_means = np.mean(X_train, axis=(0, 2, 3))
+    band_sds = np.std(X_train, axis=(0, 2, 3))
+    band_means = {'band_{}'.format(i): band_mean.item() for (i, band_mean) in
+                  enumerate(np.nditer(band_means))}
+    band_sds = {'band_{}'.format(i): band_sd.item() for (i, band_sd) in
+                enumerate(np.nditer(band_sds))}
+    utils.save_dict(band_means,
+                    os.path.join(data_dir, output_variable, 'band_means.json'))
+    utils.save_dict(band_sds,
+                    os.path.join(data_dir, output_variable, 'band_sds.json'))
 
 
 def process_sat_data(base_data_file, data_dir, output_variable, data_split):
@@ -82,11 +104,15 @@ def process_sat_data(base_data_file, data_dir, output_variable, data_split):
     # Create train/test/split
     split_data = create_data_split(X, Y, m, data_split)
 
+    # Obtain means and sds for each band in the train set (for normalization purposes)
+    X_train = split_data[0][0]
+    save_normalization_metrics(X_train, data_dir, output_variable)
+
     # Create directories for each split and save each data point separately
     # for efficient access
     for i, split in enumerate(['train', 'val', 'test']):
         # Make directory
-        path = os.path.join(data_dir, '{}_{}'.format(output_variable, split))
+        path = os.path.join(data_dir, output_variable, '{}'.format(split))
         if not os.path.exists(path):
             os.mkdir(path)
 

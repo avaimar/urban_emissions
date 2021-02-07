@@ -39,8 +39,6 @@ def save_checkpoint(state, is_best, checkpoint):
     if not os.path.exists(checkpoint):
         print("[INFO] Checkpoint Directory does not exist! Making directory {}".format(checkpoint))
         os.mkdir(checkpoint)
-    else:
-        print("[INFO] Checkpoint Directory exists! ")
     torch.save(state, filepath)
     if is_best:
         shutil.copyfile(filepath, os.path.join(checkpoint, 'best.pth.tar'))
@@ -64,6 +62,13 @@ def load_checkpoint(checkpoint, model, optimizer=None):
         optimizer.load_state_dict(checkpoint['optim_dict'])
 
     return checkpoint
+
+
+class Logger:
+    def __init__(self, path):
+        self.path = path
+
+        # Create text file
 
 
 def plot_learning(train_loss, test_loss, model_tag):
