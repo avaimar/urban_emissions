@@ -42,7 +42,6 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
     # Set summary lists
     metrics_summary = []
     losses = []
-    loss_avg = 0
 
     for i, (train_batch, labels_batch) in enumerate(dataloader):
         # Check for GPU and send variables
@@ -56,7 +55,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
 
         # Forward propagation, loss computation and backpropagation
         output_batch = model(train_batch)
-        loss = loss_fn(output_batch, labels_batch) # TODO getting error: Using a target size (torch.Size([1, 1, 1])) that is different to the input size when computing MSE Loss
+        loss = loss_fn(output_batch, labels_batch)
         optimizer.zero_grad()
         loss.backward()
 
@@ -74,10 +73,18 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             # Compute metrics
             summary_batch = {metric: metrics[metric](output_batch, labels_batch)
                              for metric in metrics}
-            metrics_summary.append(summary_batch)
             summary_batch['loss'] = loss.item()
+            metrics_summary.append(summary_batch)
+
+            # Append loss and compute average loss
             losses.append(loss.item())
-            loss_avg = np.mean(losses)
+            print("Running average training loss: {:2f}".format(np.mean(losses)))
+            logger.write("Running average training loss: {:2f}".format(np.mean(losses)))
+
+    # Compute metrics mean and add to logger
+    metrics_mean = {metric: np.mean([x[metric] for x in metrics_summary]) for metric in metrics}
+    logger.write(metrics_mean)
+    return losses
 
 
 def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
@@ -112,7 +119,7 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
         # Train single epoch on the training set
         print('[INFO] Training Epoch {}/{}'.format(
             epoch + 1, params['num_epochs']))
-        train(model, optimizer, loss_fn, train_dataloader, metrics, params)
+        train_losses = train(model, optimizer, loss_fn, train_dataloader, metrics, params)
 
         # Evaluate single epoch on the validation set
         val_metrics = evaluate(model, loss_fn, val_dataloader, metrics, params)
