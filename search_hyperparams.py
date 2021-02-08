@@ -52,7 +52,7 @@ batch_size = [32, 64, 128]
 optimizer = ['SGD', 'Adam', 'RMSprop', 'Adagrad']
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     # Capture parameters from the command line
     args = vars(parser.parse_args())
     data_directory = args['data_directory']
@@ -69,7 +69,7 @@ if __name__ == 'main':
     # Loop over each hyperparameter value
     print('[INFO] Running models for {} search'.format(model_param))
     for hp in hp_list:
-        print('[INFO] Running model for {} : {}'.format(model_param, str(hp)))
+        print('[INFO] Running model for {}: {}'.format(model_param, str(hp)))
 
         # Set up directory
         model_path = os.path.join(model_output, model_tag + '_' + str(hp))
