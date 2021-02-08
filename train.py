@@ -38,7 +38,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, logger):
     """
 
     # Set model to train mode
-    model.train()
+    model.train(mode=True)
 
     # Set summary lists
     metrics_summary = []
@@ -82,7 +82,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, logger):
 
     # Compute metrics mean and add to logger
     metrics_mean = {metric: np.mean([x[metric] for x in metrics_summary]) for metric in metrics}
-    logger.write('[MODEL INFO] Training metrics mean...')
+    logger.write('[MODEL INFO] Training metrics mean:')
     logger.write_dict(metrics_mean)
 
     # Compute average loss

@@ -74,7 +74,7 @@ def evaluate(model, loss_fn, dataloader, metrics, params, logger):
 
     # Compute mean of metrics
     metrics_mean = {metric: np.mean([x[metric] for x in metrics_summary]) for metric in metrics}
-    logger.write('[MODEL INFO] Evaluation metrics mean...')
+    logger.write('[MODEL INFO] Evaluation metrics mean')
     logger.write_dict(metrics_mean)
 
     # Compute average loss
