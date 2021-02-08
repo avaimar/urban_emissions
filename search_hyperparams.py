@@ -89,3 +89,5 @@ if __name__ == '__main__':
             model_output=model_path, model_parameters=dict_path)
         print(cmd)
         check_call(cmd, shell=True)
+
+print('[INFO] Hyperparameter search completed.')
