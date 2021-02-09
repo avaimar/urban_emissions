@@ -85,5 +85,5 @@ for year in years:
 
 print('[INFO] Data scraping completed.')
 hourly_data.to_csv(
-    '../01_Data/01_Carbon_emissions/AirNow/World_cities_2020_avg.csv',
+    '../01_Data/01_Carbon_emissions/AirNow/World_cities_2020_avg_raw.csv',
     index=False)
