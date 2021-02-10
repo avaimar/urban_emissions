@@ -50,6 +50,11 @@ city_data = pd.read_csv(
 site_data = pd.read_csv(
     '../01_Data/01_Carbon_emissions/AirNow/World_sites_2020_avg_raw.csv')
 
+# Import reporting area information from AirNow
+reporting_area = pd.read_csv(
+    'https://s3-us-west-1.amazonaws.com//files.airnowtech.org/airnow/2020/20200101/Site_To_ReportingArea.csv',
+    encoding='ISO-8859-1')
+
 # Modify city dataset
 city_data['location_type'] = 'city_location'
 
@@ -64,7 +69,7 @@ site_data.rename(columns={'AQSID': 'id', 'SiteName': 'name',
 # Add measurements to site dataset
 measurement_map = pd.Series({'PM10_AQI': 'AQI', 'PM25_AQI': 'AQI',
                              'OZONE_AQI': 'AQI',
-                             'NO2_AQI': 'AQI', 'PM2.5': 'UG/M3', 'OZONE': 'PPB',
+                             'NO2_AQI': 'AQI', 'PM25': 'UG/M3', 'OZONE': 'PPB',
                              'PM10': 'UG/M3', 'CO': 'PPM', 'SO2': 'PPB',
                              'NO2': 'PPB'}, name='measurement')
 site_data = site_data.merge(measurement_map, how='left', left_on='type',
@@ -77,112 +82,125 @@ site_data = site_data[['location_type', 'id', 'name', 'type', 'measurement',
 # Note: there are various sites which have exactly the same id, lat and lon
 # but different names. These sites appear to be the same, as their names
 # tend to have different spellings. We will keep the first entry in these cases.
-location_map = site_data[['id', 'name', 'lat', 'lon']].copy()
-location_map.drop_duplicates(['id', 'name', 'lat', 'lon'], inplace=True)
+location_map = site_data[['id', 'lat', 'lon']].copy()
+location_map.drop_duplicates(['id', 'lat', 'lon'], inplace=True)
 
-# Ensure there that [id, name] pairs have the same lat/lon
-location_count = location_map.groupby(['id', 'name'], as_index=False)['lat']\
+# Ensure there that Site IDs have the same lat/lon
+location_count = location_map.groupby(['id'], as_index=False)['lat']\
     .count().sort_values('lat', ascending=False)
 location_count.rename(columns={'lat': 'count'}, inplace=True)
 
 location_map = location_map.merge(
-    location_count, on=['id', 'name'], how='left', validate='many_to_one')
+    location_count, on=['id'], how='left', validate='many_to_one')
 
 location_unique = location_map[location_map['count'] == 1].copy()
 location_duplicates = location_map[location_map['count'] > 1].copy()
 
-# There are several [id, name] pairs that have coordinates differing by a few
+# There are several sites with the same ID that have coordinates differing by a few
 # decimals. Check if distance for lat/lon is less than 0.1 and if so we
 # keep the first entry for these pairs
-location_duplicates['first_lat'] = location_duplicates.groupby(['id', 'name'])['lat'].transform('first')
-location_duplicates['first_lon'] = location_duplicates.groupby(['id', 'name'])['lon'].transform('first')
+location_duplicates['first_lat'] = location_duplicates.groupby(['id'])['lat'].transform('first')
+location_duplicates['first_lon'] = location_duplicates.groupby(['id'])['lon'].transform('first')
 
 location_duplicates['lat_ok'] = np.abs(location_duplicates['lat'] - location_duplicates['first_lat']) < 0.1
 location_duplicates['lon_ok'] = np.abs(location_duplicates['lon'] - location_duplicates['first_lon']) < 0.1
 
-# Note that although the location_duplicates dataset is 1204 entries long, it
-# refers to only 63 unique sites (len(location_duplicates['id'].unique())). We
+# Note that although the location_duplicates dataset is 1203 entries long, it
+# refers to only 65 unique sites (len(location_duplicates['id'].unique())). We
 # will thus keep the sites that abide by the 0.1 max distance in both lat and lon
 # and 'throw' away the rest. If we are in severe need for more data points we can
-# come back and clean these 18 sites manually.
+# come back and clean the remaining 20 sites manually.
 
-appropriate_locs = location_duplicates.groupby(
-    ['id', 'name'], as_index=False).apply(acceptable_distance).reset_index()
+appropriate_locs = location_duplicates.groupby('id')\
+    .apply(acceptable_distance).reset_index()
 
 location_duplicates = location_duplicates.merge(
-    appropriate_locs, how='left', on=['id', 'name'], validate='many_to_one')
+    appropriate_locs, how='left', on=['id'], validate='many_to_one')
 location_duplicates = location_duplicates[location_duplicates[0] == True]
-location_duplicates = location_duplicates.groupby(['id', 'name'], as_index=False).agg('first')
+location_duplicates = location_duplicates.groupby(['id'], as_index=False).agg('first')
 
 # Concatenate these new unique [id, name] pairs with the already unique pairs
 location_map = pd.concat(
-    [location_unique[['id', 'name', 'lat', 'lon']],
-     location_duplicates[['id', 'name', 'lat', 'lon']]])
+    [location_unique[['id', 'lat', 'lon']],
+     location_duplicates[['id', 'lat', 'lon']]])
 
-# At this point we have unique [id, name] pairs with unique lat/lon values. We
-# merge these with the city data by [id, name].
+# At this point we have unique [id] with unique lat/lon values. We
+# merge these with the city data by [id].
 city_data = city_data[['location_type', 'id', 'name', 'type',
                        'measurement', 'value']] \
     .merge(location_map, how='left',
-           on=['id', 'name'], validate='many_to_one')
+           on=['id'], validate='many_to_one')
 
-# We now check for sites with missing lat/lon in the city_data (10448 missing values).
-# Check how many site IDs are present in our location_map. This may reflect a
-# difference in names
-non_missing_cities = city_data[city_data['lat'].notna()].copy()
-missing_cities = city_data[city_data['lat'].isna()].copy()
-missing_cities_ids = set(missing_cities['id'].unique())
-# Note that these belong to 2210 unique sites ( missing_cities_ids.shape )
+# Note that there are 8578 entries with lat/lon info and 8485 entries whose
+# ID is not present in the location map.
 
-location_map_ids = set(location_map['id'].unique())
-intersect_ids = missing_cities_ids.intersection(location_map_ids)
+# We will attempt to find the remaining missing locations with the
+# ReportingArea dictionary provided by AirNow. This dictionary does not
+# include all sites, however, and only has data on 1569 sites.
 
-# We have 429 site IDS which are present in our location_map, under different
-# names. ( len(intersect_ids) ) We will grab the locations from the location_map
-# though the name does not match. It appears this is reasonable, as for example
-# id 000052301 is under the name 'Saint-Faustin' or 'Saint-Faustin-Lac-Carraes'
-# in the location map, but hast the name 'Saint-Faustin-Lac-Ca' in city_data
-# We will grab the first matching ID
-missing_cities = \
-    missing_cities[['location_type', 'id', 'name', 'type', 'measurement', 'value']] \
-        .merge(location_map[['id', 'lat', 'lon']], how='left', on='id', validate='many_to_one')
+missing_city_data = city_data[city_data['lat'].isna()]
+nonmissing_city_data = city_data[city_data['lat'].notna()]
 
-# NOTE: The majority of missings are related to 'JPN Site XXXX'
+# Note that reporting_area includes duplicate rows where the same site
+# (with the same lat/lon) maps to multiple ReportingAreas. We will thus
+# drop duplicates, as we are interested only in these site-lat-lon mappings.
 
+reporting_area.drop_duplicates(subset='SiteID', inplace=True)
 
-# city_data = city_data[['location_type', 'id', 'name', 'type', 'measurement',
-#                       'value', 'lat', 'lon']]
+missing_city_data = missing_city_data[
+    ['location_type', 'id', 'name', 'type', 'measurement', 'value']]\
+    .merge(reporting_area[['SiteID', 'SiteLat', 'SiteLong']],
+           how='left', left_on='id', right_on='SiteID', validate='many_to_one')
+missing_city_data.rename(columns={'SiteLat': 'lat', 'SiteLong':'lon'}, inplace=True)
+# This added data on 63 entries.
 
+city_data = pd.concat([
+    nonmissing_city_data[['location_type', 'id', 'name', 'type', 'measurement',
+                          'value', 'lat', 'lon']],
+    missing_city_data[['location_type', 'id', 'name', 'type', 'measurement',
+                       'value', 'lat', 'lon']]])
+
+# TODO decide if we should drop these 8485 entries or use the Google Maps
+# TODO API to obtain an estimated location for them based on their name
+
+city_data = city_data[city_data['lat'].notna()]
+
+# We will also merge these back to the site dataset in order to ensure that
+# every ID is mapped to a unique lat lon
+site_data = site_data[['location_type', 'id', 'name', 'type', 'measurement',
+                       'value']].merge(
+    location_map, on='id', how='left', validate='many_to_one')
 
 # Concatenate city and site datasets
+city_data = city_data[['location_type', 'id', 'name', 'type', 'measurement',
+                       'value', 'lat', 'lon']]
+site_data = site_data[['location_type', 'id', 'name', 'type', 'measurement',
+                       'value', 'lat', 'lon']]
 combined_data = pd.concat([city_data, site_data], axis=0)
 
-# Drop missing 'lat', 'lon' rows
-combined_data.dropna(subset=['lat', 'lon'], axis=0, inplace=True)
+# Note: 962 missing lat/lon values now come from site_data. These are related
+# to Sites that were dropped in the location_map because their multiple lat/lons
+# were different by more than 0.1. We will drop these rows now.
+combined_data = combined_data.dropna(axis=0, subset=['lat', 'lon'])
+
+# Fix differing values for PM2.5
+combined_data.loc[combined_data['type'] == 'PM25', 'type'] = 'PM2.5'
 
 # Check for duplicates
-# Note: We add keep='last' so as to use information from the site dataset
-# as the city dataset tends to have distinct values for some of the sites. Site
-# data tends to coincide with one of these city data values
-combined_data.drop_duplicates(subset=['id', 'type', 'lat', 'lon'],
-                              inplace=True, keep='last')
+# We first check that each ID points to a single lat/lon location
+test = combined_data.groupby(['id'], as_index=False)['lat'].nunique().sort_values(ascending=False)
+test = combined_data.groupby(['id'], as_index=False)['lon'].nunique().sort_values(ascending=False)
 
-# Note: Some sites such as MMGBU1000 share the same ID but have different
-# names and coordinates as shown with the code below. Other sites appear to be
-# the same; they have slightly different coordinates their names seem to be
-# spelled differently.
-# combined_data.groupby(['id', 'type']).count().sort_values('name', ascending=False)
-# We will use the average of these sites to map {'id', 'type'} to a single value.
-# This seems to be a sensible choice as it is likely that these sites' names
-# changed over time, or that they are near geographically.
+# Continuing to work with the assumption that a Site ID is a unique location
+# regardless of differences in the name, we will average over the values
+# for each [id, type, lat, lon] combination
 combined_data = combined_data.groupby(
-    ['id', 'type', 'measurement'], as_index=False).agg(
-    dict(name='first', value='mean', lat='mean', lon='mean'))
+    ['id', 'type', 'measurement', 'lat', 'lon'], as_index=False)['value'].mean()
 
 # Compute qualitative AQI level for AQI variables
 combined_data['AQI_level'] = combined_data.apply(get_aqi_level, axis=1)
 
 # Save combined data
 combined_data.to_csv(
-    '../01_Data/01_Carbon_emissions/AirNow/World_locations_2020_avg.csv',
+    '../01_Data/01_Carbon_emissions/AirNow/World_locations_2020_avg_clean.csv',
     index=False)
