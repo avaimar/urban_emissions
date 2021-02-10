@@ -2,17 +2,32 @@ import numpy as np
 import pandas as pd
 
 
-# Import data on zip code mappings
+# Import data on zip code mappings from AirNow
 zip_code_data = pd.read_table(
     'https://files.airnowtech.org/airnow/today/cityzipcodes.csv',
     sep="|")
 
-# Import scraped data on monitoring sites
-site_data = pd.read_csv('../01_Data/01_Carbon_emissions/AirNow/World_locations_2020_avg.csv')
+# Import reporting area information from AirNow
+reporting_area = pd.read_csv(
+    'https://s3-us-west-1.amazonaws.com//files.airnowtech.org/airnow/2020/20200101/Site_To_ReportingArea.csv',
+    encoding='ISO-8859-1')
+
+# Import clean data on monitoring sites
+site_data = pd.read_csv('../01_Data/01_Carbon_emissions/AirNow/World_locations_2020_avg_clean.csv')
 
 # Add site / zip code identifiers
 site_data['Location_type'] = 'Site'
 zip_code_data['Location_type'] = 'Zip_code'
+
+# Merge zip code and Site ID via the ReportingAreaName
+# There are multiple rows with the same ReportingAreaName in the reporting_area
+# dataset; we need a single one in order to map zipcodes.
+
+zip_code_data = zip_code_data.merge(
+    reporting_area[['ReportingAreaName', 'SiteID']],
+    how='left', left_on='City', right_on='ReportingAreaName',
+    validate='many_to_one')
+
 
 # Expand zip code data to account for multiple measurements
 measurements = site_data['type'].unique()
