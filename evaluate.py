@@ -116,8 +116,12 @@ if __name__ == '__main__':
     # Fetch dataloaders
     logger.write('[INFO] Loading the test set...')
     dataloaders = fetch_dataloader(
-        ['test'], data_directory, params['output_variable'], params,
-        params['base_data_file'], params['data_split'])
+        dataset_types=['test'], data_dir=data_directory,
+        output_variable=params['output_variable'], params=params,
+        base_image_file=params['base_image_file'],
+        base_id_file=params['base_id_file'],
+        base_labels_file=params['base_labels_file'],
+        data_split=params['data_split'])
     test_dl = dataloaders['test']
     logger.write('[INFO] Test set loaded successfully...')
 
