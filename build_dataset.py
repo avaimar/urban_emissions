@@ -15,6 +15,7 @@ GLOBAL_MEANS = np.array([0.26334649324417114, 0.25160321593284607,
                          0.33065736293792725, 0.23822002112865448,
                          0.1870376616716385])
 
+
 def create_data_split(valid_rows_bool, data_split):
     """
     Creates a train/val/test split given a list of sizes for each split.
@@ -169,7 +170,7 @@ def process_sat_data(base_image_file, base_id_file, base_labels_file,
         # Identify if image is valid
         if valid_imgs[i]:
             if i % 500 == 0:
-                print(['[INFO] Processing image {}/{}'.format(i, image_data.shape[3])])
+                print('[INFO] Processing image {}/{}'.format(i, image_data.shape[3]))
 
             # Grab image
             img = np.array(image_data[:, :, :, i])

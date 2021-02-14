@@ -76,6 +76,7 @@ class SatelliteData(Dataset):
         self.image_data = self.db['X']
         self.label_data = self.db['Y']
         self.m = self.image_data.shape[0]
+        self.output_variable = output_variable
 
         # Get transforms
         self.transform = transform
@@ -96,6 +97,10 @@ class SatelliteData(Dataset):
         # Grab image and label
         X_item = np.asarray(self.image_data[item, :, :, :])
         Y_item = self.label_data[item]
+
+        # Convert label to int in case of classification task
+        if 'AQI' in self.output_variable:
+            Y_item = int(Y_item)
 
         # Apply transforms
         if self.transform:
@@ -126,8 +131,10 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
     # Build datasets for selected output variable if they do not exist
     file_path = os.path.join(data_dir, output_variable)
     if not os.path.exists(file_path):
-        print('[INFO] Building dataset...')
         os.mkdir(file_path)
+
+    if len(glob.glob(os.path.join(file_path, 'sat*'))) == 0:
+        print('[INFO] Building dataset...')
         build_dataset.process_sat_data(
             base_image_file, base_id_file, base_labels_file, data_dir,
             output_variable, data_split)
