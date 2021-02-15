@@ -28,7 +28,7 @@ def create_data_split(valid_rows_bool, data_split):
     """
     # Set seed and verify data_split is appropriate given dataset size
     random.seed(42)
-    assert sum(data_split) == 1
+    assert abs(sum(data_split) - 1) < 1e-10
 
     # Get valid image IDs
     valid_imgs_IDs = np.arange(0, valid_rows_bool.shape[0])[valid_rows_bool]
@@ -174,7 +174,7 @@ def process_sat_data(base_image_file, base_id_file, base_labels_file,
 
             # Grab image
             img = np.array(image_data[:, :, :, i])
-            label = label_data.iloc[i]['label']
+            label = id_data.iloc[i]['label']
             assert(img.shape == (n_H, n_H, n_C))
 
             # Identify which dataset the image belongs to and write
