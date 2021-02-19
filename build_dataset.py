@@ -201,16 +201,16 @@ def process_sat_data(base_image_file, base_id_file, base_labels_file,
             else:
                 assert 0
 
-    # Verify that all images were added to databases
-    assert(train_counter == split_sizes['train'] - 1)
-    assert(val_counter == split_sizes['val'] - 1)
-    assert(test_counter == split_sizes['test'] - 1)
-
     # Close datasets
     train_db.close()
     val_db.close()
     test_db.close()
     db.close()
+
+    # Verify that all images were added to databases
+    print('Number of train images loaded: ', train_counter)
+    print('Number of val images loaded: ', val_counter)
+    print('Number of test images loaded: ', test_counter)
 
     # Obtain means and sds for each band in the train set (for normalization)
     band_means = {'band_{}'.format(i): band_mean.item() for (i, band_mean) in

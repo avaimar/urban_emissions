@@ -35,7 +35,7 @@ params = {
     'base_image_file': '01_data/02_sat_images/imagery_no_mask_comp.h5',
     'base_id_file': '01_data/02_sat_images/imagery_no_mask_datapoints.pkl',
     'base_labels_file': '01_data/01_carbon_emissions/AirNow/World_all_locations_2020_avg_clean.csv',
-    'data_split': [0.85, 0.08, 0.07],
+    'data_split': [0.85, 0.075, 0.075],
     'optimizer': 'SGD',
     'validation_metric': 'RMSE'
 }
