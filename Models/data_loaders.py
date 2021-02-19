@@ -39,7 +39,7 @@ def define_data_transforms(training_band_means, training_band_sds):
             transforms.ToTensor(),
             transforms.Normalize(tuple(image_net_means), tuple(image_net_sds))
         ]),
-        'val': transforms.Compose([
+        'dev': transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(tuple(image_net_means), tuple(image_net_sds))
         ]),
@@ -62,7 +62,7 @@ class SatelliteData(Dataset):
         Store the data filtered by the selected output variable.
         :param data_dir: (str) path to split dataset locations
         :param output_variable: (str) output variable
-        :param split: (str) one of ['train', 'val', 'test']
+        :param split: (str) one of ['train', 'dev', 'test']
         :param transform (torchvision.transforms)
         """
         # Open HDF5 dataset
@@ -116,14 +116,14 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
                      data_split):
     """
     Fetches the DataLoader object for each type of data.
-    :param dataset_types: (list) list including ['train', 'val', 'test']
+    :param dataset_types: (list) list including ['train', 'dev', 'test']
     :param output_variable: (str) selected output variable
     :param params: (dict) a dictionary containing the model specifications
     :param base_labels_file: (str) Path to the satellite images
     :param base_id_file: (str) Path to the image identifiers and status
     :param base_image_file: (str) Path to the unique_ID labels
     :param data_split: (list) containing the % of each split in the order
-        [size_train, size_val, size_test]
+        [size_train, size_dev, size_test]
     :return: dataloaders (dict) a dictionary containing the DataLoader object
         for each type of data
     """
@@ -152,7 +152,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
     # Get data loaders
     dataloaders = {}
 
-    for split in ['train', 'val', 'test']:
+    for split in ['train', 'dev', 'test']:
         if split in dataset_types:
             data = SatelliteData(
                 data_dir, output_variable, split, transform=transforms_dict[split])
