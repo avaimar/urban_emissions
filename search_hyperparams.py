@@ -27,8 +27,8 @@ parser.add_argument('-p', '--parameter', required=True,
 # Set up parameter defaults
 params = {
     'learning_rate': 1e-3,
-    'batch_size': 10,
-    'num_epochs': 50,
+    'batch_size': 64,
+    'num_epochs': 500,
     'save_summary_steps': 100,
     'num_workers': 0,
     'output_variable': 'OZONE',
