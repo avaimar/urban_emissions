@@ -1,0 +1,3 @@
+Note: This directory holds the train/dev/test splits for each output
+variable. This note is a placeholder for the directory structure to be
+reflected in Github without uploading the data files.
