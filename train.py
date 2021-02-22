@@ -203,10 +203,14 @@ if __name__ == '__main__':
     # Fetch dataloaders
     logger.write('[INFO] Loading the datasets...')
     dataloaders = fetch_dataloader(
-        ['train', 'val'], data_directory, params['output_variable'], params,
-        params['base_data_file'], params['data_split'])
+        dataset_types=['train', 'dev'], data_dir=data_directory,
+        output_variable=params['output_variable'], params=params,
+        base_image_file=params['base_image_file'],
+        base_id_file=params['base_id_file'],
+        base_labels_file=params['base_labels_file'],
+        data_split=params['data_split'])
     train_dl = dataloaders['train']
-    val_dl = dataloaders['val']
+    val_dl = dataloaders['dev']
     logger.write('[INFO] Datasets loaded successfully...')
 
     # Get number of channels

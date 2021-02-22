@@ -1,0 +1,4 @@
+Note: This directory holds the satellite imagery data directly downloaded
+from Google Earth Engine. This note is a placeholder for the directory
+structure to be reflected in Github without uploading the data files as they
+are ~20GB.

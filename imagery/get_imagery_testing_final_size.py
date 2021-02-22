@@ -119,12 +119,12 @@ landsat = landsat.select(["B1","B2","B3","B4","B5","B6","B7"]) # select 7 first 
 directory=r'C:\Users\nsuar\Google Drive\Carbon_emissions\data\fake_images'
 
 #loop to get images
-#for i in range(len(dataset)):
-for i in range(2491,len(dataset)):
+for i in range(len(dataset)):
+#for i in range(2491,len(dataset)):
     #passing lon lat coordinates to point
     point=ee.Geometry.Point(dataset['lon'][i],dataset['lat'][i] )
     #generating bounding box for the point
-    region, rectangle = point_box(point,1000)        
+    region, rectangle = point_box(point,6720)        
     #downloading image
     print('getting image '+str(i+1)+' of '+str(len(dataset)))
     dataset['imagery'][i]=image_to_np(landsat,rectangle,region,directory)
@@ -133,4 +133,4 @@ for i in range(2491,len(dataset)):
     #dataset['imagery'][i]=temp_image[0:34,0:34,:]
 
 #exporting the dataset as pickle
-dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\02_Imagery\data_and_imagery_test.pkl')
+dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\urban_emissions_git\urban_emissions\01_Data\02_Imagery\imagery_7bands.pkl')

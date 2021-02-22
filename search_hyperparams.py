@@ -27,13 +27,15 @@ parser.add_argument('-p', '--parameter', required=True,
 # Set up parameter defaults
 params = {
     'learning_rate': 1e-3,
-    'batch_size': 10,
-    'num_epochs': 50,
+    'batch_size': 64,
+    'num_epochs': 500,
     'save_summary_steps': 100,
     'num_workers': 0,
-    'output_variable': 'NO2',
-    'base_data_file': "../Data_exploration/Satellite_imagery_test/imagery_7bands_test.pkl",
-    'data_split': [0.8, 0.1, 0.1],
+    'output_variable': 'OZONE',
+    'base_image_file': '01_data/02_sat_images/imagery_no_mask_comp.h5',
+    'base_id_file': '01_data/02_sat_images/imagery_no_mask_datapoints.pkl',
+    'base_labels_file': '01_data/01_carbon_emissions/AirNow/World_all_locations_2020_avg_clean.csv',
+    'data_split': [0.85, 0.075, 0.075],
     'optimizer': 'SGD',
     'validation_metric': 'RMSE'
 }
