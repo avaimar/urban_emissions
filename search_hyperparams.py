@@ -37,7 +37,8 @@ params = {
     'base_labels_file': '01_data/01_carbon_emissions/AirNow/World_all_locations_2020_avg_clean.csv',
     'data_split': [0.85, 0.075, 0.075],
     'optimizer': 'SGD',
-    'validation_metric': 'RMSE'
+    'validation_metric': 'RMSE',
+    'p_dropout': 0.5
 }
 
 # Set up parameter searches

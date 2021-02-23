@@ -16,23 +16,27 @@ class BaseResNet(nn.Module):
     """
     Define the modified ResNet18 model
     """
-    def __init__(self, no_channels=3, out_features=1000):
+    def __init__(self, no_channels=3, out_features=512, p=0.5):
         super(BaseResNet, self).__init__()
-        self.model = models.resnet18(pretrained=True)
+        self.resnet = models.resnet18(pretrained=True)
 
         # Modify the input layer to accommodate for res and channels
-        self.model.conv1 = nn.Conv2d(
+        self.resnet.conv1 = nn.Conv2d(
             in_channels=no_channels, out_channels=64, kernel_size=7,
             stride=2, padding=3, bias=False)
 
-        # Modify the feature size in the final output layer
-        self.model.fc = nn.Linear(in_features=512, out_features=out_features)
-
-        # Add dropout layers
-
+        # Add dropout layer
+        self.final_layers = nn.Sequential(
+            nn.Linear(in_features=1000, out_features=512),
+            nn.BatchNorm1d(512),
+            nn.Dropout(p),
+            nn.Linear(in_features=512, out_features=out_features)
+        )
 
     def forward(self, x):
-        return self.model(x)
+        x = self.resnet(x)
+        x = self.final_layers(x)
+        return x
 
 
 class ResNetRegression(nn.Module):
@@ -40,9 +44,9 @@ class ResNetRegression(nn.Module):
     Define the wrapper model to train BaseResNet with regression as the
     final layer
     """
-    def __init__(self, no_channels=3, out_features=1000):
+    def __init__(self, no_channels=3, out_features=512, p=0.5):
         super(ResNetRegression, self).__init__()
-        self.model = BaseResNet(no_channels, out_features)
+        self.model = BaseResNet(no_channels, out_features, p)
         self.final_fc = nn.Linear(
             in_features=out_features, out_features=1, bias=False)
 
@@ -56,9 +60,9 @@ class ResNetClassifier(nn.Module):
     """
     Define the wrapper model to train BaseResNet as a classifier
     """
-    def __init__(self, no_channels=3, out_features=1000, num_classes=3):
+    def __init__(self, no_channels=3, out_features=512, num_classes=3, p=0.5):
         super(ResNetClassifier, self).__init__()
-        self.model = BaseResNet(no_channels, out_features)
+        self.model = BaseResNet(no_channels, out_features, p)
         self.final_fc = nn.Linear(
             in_features=out_features, out_features=num_classes, bias=False)
 
