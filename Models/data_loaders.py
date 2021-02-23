@@ -3,6 +3,7 @@ import h5py
 import numpy as np
 import os
 
+from PIL import Image
 import torch
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
@@ -36,15 +37,18 @@ def define_data_transforms(training_band_means, training_band_sds):
 
     data_transforms = {
         'train': transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize(tuple(image_net_means), tuple(image_net_sds))
+            transforms.ToTensor(), # Converts (H, W, C) to (C, H, W)
+            transforms.RandomHorizontalFlip(), # Requires (.., H, W)
+            transforms.RandomVerticalFlip(), # Requires (.., H, W)
+            #transforms.RandomRotation(20), # Requires (.., H, W)
+            transforms.Normalize(tuple(image_net_means), tuple(image_net_sds)),
         ]),
         'dev': transforms.Compose([
-            transforms.ToTensor(),
+            transforms.ToTensor(), # Converts (H, W, C) to (C, H, W)
             transforms.Normalize(tuple(image_net_means), tuple(image_net_sds))
         ]),
         'test': transforms.Compose([
-            transforms.ToTensor(),
+            transforms.ToTensor(), # Converts (H, W, C) to (C, H, W)
             transforms.Normalize(tuple(image_net_means), tuple(image_net_sds))
         ])
     }
@@ -57,7 +61,7 @@ class SatelliteData(Dataset):
     Define the Satellite Dataset.
     """
 
-    def __init__(self, data_dir, output_variable, split, transform=None):
+    def __init__(self, data_dir, output_variable, split, transform):
         """
         Store the data filtered by the selected output variable.
         :param data_dir: (str) path to split dataset locations
@@ -97,6 +101,12 @@ class SatelliteData(Dataset):
         # Grab image and label
         X_item = np.asarray(self.image_data[item, :, :, :])
         Y_item = self.label_data[item]
+
+        # Transpose image from (W, H, C) to (H, W, C) as expected by Torch
+        X_item = np.transpose(X_item, (1, 0, 2))
+
+        # Normalize image (valid ranges for bands are [0, 10,000])
+        X_item = X_item / 10000.
 
         # Convert label to int in case of classification task
         if 'AQI' in self.output_variable:

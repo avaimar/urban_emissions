@@ -1,0 +1,15 @@
+{
+    "learning_rate": 1e-4,
+    "batch_size": 2,
+    "num_epochs": 1,
+    "save_summary_steps": 100,
+    "num_workers": 0,
+    "output_variable": "OZONE",
+    "base_image_file" : "01_data/02_sat_images/imagery_no_mask_comp.h5",
+    "base_id_file" : "01_data/02_sat_images/imagery_no_mask_datapoints.pkl",
+    "base_labels_file" : "01_data/01_carbon_emissions/AirNow/World_all_locations_2020_avg_clean.csv",
+    "data_split": [0.85, 0.08, 0.07],
+    "optimizer": "SGD",
+    "validation_metric": "RMSE",
+    "p_dropout": 0.5
+}
