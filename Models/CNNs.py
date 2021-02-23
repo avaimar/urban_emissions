@@ -28,6 +28,9 @@ class BaseResNet(nn.Module):
         # Modify the feature size in the final output layer
         self.model.fc = nn.Linear(in_features=512, out_features=out_features)
 
+        # Add dropout layers
+
+
     def forward(self, x):
         return self.model(x)
 

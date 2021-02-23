@@ -132,8 +132,8 @@ def process_sat_data(base_image_file, base_id_file, base_labels_file,
     # Create train/dev/test splits
     split_IDs, split_sizes = create_data_split(valid_imgs, data_split)
 
-    # Gather image dimensions and ensure dimension ordering is (n_H, n_W, n_C)
-    n_H = image_data.shape[0]
+    # Gather image dimensions and ensure dimension ordering is (n_W, n_H, n_C)
+    n_H = image_data.shape[1]
     n_C = image_data.shape[2]
 
     # Ensure dimension ordering is in line with PyTorch
