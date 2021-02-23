@@ -4,9 +4,7 @@
 desktop.ini
 03_Trained_Models/NN/model_2021-01-27_1_hidden_relu.pt
 foo.py
-<<<<<<< HEAD
 01_Data/03_Street_images
-=======
 01_Data/03_Street_images
 config.py
->>>>>>> 020b4b5ee3484e0e8158a799aeb2bda4b0c0e0c3
+chunk*.pkl
