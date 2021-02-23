@@ -3,6 +3,7 @@ import h5py
 import numpy as np
 import os
 
+from PIL import Image
 import torch
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
@@ -36,13 +37,10 @@ def define_data_transforms(training_band_means, training_band_sds):
 
     data_transforms = {
         'train': transforms.Compose([
-            # Note: We first convert to tensor to get the appropriate channel ordering
-            #transforms.ToTensor(), # Converts (H, W, C) to (C, H, W)
-            #transforms.ToPILImage(), # Preserves (C, H, W)
-            #transforms.RandomHorizontalFlip(), # Requires (.., H, W)
-            #transforms.RandomVerticalFlip(), # Requires (.., H, W)
+            transforms.ToTensor(), # Converts (H, W, C) to (C, H, W)
+            transforms.RandomHorizontalFlip(), # Requires (.., H, W)
+            transforms.RandomVerticalFlip(), # Requires (.., H, W)
             #transforms.RandomRotation(20), # Requires (.., H, W)
-            transforms.ToTensor(),
             transforms.Normalize(tuple(image_net_means), tuple(image_net_sds)),
         ]),
         'dev': transforms.Compose([
