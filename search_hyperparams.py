@@ -38,7 +38,8 @@ params = {
     'data_split': [0.85, 0.075, 0.075],
     'optimizer': 'SGD',
     'validation_metric': 'RMSE',
-    'p_dropout': 0.5
+    'p_dropout': 0.5,
+    'extra_DO_layer': 0
 }
 
 # Set up parameter searches

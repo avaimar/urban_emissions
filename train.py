@@ -219,13 +219,14 @@ if __name__ == '__main__':
     # Define model, and fetch loss function and metrics
     if not 'AQI' in params['output_variable']:
         model = Models.CNNs.ResNetRegression(
-            no_channels=no_channels, p=params['p_dropout'])
+            no_channels=no_channels, p=params['p_dropout'],
+            add_block=params['extra_DO_layer'])
         loss_fn = Models.CNNs.loss_fn_regression
         metrics = Models.CNNs.metrics_regression
     else:
         model = Models.CNNs.ResNetClassifier(
             no_channels=no_channels, num_classes=params['num_classes'],
-            p=params['p_dropout'])
+            p=params['p_dropout'], add_block=params['extra_DO_layer'])
         loss_fn = Models.CNNs.loss_fn_classification
         metrics = Models.CNNs.metrics_classification
     if use_cuda:
