@@ -26,7 +26,7 @@ def create_data_split(valid_rows_bool, data_split):
     :return: a tuple (split_IDs, split_sizes) containing an array indicating
         to which split a row belongs and a dictionary of sizes for each split
     """
-    # Set seed and verify data_split is appropriate given dataset size
+    # Set seed and verify sat_data_split is appropriate given dataset size
     random.seed(42)
     assert abs(sum(data_split) - 1) < 1e-10
 

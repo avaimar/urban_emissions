@@ -27,6 +27,9 @@ def load_dict(path):
         return json.load(file)
 
 
+# Note: The following function was sourced from Stanford CS 230's Computer
+# Vision project code examples, located at:
+# https://github.com/cs230-stanford/cs230-code-examples
 def save_checkpoint(state, is_best, checkpoint):
     """
     Saves model and training parameters at checkpoint + 'last.pth.tar'.
@@ -45,6 +48,9 @@ def save_checkpoint(state, is_best, checkpoint):
         shutil.copyfile(filepath, os.path.join(checkpoint, 'best.pth.tar'))
 
 
+# Note: The following function was sourced from Stanford CS 230's Computer
+# Vision project code examples, located at:
+# https://github.com/cs230-stanford/cs230-code-examples
 def load_checkpoint(checkpoint, model, optimizer=None):
     """
     Loads model parameters (state_dict) from file_path.

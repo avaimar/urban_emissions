@@ -118,10 +118,10 @@ if __name__ == '__main__':
     dataloaders = fetch_dataloader(
         dataset_types=['test'], data_dir=data_directory,
         output_variable=params['output_variable'], params=params,
-        base_image_file=params['base_image_file'],
-        base_id_file=params['base_id_file'],
-        base_labels_file=params['base_labels_file'],
-        data_split=params['data_split'])
+        base_sat_image_file=params['base_sat_image_file'],
+        base_sat_id_file=params['base_sat_id_file'],
+        base_sat_labels_file=params['base_sat_labels_file'],
+        sat_data_split=params['sat_data_split'])
     test_dl = dataloaders['test']
     logger.write('[INFO] Test set loaded successfully...')
 
