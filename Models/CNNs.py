@@ -16,7 +16,8 @@ class BaseResNet(nn.Module):
     """
     Define the modified ResNet18 model
     """
-    def __init__(self, no_channels=3, p=0.5):
+
+    def __init__(self, no_channels=3, p=0.5, add_block=False):
         super(BaseResNet, self).__init__()
         self.resnet = models.resnet18(pretrained=True)
 
@@ -25,7 +26,17 @@ class BaseResNet(nn.Module):
             in_channels=no_channels, out_channels=64, kernel_size=7,
             stride=2, padding=3, bias=False)
 
-        # Add dropout layer
+        # Additional FC -> DO block if selected (in between resnet and
+        # final layer)
+        self.add_block = add_block
+        self.additional_block = nn.Sequential(
+            nn.Linear(in_features=1000, out_features=1000),
+            nn.BatchNorm1d(1000),
+            nn.Dropout(p),
+            nn.Linear(in_features=1000, out_features=1000)
+        )
+
+        # Add final FC + Dropout layer
         self.final_layers = nn.Sequential(
             nn.Linear(in_features=1000, out_features=512),
             nn.BatchNorm1d(512),
@@ -35,6 +46,11 @@ class BaseResNet(nn.Module):
 
     def forward(self, x):
         x = self.resnet(x)
+
+        # Add extra FC -> DO layer
+        if self.add_block:
+            x = self.additional_block(x)
+
         x = self.final_layers(x)
         return x
 
@@ -44,9 +60,10 @@ class ResNetRegression(nn.Module):
     Define the wrapper model to train BaseResNet with regression as the
     final layer
     """
-    def __init__(self, no_channels=3, p=0.5):
+
+    def __init__(self, no_channels=3, p=0.5, add_block=False):
         super(ResNetRegression, self).__init__()
-        self.model = BaseResNet(no_channels, p)
+        self.model = BaseResNet(no_channels, p, add_block=add_block)
         self.model.final_layers[3] = nn.Linear(in_features=512, out_features=1)
 
     def forward(self, x):
@@ -57,9 +74,10 @@ class ResNetClassifier(nn.Module):
     """
     Define the wrapper model to train BaseResNet as a classifier
     """
-    def __init__(self, no_channels=3, num_classes=3, p=0.5):
+
+    def __init__(self, no_channels=3, num_classes=3, p=0.5, add_block=False):
         super(ResNetClassifier, self).__init__()
-        self.model = BaseResNet(no_channels, p)
+        self.model = BaseResNet(no_channels, p, add_block=add_block)
         self.model.final_layers[3] = nn.Linear(
             in_features=512, out_features=num_classes)
 
@@ -99,6 +117,7 @@ def rmse(outputs, labels):
     :return:
     """
     return np.sqrt(np.sum(np.square(outputs - labels)))
+
 
 metrics_regression = {
     'RMSE': rmse
