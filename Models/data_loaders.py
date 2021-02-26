@@ -181,12 +181,16 @@ class StreetData(Dataset):
         # Save image and label data
         self.image_data = self.db[image_database_name]
         if 'AQI' in output_variable:
-            self.label_data = np.array(labels[label_column_name])
-        else:
             raise Exception('[ERROR] AQI not yet implemented for street.')
+        else:
+            self.label_data = np.array(labels[label_column_name])
 
         # Save dimensions and output variable
-        self.m = self.image_data.shape[0]
+        if split == 'train':
+            self.m = self.image_data.shape[3]
+        else:
+            self.m = self.image_data.shape[0]
+
         self.output_variable = output_variable
         self.split = split
 
@@ -224,6 +228,10 @@ class StreetData(Dataset):
         # Apply transforms
         if self.transform:
             X_item = self.transform(X_item)
+
+        # Reshape Y_item to comply with target Tensor size
+        Y_item = Y_item.reshape((1, ))
+
         return X_item, Y_item
 
     def __del__(self):
