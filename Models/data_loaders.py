@@ -174,7 +174,7 @@ class StreetData(Dataset):
             label_column_name = 'value'
         elif split == 'dev' or split == 'test':
             image_database_name = 'X'
-            label_column_name = '' # TODO
+            label_column_name = 'label'
         else:
             raise Exception('[ERROR] split should be in {train, dev, test}')
 
