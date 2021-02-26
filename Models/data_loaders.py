@@ -155,36 +155,40 @@ class StreetData(Dataset):
         :param transform (torchvision.transforms)
         """
         # Open HDF5 dataset
-        data_path = os.path.join(
-            data_dir, output_variable, 'street_{}.hdf5'.format(split)) # TODO name
+        data_path = os.path.join(data_dir, output_variable, 'street_{}.{}')
         try:
-            self.db = h5py.File(data_path, 'r')
+            self.db = h5py.File(data_path.format(split, 'h5'), 'r')
         except FileNotFoundError:
-            print('[ERROR] Street image dataset not found.')
+            print('[ERROR] Street {} image dataset not found.'.format(split))
+
+        # Open label data
+        try:
+            with open(data_path.format(split, 'pkl'), 'rb') as labels_file:
+                labels = pickle.load(labels_file)
+        except FileNotFoundError:
+            print('[ERROR] Street {} labels file not found.'.format(split))
+
+        # Get split names
+        if split == 'train':
+            image_database_name = 'gsv_train_images'
+            label_column_name = 'value'
+        elif split == 'dev' or split == 'test':
+            image_database_name = 'X'
+            label_column_name = '' # TODO
+        else:
+            raise Exception('[ERROR] split should be in {train, dev, test}')
 
         # Save image and label data
-        if split == 'train':
-            self.image_data = self.db['gsv_train_images']
-
-            # Get label data
-            try:
-                with open('', 'rb') as train_labels_file: # TODO dataset name
-                    train_labels = pickle.load(train_labels_file)
-            except FileNotFoundError:
-                print('[ERROR] Street train labels file not found.')
-
-            if 'AQI' in self.output_variable:
-                self.label_data = train_labels['']  # TODO label column
-            else:
-                self.label_data = train_labels['']  # TODO label column
-
+        self.image_data = self.db[image_database_name]
+        if 'AQI' in output_variable:
+            self.label_data = np.array(labels[label_column_name])
         else:
-            self.image_data = self.db['X'] # TODO verify dataset names
-            self.label_data = self.db['Y']
+            raise Exception('[ERROR] AQI not yet implemented for street.')
 
         # Save dimensions and output variable
         self.m = self.image_data.shape[0]
         self.output_variable = output_variable
+        self.split = split
 
         # Get transforms
         self.transform = transform
@@ -203,7 +207,10 @@ class StreetData(Dataset):
         :return: a tuple containing the image (res, res, num_bands) and label
         """
         # Grab image and label
-        X_item = np.asarray(self.image_data[:, :, :, item])
+        if self.split == 'train':
+            X_item = np.asarray(self.image_data[:, :, :, item])
+        else:
+            X_item = np.asarray(self.image_data[item, :, :, :])
         Y_item = self.label_data[item]
 
         # Note: images are in (H, W, C) format, [0, 255] uint8. ToTensor()
