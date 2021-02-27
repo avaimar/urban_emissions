@@ -160,9 +160,6 @@ city_data = pd.concat([
     missing_city_data[['location_type', 'id', 'name', 'type', 'measurement',
                        'value', 'lat', 'lon']]])
 
-# TODO decide if we should drop these 8485 entries or use the Google Maps
-# TODO API to obtain an estimated location for them based on their name
-
 city_data = city_data[city_data['lat'].notna()]
 
 # We will also merge these back to the site dataset in order to ensure that
