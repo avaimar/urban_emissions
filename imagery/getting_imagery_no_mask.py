@@ -1,24 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Feb  5 20:44:31 2021
-
-@author: nsuar
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 27 23:39:47 2021
-
-@author: nsuar
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 26 04:31:43 2021
-
-@author: nsuar
-"""
-
 import numpy as np
 import pandas as pd
 import os
@@ -158,7 +137,8 @@ for j in range( math.ceil(N/batch_size) ):
 
 #images to h5 format
 with h5py.File(r'C:\Users\nsuar\Google Drive\Carbon_emissions\data\imagery_no_mask.h5', 'w') as hf:
-    hf.create_dataset("imagery_no_mask",  data=images)
+    hf.create_dataset("imagery_no_mask",  data=images,  data=images, compression="gzip", compression_opts=9)
+
 
 #dataset as pickle
 dataset.to_pickle(r'C:\Users\nsuar\Google Drive\Carbon_emissions\data\imagery_no_mask_datapoints.pkl')
