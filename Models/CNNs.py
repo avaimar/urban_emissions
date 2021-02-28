@@ -21,10 +21,12 @@ class BaseResNet(nn.Module):
         super(BaseResNet, self).__init__()
         self.resnet = models.resnet18(pretrained=True)
 
-        # Modify the input layer to accommodate for res and channels
-        self.resnet.conv1 = nn.Conv2d(
-            in_channels=no_channels, out_channels=64, kernel_size=7,
-            stride=2, padding=3, bias=False)
+        # Modify the input layer to accommodate for res and channels if
+        # training satellite imagery
+        if no_channels != 3:
+            self.resnet.conv1 = nn.Conv2d(
+                in_channels=no_channels, out_channels=64, kernel_size=7,
+                stride=2, padding=3, bias=False)
 
         # Additional FC -> DO block if selected (in between resnet and
         # final layer)
