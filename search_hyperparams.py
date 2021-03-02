@@ -40,7 +40,8 @@ params = {
     'optimizer': 'SGD',
     'validation_metric': 'RMSE',
     'p_dropout': 0.5,
-    'extra_DO_layer': 0
+    'extra_DO_layer': 0,
+    'num_frozen': 62
 }
 
 # Set up parameter searches

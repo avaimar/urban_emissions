@@ -17,7 +17,7 @@ class BaseResNet(nn.Module):
     Define the modified ResNet18 model
     """
 
-    def __init__(self, no_channels=3, p=0.5, add_block=False):
+    def __init__(self, no_channels=3, p=0.5, add_block=False, num_frozen=0):
         super(BaseResNet, self).__init__()
         self.resnet = models.resnet18(pretrained=True)
 
@@ -46,6 +46,18 @@ class BaseResNet(nn.Module):
             nn.Linear(in_features=512, out_features=512)
         )
 
+        # Freeze initial num_frozen layers. We only freeze layers from the
+        # resnet model with pretrained weights.
+        # The resnet model has 62 elements with trainable weights. Note that
+        # each element is treated separately: i.e., a layer having weights and
+        # biases is treated as two separate elements.
+        assert(num_frozen <= 62)
+        counter = 0
+        for name, param in self.resnet.named_parameters():
+            if counter < num_frozen:
+                param.requires_grad = False
+            counter += 1
+
     def forward(self, x):
         x = self.resnet(x)
 
@@ -63,9 +75,10 @@ class ResNetRegression(nn.Module):
     final layer
     """
 
-    def __init__(self, no_channels=3, p=0.5, add_block=False):
+    def __init__(self, no_channels=3, p=0.5, add_block=False, num_frozen=0):
         super(ResNetRegression, self).__init__()
-        self.model = BaseResNet(no_channels, p, add_block=add_block)
+        self.model = BaseResNet(no_channels, p, add_block=add_block,
+                                num_frozen=num_frozen)
         self.model.final_layers[3] = nn.Linear(in_features=512, out_features=1)
 
     def forward(self, x):
@@ -77,9 +90,11 @@ class ResNetClassifier(nn.Module):
     Define the wrapper model to train BaseResNet as a classifier
     """
 
-    def __init__(self, no_channels=3, num_classes=3, p=0.5, add_block=False):
+    def __init__(self, no_channels=3, num_classes=3, p=0.5, add_block=False,
+                 num_frozen=0):
         super(ResNetClassifier, self).__init__()
-        self.model = BaseResNet(no_channels, p, add_block=add_block)
+        self.model = BaseResNet(no_channels, p, add_block=add_block,
+                                num_frozen=num_frozen)
         self.model.final_layers[3] = nn.Linear(
             in_features=512, out_features=num_classes)
 
