@@ -51,7 +51,7 @@ class BaseResNet(nn.Module):
         # The resnet model has 62 elements with trainable weights. Note that
         # each element is treated separately: i.e., a layer having weights and
         # biases is treated as two separate elements.
-        assert(num_frozen <= 62)
+        assert(62 >= num_frozen >= 0)
         counter = 0
         for name, param in self.resnet.named_parameters():
             if counter < num_frozen:
