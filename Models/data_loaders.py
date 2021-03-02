@@ -130,6 +130,7 @@ class SatelliteData(Dataset):
         # Convert label to int in case of classification task
         if 'AQI' in self.output_variable:
             Y_item = int(Y_item)
+            raise Exception('[ERROR] AQI not yet built for satellite.')
 
         # Apply transforms
         if self.transform:
@@ -161,20 +162,11 @@ class StreetData(Dataset):
         except FileNotFoundError:
             print('[ERROR] Street {} image dataset not found.'.format(split))
 
-        # Open label data
-        # try:
-        #     with open(data_path.format(split, 'pkl'), 'rb') as labels_file:
-        #         labels = pickle.load(labels_file)
-        # except FileNotFoundError:
-        #     print('[ERROR] Street {} labels file not found.'.format(split))
-
         # Get split names
         if split == 'train':
             image_database_name = 'gsv_train_images'
-            # label_column_name = 'value'
         elif split == 'dev' or split == 'test':
             image_database_name = 'X'
-            # label_column_name = 'label'
         else:
             raise Exception('[ERROR] split should be in {train, dev, test}')
 
@@ -183,7 +175,6 @@ class StreetData(Dataset):
         if 'AQI' in output_variable:
             raise Exception('[ERROR] AQI not yet implemented for street.')
         else:
-            # self.label_data = np.array(labels[label_column_name])
             self.label_data = self.db['Y']
 
         # Save dimensions and output variable
