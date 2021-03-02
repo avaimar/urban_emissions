@@ -214,7 +214,7 @@ if __name__ == '__main__':
     logger.write('[INFO] Datasets loaded successfully...')
 
     # Get number of channels
-    no_channels = next(iter(train_dl))[0].shape[1]
+    no_channels = next(iter(val_dl))[0].shape[1]
 
     # Define model, and fetch loss function and metrics
     if not 'AQI' in params['output_variable']:
