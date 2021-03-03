@@ -61,7 +61,7 @@ def load_checkpoint(checkpoint, model, optimizer=None):
         optimizer: (torch.optim) optional: resume optimizer from checkpoint
     """
     if not os.path.exists(checkpoint):
-        raise("File doesn't exist {}".format(checkpoint))
+        raise("[INFO] Weights file doesn't exist {}".format(checkpoint))
     checkpoint = torch.load(checkpoint)
     model.load_state_dict(checkpoint['state_dict'])
 
