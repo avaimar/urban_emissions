@@ -114,7 +114,7 @@ def train_and_evaluate(model, optimizer, loss_fn, train_dataloader,
     eval_losses = []
 
     # Reload weights if specified
-    if restore_file is not None:
+    if restore_file != "":
         try:
             utils.load_checkpoint(restore_file, model, optimizer)
         except FileNotFoundError:
@@ -243,6 +243,6 @@ if __name__ == '__main__':
     t0 = time.time()
     train_and_evaluate(model, optimizer, loss_fn, train_dl,
                        val_dl, metrics, params, model_output, logger,
-                       restore_file=None)
+                       restore_file=params['restore_file'])
     logger.write('[INFO] Training completed in {:2f} minute(s)'.format(
         (time.time() - t0) / 60))

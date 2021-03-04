@@ -41,7 +41,8 @@ params = {
     'validation_metric': 'RMSE',
     'p_dropout': 0.5,
     'extra_DO_layer': 0,
-    'num_frozen': 62
+    'num_frozen': 62,
+    'restore_file': ""
 }
 
 # Set up parameter searches
