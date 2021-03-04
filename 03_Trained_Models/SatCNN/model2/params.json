@@ -14,5 +14,6 @@
     "validation_metric": "RMSE",
     "p_dropout": 0.5,
     "extra_DO_layer": 1,
-    "num_frozen": 61
+    "num_frozen": 61,
+    "restore_file": ""
 }
