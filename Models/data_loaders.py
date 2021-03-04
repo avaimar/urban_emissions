@@ -6,7 +6,7 @@ import os
 
 from PIL import Image
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, Subset
 from torchvision import transforms
 
 import build_dataset
@@ -297,6 +297,13 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
                     data_dir, output_variable, split, transforms_dict[split])
             else:
                 raise Exception('[ERROR] Model Type should be one of {sat, street}')
+
+            # Filter for subset of the data
+            np.random.seed(42)
+            subset_percent = params['subset_percent']
+            data_size = int(subset_percent * len(data))
+            filter_indices = np.random.randint(0, high=len(data), size=data_size)
+            data = Subset(data, filter_indices)
 
             # Grab dataloader for the data class and split
             dl = DataLoader(
