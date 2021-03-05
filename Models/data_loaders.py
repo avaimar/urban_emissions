@@ -230,12 +230,79 @@ class StreetData(Dataset):
         self.db.close()
 
 
+# Concatenated Data class for DataLoaders
+class ConcatData(Dataset):
+    """
+    Define the Concatenated Dataset containing extracted features from the
+    next to last linear layer of the Sat and Street Models.
+    """
+
+    def __init__(self, data_dir, output_variable, split):
+        """
+        Store the data filtered by the selected output variable.
+        :param data_dir: (str) path to split dataset locations
+        :param output_variable: (str) output variable
+        :param split: (str) one of ['train', 'dev', 'test']
+        """
+        # Open HDF5 dataset
+        data_path = os.path.join(data_dir, output_variable, 'concat_{}.hdf5')
+        try:
+            self.db = h5py.File(data_path.format(split), 'r')
+        except FileNotFoundError:
+            print('[ERROR] Concatenated {} dataset not found.'.format(split))
+
+        # Save image and label data
+        self.feature_data = self.db['X']
+        if 'AQI' in output_variable:
+            raise Exception('[ERROR] AQI not yet implemented.')
+        else:
+            self.label_data = self.db['Y']
+
+        # Save dimensions and output variable
+        self.m = self.feature_data.shape[0]
+        self.output_variable = output_variable
+        self.split = split
+
+    def __len__(self):
+        """
+        Returns the size of the dataset
+        :return: (int)
+        """
+        return self.m
+
+    def __getitem__(self, item):
+        """
+        Returns a single datapoint given an index
+        :param item: (int)
+        :return: a tuple containing the features and label
+        """
+        # Grab image and label
+        X_item = np.asarray(self.feature_data[item, :])
+        Y_item = self.label_data[item]
+
+        # Convert label to int in case of classification task
+        if 'AQI' in self.output_variable:
+            Y_item = int(Y_item)
+
+        # Transform to torch tensor
+        X_item = torch.from_numpy(X_item)
+
+        # Reshape Y_item to comply with target Tensor size
+        #Y_item = Y_item.reshape((1, )) # TODO verify but should not be needed
+
+        return X_item, Y_item
+
+    def __del__(self):
+        self.db.close()
+
+
 def fetch_dataloader(dataset_types, data_dir, output_variable, params,
                      base_sat_image_file, base_sat_id_file, base_sat_labels_file,
                      sat_data_split):
     """
     Fetches the DataLoader object for each type of data.
     :param dataset_types: (list) list including ['train', 'dev', 'test']
+    :param data_dir: (str) directory containing data splits
     :param output_variable: (str) selected output variable
     :param params: (dict) a dictionary containing the model specifications
     :param base_sat_labels_file: (str) Path to the satellite images
@@ -254,7 +321,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
 
     if len(glob.glob(os.path.join(
             file_path, '{}*'.format(params['model_type'])))) == 0:
-        # If Sat model, build dataset. If Street, alert to missing data.
+        # If Sat model, build dataset. If Street or Concat, alert to missing data.
         if params['model_type'] == 'sat':
             print('[INFO] Building satellite dataset...')
             build_dataset.process_sat_data(
@@ -262,26 +329,31 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
                 data_dir, output_variable, sat_data_split)
         elif params['model_type'] == 'street':
             raise Exception('[ERROR] Could not find street data.')
+        elif params['model_type' == 'concat']:
+            raise Exception('[ERROR] Could not find concatenated data.')
         else:
-            raise Exception('[ERROR] Model Type should be one of {sat, street}')
+            raise Exception(
+                '[ERROR] Model Type should be one of {sat, street, concat}')
 
     # Use GPU if available
     use_cuda = torch.cuda.is_available()
 
     # Get mean and sd dictionaries from our training set and define transforms
-    if params['model_type'] == 'sat':
-        training_band_means = utils.load_dict(
-            os.path.join(data_dir, output_variable, 'band_means.json'))
-        training_band_sds = utils.load_dict(
-            os.path.join(data_dir, output_variable, 'band_sds.json'))
-    elif params['model_type'] == 'street':
-        # Means and SDs are not required as images have only 3 channels
-        training_band_means = None
-        training_band_sds = None
-    else:
-        raise Exception('[ERROR] Model Type should be one of {sat, street}')
-    transforms_dict = define_data_transforms(
-        params['model_type'], training_band_means, training_band_sds)
+    transforms_dict = None
+    if params['model_type'] != 'concat':
+        if params['model_type'] == 'sat':
+            training_band_means = utils.load_dict(
+                os.path.join(data_dir, output_variable, 'band_means.json'))
+            training_band_sds = utils.load_dict(
+                os.path.join(data_dir, output_variable, 'band_sds.json'))
+        elif params['model_type'] == 'street':
+            # Means and SDs are not required as images have only 3 channels
+            training_band_means, training_band_sds = None, None
+        else:
+            raise Exception(
+                '[ERROR] Model Type should be one of {sat, street, concat}')
+        transforms_dict = define_data_transforms(
+            params['model_type'], training_band_means, training_band_sds)
 
     # Get data loaders
     dataloaders = {}
@@ -295,8 +367,11 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
             elif params['model_type'] == 'street':
                 data = StreetData(
                     data_dir, output_variable, split, transforms_dict[split])
+            elif params['model_type'] == 'concat':
+                data = ConcatData(data_dir, output_variable, split)
             else:
-                raise Exception('[ERROR] Model Type should be one of {sat, street}')
+                raise Exception(
+                    '[ERROR] Model Type should be one of {sat, street, concat}')
 
             # Filter for subset of the data
             np.random.seed(42)
