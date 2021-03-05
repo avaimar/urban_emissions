@@ -1,11 +1,14 @@
 import argparse
 import h5py
+import numpy as np
 import pandas as pd
 import pickle
 import os
 
+import Models.data_loaders as data_loaders
 import Models.CNNs
 import utils
+
 
 # Set up command line arguments
 parser = argparse.ArgumentParser()
@@ -97,8 +100,44 @@ def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num):
     return {'train': train_db, 'dev': val_db, 'test': test_db}
 
 
-def get_linear_features(model, input, output):
-    return output # TODO
+feat_dict = {}
+
+
+def sat_linear_hook(model, input, output):
+    feat_dict['sat'] = output.detach()
+
+
+def str_linear_hook(model, input, output):
+    feat_dict['str'] = output.detach()
+
+
+def process_sat_image(sat_image, transform):
+    """
+    Prepare satellite image to be fed to model.
+    :param sat_image: (np.array) in the format (W, H, C)
+    :param transform: (torchvisions.transform)
+    :return: image (torch.tensor)
+    """
+    # Transpose image from (W, H, C) to (H, W, C) as expected by Torch
+    X_item = np.transpose(sat_img, (1, 0, 2))
+
+    # Normalize image (valid ranges for bands are [0, 10,000])
+    X_item = X_item / 10000.
+
+    # Apply transforms
+    X_item = transform(X_item)
+
+    return X_item
+
+
+def process_str_image(str_image, transform):
+    """
+    Prepare street image to be fed to model.
+    :param str_image: (np.array) in the format (H, W, C)
+    :param transform: (torchvisions.transform)
+    :return: image (torch.tensor)
+    """
+    return transform(str_image)
 
 
 if __name__ == '__main__':
@@ -150,6 +189,13 @@ if __name__ == '__main__':
     print('[INFO] Extracting {} features per image'.format(feat_size))
     feat_db_dict = create_hdf5_feature_datasets(datasets_path, split_sizes, feat_size)
 
+    # Gather transforms
+    sat_band_means = utils.load_dict(os.path.join(image_dir, 'band_means.json'))
+    sat_band_sds = utils.load_dict(os.path.join(image_dir, 'band_sds.json'))
+    sat_transforms = data_loaders.define_data_transforms(
+        'sat', sat_band_means, sat_band_sds)
+    str_transforms = data_loaders.define_data_transforms('street', None, None)
+
     # Extract features for each location
     for split in ['test', 'dev', 'test']:
         print('[INFO] Extracting features for {} split'.format(split))
@@ -195,12 +241,25 @@ if __name__ == '__main__':
                 print('[WARNING] Target values for UID {} differ. Sat: {}; Street {}'.format(
                     uid, sat_y, str_y))
 
-            # Get model output (up to next to last linear layer)
-            sat_feat = None # TODO
-            str_feat = None # TODO
-            concat_feat = None # TODO
+            # Process images to be input to model (we use 'dev' transforms as
+            # we don't want any modifications to the input image, just the
+            # processing to feed it to the model)
+            proc_sat_img = process_sat_image(sat_img, sat_transforms['dev'])
+            proc_str_img = process_str_image(str_img, str_transforms['dev'])
 
-            # Save features and labels to feature split file
+            # Get model output (up to next to last linear layer)
+            SatModel.eval()
+            SatModel.model.final_layers[0].register_forward_hook(sat_linear_hook)
+            sat_yhat = SatModel(proc_sat_img[None, ...])
+            sat_feat = feat_dict['sat']
+
+            StreetModel.eval()
+            StreetModel.model.final_layers[0].register_forward_hook(str_linear_hook)
+            str_yhat = StreetModel(proc_str_img[None, ...])
+            str_feat = feat_dict['str']
+
+            # Concatenate and save features and labels to feature split file
+            concat_feat = np.concatenate((sat_feat, str_feat), axis=1).reshape(feat_size,)
             feat_db_dict[split]['X'][i] = concat_feat
             feat_db_dict[split]['Y'][i] = sat_y
 
