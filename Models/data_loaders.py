@@ -296,20 +296,13 @@ class ConcatData(Dataset):
         self.db.close()
 
 
-def fetch_dataloader(dataset_types, data_dir, output_variable, params,
-                     base_sat_image_file, base_sat_id_file, base_sat_labels_file,
-                     sat_data_split):
+def fetch_dataloader(dataset_types, data_dir, output_variable, params):
     """
     Fetches the DataLoader object for each type of data.
     :param dataset_types: (list) list including ['train', 'dev', 'test']
     :param data_dir: (str) directory containing data splits
     :param output_variable: (str) selected output variable
     :param params: (dict) a dictionary containing the model specifications
-    :param base_sat_labels_file: (str) Path to the satellite images
-    :param base_sat_id_file: (str) Path to the image identifiers and status
-    :param base_sat_image_file: (str) Path to the unique_ID labels
-    :param sat_data_split: (list) containing the % of each split in the order
-        [size_train, size_dev, size_test]
     :return: dataloaders (dict) a dictionary containing the DataLoader object
         for each type of data
     """
@@ -325,8 +318,9 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params,
         if params['model_type'] == 'sat':
             print('[INFO] Building satellite dataset...')
             build_dataset.process_sat_data(
-                base_sat_image_file, base_sat_id_file, base_sat_labels_file,
-                data_dir, output_variable, sat_data_split)
+                params['base_sat_image_file'], params['base_sat_id_file'],
+                params['base_sat_labels_file'], data_dir, output_variable,
+                params['sat_data_split'])
         elif params['model_type'] == 'street':
             raise Exception('[ERROR] Could not find street data.')
         elif params['model_type' == 'concat']:

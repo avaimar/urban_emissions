@@ -8,6 +8,7 @@ import numpy as np
 
 import utils
 import Models.CNNs
+import Models.NNs
 from evaluate import evaluate
 from Models.data_loaders import fetch_dataloader
 
@@ -204,11 +205,7 @@ if __name__ == '__main__':
     logger.write('[INFO] Loading the datasets...')
     dataloaders = fetch_dataloader(
         dataset_types=['train', 'dev'], data_dir=data_directory,
-        output_variable=params['output_variable'], params=params,
-        base_sat_image_file=params['base_sat_image_file'],
-        base_sat_id_file=params['base_sat_id_file'],
-        base_sat_labels_file=params['base_sat_labels_file'],
-        sat_data_split=params['sat_data_split'])
+        output_variable=params['output_variable'], params=params)
     train_dl = dataloaders['train']
     val_dl = dataloaders['dev']
     logger.write('[INFO] Datasets loaded successfully...')
