@@ -323,7 +323,7 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params):
                 params['sat_data_split'])
         elif params['model_type'] == 'street':
             raise Exception('[ERROR] Could not find street data.')
-        elif params['model_type' == 'concat']:
+        elif params['model_type'] == 'concat':
             raise Exception('[ERROR] Could not find concatenated data.')
         else:
             raise Exception(

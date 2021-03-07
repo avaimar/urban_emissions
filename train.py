@@ -12,7 +12,6 @@ import Models.NNs
 from evaluate import evaluate
 from Models.data_loaders import fetch_dataloader
 
-
 # Set up command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--data_directory', default='01_Data/02_Imagery',
@@ -210,23 +209,35 @@ if __name__ == '__main__':
     val_dl = dataloaders['dev']
     logger.write('[INFO] Datasets loaded successfully...')
 
-    # Get number of channels
+    # Get number of channels / feature size for concat model
     no_channels = next(iter(val_dl))[0].shape[1]
 
     # Define model, and fetch loss function and metrics
-    if not 'AQI' in params['output_variable']:
-        model = Models.CNNs.ResNetRegression(
-            no_channels=no_channels, p=params['p_dropout'],
-            add_block=params['extra_DO_layer'], num_frozen=params['num_frozen'])
+    if 'AQI' not in params['output_variable']:
+        if params['model_type'] == 'concat':
+            model = Models.NNs.ConcatNet(feat_size=no_channels, out_size=1)
+        elif params['model_type'] == 'sat' or params['model_type'] == 'street':
+            model = Models.CNNs.ResNetRegression(
+                no_channels=no_channels, p=params['p_dropout'],
+                add_block=params['extra_DO_layer'], num_frozen=params['num_frozen'])
+        else:
+            raise Exception('[ERROR] Model type should be in {sat, street, concat}')
         loss_fn = Models.CNNs.loss_fn_regression
         metrics = Models.CNNs.metrics_regression
     else:
-        model = Models.CNNs.ResNetClassifier(
-            no_channels=no_channels, num_classes=params['num_classes'],
-            p=params['p_dropout'], add_block=params['extra_DO_layer'],
-            num_frozen=params['num_frozen'])
+        if params['model_type'] == 'concat':
+            model = Models.NNs.ConcatNet(
+                feat_size=no_channels, out_size=params['num_classes'])
+        elif params['model_type'] == 'sat' or params['model_type'] == 'street':
+            model = Models.CNNs.ResNetClassifier(
+                no_channels=no_channels, num_classes=params['num_classes'],
+                p=params['p_dropout'], add_block=params['extra_DO_layer'],
+                num_frozen=params['num_frozen'])
+        else:
+            raise Exception('[ERROR] Model type should be in {sat, street, concat}')
         loss_fn = Models.CNNs.loss_fn_classification
         metrics = Models.CNNs.metrics_classification
+
     if use_cuda:
         model = model.cuda()
 
@@ -235,8 +246,8 @@ if __name__ == '__main__':
         params=model.parameters(), lr=params['learning_rate'])
 
     # Train
-    logger.write('[INFO] Starting training for {} epoch(s)'.format(
-        params['num_epochs']))
+    logger.write('[INFO] Starting training {} for {} epoch(s)'.format(
+        params['model_type'], params['num_epochs']))
     t0 = time.time()
     train_and_evaluate(model, optimizer, loss_fn, train_dl,
                        val_dl, metrics, params, model_output, logger,
