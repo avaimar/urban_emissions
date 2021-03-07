@@ -144,12 +144,19 @@ if __name__ == '__main__':
     # Capture parameters from the command line
     args = vars(parser.parse_args())
     sat_model_file = args['sat_model']
-    sat_params = args['sat_model_params']
+    sat_params_file = args['sat_model_params']
     street_model_file = args['street_model']
-    street_params = args['street_model_params']
+    street_params_file = args['street_model_params']
     feature_dir = args['feature_dir']
     split_file = args['split_file']
     image_dir = args['image_dir']
+
+    # Load params dictionaries
+    try:
+        sat_params = utils.load_dict(sat_params_file)
+        street_params = utils.load_dict(street_params_file)
+    except FileNotFoundError:
+        print("[ERROR] Parameter files not found.")
 
     # Load Sat and Street Models
     assert (sat_params['output_variable'] == street_params['output_variable'])
