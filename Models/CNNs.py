@@ -31,12 +31,14 @@ class BaseResNet(nn.Module):
         # Additional FC -> DO block if selected (in between resnet and
         # final layer)
         self.add_block = add_block
-        self.additional_block = nn.Sequential(
-            nn.Linear(in_features=1000, out_features=1000),
-            nn.BatchNorm1d(1000),
-            nn.Dropout(p),
-            nn.Linear(in_features=1000, out_features=1000)
-        )
+        if self.add_block or no_channels == 3: # TODO Note: this second part to the if statement should be removed.
+            # TODO: if the street model is ever retrained.
+            self.additional_block = nn.Sequential(
+                nn.Linear(in_features=1000, out_features=1000),
+                nn.BatchNorm1d(1000),
+                nn.Dropout(p),
+                nn.Linear(in_features=1000, out_features=1000)
+            )
 
         # Add final FC + Dropout layer
         self.final_layers = nn.Sequential(

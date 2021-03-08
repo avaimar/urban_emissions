@@ -1,3 +1,0 @@
-Logger initiated: 2021-02-19 
- 
-[INFO] Loading the datasets...

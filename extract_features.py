@@ -89,9 +89,9 @@ def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num):
 
     val_db = h5py.File(path.format('dev'), "w")
     val_db.create_dataset(
-        name='X', shape=(split_sizes_dict['val'], feat_size_num), dtype='f')
+        name='X', shape=(split_sizes_dict['dev'], feat_size_num), dtype='f')
     val_db.create_dataset(
-        name='Y', shape=(split_sizes_dict['val'], 1), dtype='f')
+        name='Y', shape=(split_sizes_dict['dev'], 1), dtype='f')
 
     test_db = h5py.File(path.format('test'), "w")
     test_db.create_dataset(
@@ -204,7 +204,7 @@ if __name__ == '__main__':
     str_transforms = data_loaders.define_data_transforms('street', None, None)
 
     # Extract features for each location
-    for split in ['test', 'dev', 'test']:
+    for split in ['train', 'dev', 'test']:
         print('[INFO] Extracting features for {} split'.format(split))
 
         # Load image datasets for the split
@@ -225,8 +225,17 @@ if __name__ == '__main__':
         # Helper counters
         cur_sat_idx = -1
 
-        # Loop over each (sat image, str image) pair
-        for i in range(str_key.shape[0]):
+        # Grab indexes to loop over
+        if split == 'train':
+            np.random.seed(42)
+            indexes = np.random.randint(
+                0, high=str_key.shape[0],
+                size=int(str_key.shape[0] * street_params['subset_percent']))
+        else:
+            indexes = range(str_key.shape[0])
+
+        # Loop over each (sat image, str image) pair in indexes
+        for i in indexes:
             # Get sat image, label (we only update if the index has changed as
             # we will mostly grab the same sat image ~10 times)
             uid = str_key['Unique_ID'][i]
