@@ -89,7 +89,7 @@ class SatelliteData(Dataset):
         """
         # Open HDF5 dataset
         data_path = os.path.join(
-            data_dir, output_variable, 'sat_{}.h5'.format(split))
+            data_dir, output_variable, 'sat_{}.hdf5'.format(split))
         try:
             self.db = h5py.File(data_path, 'r')
         except FileNotFoundError:
@@ -160,7 +160,7 @@ class StreetData(Dataset):
         :param transform (torchvision.transforms)
         """
         # Open HDF5 dataset
-        data_path = os.path.join(data_dir, output_variable, 'street_{}.h5')
+        data_path = os.path.join(data_dir, output_variable, 'street_{}.hdf5')
         try:
             self.db = h5py.File(data_path.format(split), 'r')
         except FileNotFoundError:
