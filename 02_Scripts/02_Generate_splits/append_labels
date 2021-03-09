@@ -1,0 +1,65 @@
+import h5py
+import pandas as pd
+import pickle
+import os
+
+
+# File locations and data directory
+data_dir = '01_Data/03_Processed_data/OZONE'
+raw_sat_dir = '01_Data/03_Processed_data/OZONE/Sat_raw'
+raw_street_dir = '01_Data/03_Processed_data/OZONE/Street_raw'
+
+# Sat datasets
+splits = ['val', 'test']
+
+for split in splits:
+    print('[INFO] Processing {}'.format(split))
+    img_file = '{}_images.h5'.format(split)
+    label_file = '{}_labels.h5'.format(split)
+
+    # Open image file and label file
+    img_db = h5py.File(os.path.join(raw_sat_dir, img_file), 'r')
+    lab_db = h5py.File(os.path.join(raw_sat_dir, label_file), 'r')
+
+    # Grab images and labels
+    images = img_db['{}_images'.format(split)]
+    labels = lab_db['{}_labels'.format(split)]
+
+    # Create new database and save
+    path = os.path.join(data_dir, 'sat_{}.h5'.format(split))
+    new_db = h5py.File(path, "w")
+    new_db.create_dataset(name='X', data=images, compression='gzip')
+    new_db.create_dataset(name='Y', data=labels, compression='gzip')
+
+    # Close the h5 files
+    img_db.close()
+    lab_db.close()
+    new_db.close()
+
+
+# Street dataset
+splits = ['train']
+
+for split in splits:
+    print('[INFO] Processing {}'.format(split))
+    img_file = 'gsv_{}_images.h5'.format(split)
+    label_file = 'gsv_{}_labels.h5'.format(split)
+
+    # Open image file and label file
+    img_db = h5py.File(os.path.join(raw_street_dir, img_file), 'r')
+    lab_db = h5py.File(os.path.join(raw_street_dir, label_file), 'r')
+
+    # Grab images and labels
+    images = img_db['gsv_{}_images'.format(split)]
+    labels = lab_db['gsv_{}_labels'.format(split)]
+
+    # Create new database and save
+    path = os.path.join(data_dir, 'street_{}.h5'.format(split))
+    new_db = h5py.File(path, "w")
+    new_db.create_dataset(name='X', data=images, compression='gzip')
+    new_db.create_dataset(name='Y', data=labels, compression='gzip')
+
+    # Close the h5 files
+    img_db.close()
+    lab_db.close()
+    new_db.close()

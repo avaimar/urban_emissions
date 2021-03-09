@@ -45,6 +45,9 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, logger):
     losses = []
 
     for i, (train_batch, labels_batch) in enumerate(dataloader):
+        # Cast batch to float
+        train_batch = train_batch.float()
+
         # Check for GPU and send variables
         if use_cuda:
             model.cuda()

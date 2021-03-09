@@ -89,11 +89,11 @@ class SatelliteData(Dataset):
         """
         # Open HDF5 dataset
         data_path = os.path.join(
-            data_dir, output_variable, 'sat_{}.hdf5'.format(split))
+            data_dir, output_variable, 'sat_{}.h5'.format(split))
         try:
             self.db = h5py.File(data_path, 'r')
         except FileNotFoundError:
-            print('[ERROR] Dataset not found.')
+            print('[ERROR] Satellite dataset not found.')
 
         # Save image and label data
         self.image_data = self.db['X']
@@ -118,11 +118,10 @@ class SatelliteData(Dataset):
         :return: a tuple containing the image (res, res, num_bands) and label
         """
         # Grab image and label
-        X_item = np.asarray(self.image_data[item, :, :, :])
+        X_item = np.asarray(self.image_data[item, :, :, :], dtype=np.float64)
         Y_item = self.label_data[item]
 
-        # Transpose image from (W, H, C) to (H, W, C) as expected by Torch
-        X_item = np.transpose(X_item, (1, 0, 2))
+        # Images are (H, W, C) as expected by Torch
 
         # Normalize image (valid ranges for bands are [0, 10,000])
         X_item = X_item / 10000.
@@ -135,7 +134,12 @@ class SatelliteData(Dataset):
         # Apply transforms
         if self.transform:
             X_item = self.transform(X_item)
+
+        # Reshape Y_item to comply with target Tensor size
+        Y_item = Y_item.reshape((1, ))
+
         return X_item, Y_item
+
 
     def __del__(self):
         self.db.close()
@@ -156,33 +160,21 @@ class StreetData(Dataset):
         :param transform (torchvision.transforms)
         """
         # Open HDF5 dataset
-        data_path = os.path.join(data_dir, output_variable, 'street_{}.{}')
+        data_path = os.path.join(data_dir, output_variable, 'street_{}.h5')
         try:
-            self.db = h5py.File(data_path.format(split, 'h5'), 'r')
+            self.db = h5py.File(data_path.format(split), 'r')
         except FileNotFoundError:
             print('[ERROR] Street {} image dataset not found.'.format(split))
 
-        # Get split names
-        if split == 'train':
-            image_database_name = 'gsv_train_images'
-        elif split == 'dev' or split == 'test':
-            image_database_name = 'X'
-        else:
-            raise Exception('[ERROR] split should be in {train, dev, test}')
-
         # Save image and label data
-        self.image_data = self.db[image_database_name]
+        self.image_data = self.db['X']
         if 'AQI' in output_variable:
             raise Exception('[ERROR] AQI not yet implemented for street.')
         else:
             self.label_data = self.db['Y']
 
         # Save dimensions and output variable
-        if split == 'train':
-            self.m = self.image_data.shape[3]
-        else:
-            self.m = self.image_data.shape[0]
-
+        self.m = self.image_data.shape[0]
         self.output_variable = output_variable
         self.split = split
 
@@ -203,10 +195,7 @@ class StreetData(Dataset):
         :return: a tuple containing the image (res, res, num_bands) and label
         """
         # Grab image and label
-        if self.split == 'train':
-            X_item = np.asarray(self.image_data[:, :, :, item])
-        else:
-            X_item = np.asarray(self.image_data[item, :, :, :])
+        X_item = np.asarray(self.image_data[item, :, :, :])
         Y_item = self.label_data[item]
 
         # Note: images are in (H, W, C) format, [0, 255] uint8. ToTensor()

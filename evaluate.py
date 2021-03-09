@@ -46,6 +46,9 @@ def evaluate(model, loss_fn, dataloader, metrics, params, logger):
     losses = []
 
     for i, (eval_batch, labels_batch) in enumerate(dataloader):
+        # Cast batch to float
+        eval_batch = eval_batch.float()
+
         # Check for GPU and send variables
         if use_cuda:
             model.cuda()
