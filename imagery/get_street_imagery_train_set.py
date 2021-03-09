@@ -90,8 +90,6 @@ else:
 
 
 #arguments and KEY
-split_csv  = "../../01_Data/ozone_splits.csv"
-lat_lon_csv = "../../01_Data/01_Carbon_emissions/Airnow/World_all_locations_2020_avg_clean.csv" 
 split = "train"
 n = 10
 
@@ -105,11 +103,12 @@ return: numpy array of shape (num_locations_in_split * n)
 """
 
 # Load the Unique IDs for the split
-unique_ids = pd.read_csv(split_csv, dtype={'Unique_ID': str, 'dataset': str})
+unique_ids = pd.read_csv(r'C:/Users/nsuar/Google Drive/Carbon_emissions/urban_emissions_git/urban_emissions/01_Data/ozone_splits.csv'
+                         , dtype={'Unique_ID': str, 'dataset': str})
 unique_ids = unique_ids[unique_ids['dataset'] == split]
 
 # Load the lat/lon coords for each Unique ID
-lat_lon = pd.read_csv(lat_lon_csv)
+lat_lon = pd.read_csv(r'C:/Users/nsuar/Google Drive/Carbon_emissions/urban_emissions_git/urban_emissions/01_Data/01_Carbon_emissions/Airnow/World_all_locations_2020_avg_clean.csv' )
 #keeping observations for OZONE only
 lat_lon = lat_lon[lat_lon['type']=="OZONE"]
 #keeping 4 variables and dropping duplicates
@@ -124,18 +123,20 @@ new_data_labels= pd.DataFrame(columns=['Unique_ID', 'img_number'])
 new_data_images= []
 pos=0 #initial position in the new data array
 
-# #loading data if code suddenly stops
-# for i in range(10678):
+
+# #loading data if code suddenly stops / re generate data if 
+# os.chdir(r'C:\Users\nsuar\Google Drive')
+# for i in range(N):
 #     if (i+1) % 50 == 0: #printing message every 50 images
-#         print('Converting to numpy images for unique id '+str(i+1)+' out of '+str(10678))
+#         print('Converting to numpy images for unique id '+str(i+1)+' out of '+str(N))
 #     #sampling to get the random numbers right
-#     _ = getGridSample(0, 0, n)
+#     #_ = getGridSample(0, 0, n)
 #     for j in range(10):
-#         if os.path.exists('street_view_images'+"/"+original_data.loc[i,'Unique_ID'].replace("/","-")+'_'+str(j) + '.jpg'):
+#         if os.path.exists('gsv_images'+"/"+original_data.loc[i,'Unique_ID'].replace("/","-")+'_'+str(j) + '.jpg'):
 #             #adding data labels
 #             new_data_labels.loc[pos]= [ original_data.loc[i,'Unique_ID'] , j] 
 #             #adding the images to list
-#             new_data_images.append( np.array(imageio.imread('street_view_images'+"/"+original_data.loc[i,'Unique_ID'].replace("/","-")+'_'+str(j) + '.jpg')) )
+#             new_data_images.append( np.array(imageio.imread('gsv_images'+"/"+original_data.loc[i,'Unique_ID'].replace("/","-")+'_'+str(j) + '.jpg')) )
 #             #last_index=i
 #             pos += 1
 
@@ -164,6 +165,7 @@ for i in range(10678,N):
     # Download each image
     for j, sample in enumerate(samples):
         #parameters for Street View
+        #size is {width}x{height}
         params_no_key = {'location': '%f,%f' %(sample[0],sample[1]),
         'size': '%dx%d' %(res,res),
         'radius': grid_size,
@@ -173,7 +175,7 @@ for i in range(10678,N):
         #downloading the images        
         gsv_image, status, metadata= downloadImage_v2( params_no_key=params_no_key,
                                         name=original_data.loc[i,'Unique_ID'].replace("/","-")+'_'+str(j),
-                                        directory='street_view_images',
+                                        directory='gsv_images',
                                         api_pos=api_pos)
         #if the image is ok, we store it in the new_data
         if status==1:
@@ -199,21 +201,22 @@ for i in range(10678,N):
 new_data_labels=pd.merge(new_data_labels,original_data[['Unique_ID','value']], how="left", on="Unique_ID")
     
 #storing final array as pickle
-new_data_labels.to_pickle("../../01_Data/03_processed_data/OZONE/gsv_train_labels.pkl")
-error_log.to_pickle("../../01_Data/03_processed_data/OZONE/gsv_train_error_log.pkl")
+new_data_labels[['Unique_ID','img_number']].to_csv("Carbon_emissions/urban_emissions_git/urban_emissions/01_Data/03_processed_data/OZONE/gsv_train_Unique_IDs.csv",index=False)
 
-#converting list with images to numpy array    
-new_data_images=np.transpose(np.array(new_data_images), (1, 2, 3,0))
+#storing labels as h5
+gsv_train_labels=new_data_labels['value'].to_numpy()
+with h5py.File("Carbon_emissions/urban_emissions_git/urban_emissions/01_Data/03_processed_data/OZONE/gsv_train_labels.h5", 'w') as hf:
+    hf.create_dataset('gsv_train_labels',  data=gsv_train_labels, compression="gzip", compression_opts=7)
+
+#converting list with images to numpy array, shape (N,H,W,C)
+new_data_images= np.transpose (np.array(new_data_images), (0, 2, 1, 3))
 
 #storing as h5
-
-with h5py.File("../../01_Data/03_processed_data/OZONE/gsv_train_images.h5", 'w') as hf:
-    hf.create_dataset('gsv_train_images',  data=new_data_images, compression="gzip", compression_opts=8)
+with h5py.File("Carbon_emissions/urban_emissions_git/urban_emissions/01_Data/03_processed_data/OZONE/gsv_train_images.h5", 'w') as hf:
+    hf.create_dataset('gsv_train_images',  data=new_data_images, compression="gzip", compression_opts=7)
     
     
     
-with h5py.File("../../01_Data/03_processed_data/OZONE/gsv_train_images_size_test.h5", 'w') as hf:
-    hf.create_dataset('gsv_train_images',  data=new_data_images[:,:,:,0:10], compression="gzip", compression_opts=2)    
 
 
 
