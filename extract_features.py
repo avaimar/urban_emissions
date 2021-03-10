@@ -9,7 +9,6 @@ import Models.data_loaders as data_loaders
 import Models.CNNs
 import utils
 
-
 # Set up command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-sat', '--sat_model', required=True,
@@ -190,13 +189,12 @@ if __name__ == '__main__':
         cur_sat_idx = -1
 
         # Grab indexes to loop over
-        if split == 'train':
-            np.random.seed(42)
-            indexes = np.random.randint(
-                0, high=str_key.shape[0],
-                size=int(str_key.shape[0] * sat_params['subset_percent']))
-        else:
-            indexes = range(str_key.shape[0])
+        indexes = range(str_key.shape[0])
+        #if split == 'train':
+        #    np.random.seed(42)
+        #    indexes = np.random.randint(
+        #        0, high=str_key.shape[0],
+        #        size=int(str_key.shape[0] * street_params['subset_percent']))
 
         # Loop over each (sat image, str image) pair in indexes
         for i in indexes:
@@ -238,7 +236,7 @@ if __name__ == '__main__':
             str_feat = feat_dict['str']
 
             # Concatenate and save features and labels to feature split file
-            concat_feat = np.concatenate((sat_feat, str_feat), axis=1).reshape(feat_size,)
+            concat_feat = np.concatenate((sat_feat, str_feat), axis=1).reshape(feat_size, )
             feat_db_dict[split]['X'][i] = concat_feat
             feat_db_dict[split]['Y'][i] = sat_y
 
