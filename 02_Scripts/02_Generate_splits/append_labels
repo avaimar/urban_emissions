@@ -28,8 +28,8 @@ for split in splits:
     # Create new database and save
     path = os.path.join(data_dir, 'sat_{}.hdf5'.format(split))
     new_db = h5py.File(path, "w")
-    new_db.create_dataset(name='X', data=images, compression='gzip')
-    new_db.create_dataset(name='Y', data=labels, compression='gzip')
+    new_db.create_dataset(name='X', data=images)
+    new_db.create_dataset(name='Y', data=labels)
 
     # Close the h5 files
     img_db.close()
@@ -56,8 +56,8 @@ for split in splits:
     # Create new database and save
     path = os.path.join(data_dir, 'street_{}.hdf5'.format(split))
     new_db = h5py.File(path, "w")
-    new_db.create_dataset(name='X', data=images, compression='gzip')
-    new_db.create_dataset(name='Y', data=labels, compression='gzip')
+    new_db.create_dataset(name='X', data=images)
+    new_db.create_dataset(name='Y', data=labels)
 
     # Close the h5 files
     img_db.close()
@@ -81,8 +81,8 @@ for split in splits:
     # Create new database and save
     path = os.path.join(data_dir, 'street_{}.hdf5'.format(split))
     new_db = h5py.File(path, "w")
-    new_db.create_dataset(name='X', data=images, compression='gzip')
-    new_db.create_dataset(name='Y', data=labels, compression='gzip')
+    new_db.create_dataset(name='X', data=images)
+    new_db.create_dataset(name='Y', data=labels)
 
     # Close the h5 files
     img_db.close()

@@ -22,55 +22,29 @@ parser.add_argument('-strp', '--street_model_params', required=True,
                     help='Path to street json params dict')
 parser.add_argument('-d', '--feature_dir', required=True,
                     help='Directory to save extracted features')
-parser.add_argument('-s', '--split_file', required=True,
-                    help='Path to csv indicating T/D/T splits')
-parser.add_argument('-i', '--image_dir', required=True,
-                    help='Directory containing sat and street image splits')
+parser.add_argument('-s', '--split_dir', required=True,
+                    help='Directory containing sat and street image splits and keys')
 
 
-def generate_split_keys(split_file_path):
+def load_split_info(split_dir_):
     """
-    Generates 3 data frames with the unique IDs pertaining to train, dev and
-    test sets.
-    :param split_file_path: (str) the path to the split .csv file
-    :return: tuple of 3 DataFrames containing the Unique_ID, dataset columns
+    Reads in the csv files for each split of the sat and street datasets.
+    :param split_dir_: (str) directory containing the split key files
+    :return: a dictionary with the dataframes for each split type
     """
-    # Load splits
-    try:
-        split_info = pd.read_csv(split_file_path)
-    except FileNotFoundError:
-        print('[ERROR] Split file not found.')
+    split_dict_ = {}
+    for dat_type in ['sat', 'street']:
+        for cur_split in ['train', 'dev', 'test']:
+            cur_split_file = os.path.join(
+                split_dir_, '{}_{}_unique_IDs.csv'.format(dat_type, cur_split))
+            cur_key = '{}_{}'.format(dat_type, cur_split)
+            try:
+                split_dict_[cur_key] = pd.read_csv(cur_split_file)
+            except FileNotFoundError:
+                print('[ERROR] Key file not found for {} {}'.format(
+                    dat_type, cur_split))
 
-    # Partition into train/dev/test
-    train_key = split_info[split_info['dataset'] == 'train'].copy()
-    train_key['img_idx'] = range(train_key.shape[0])
-
-    dev_key = split_info[split_info['dataset'] == 'val'].copy()
-    dev_key['img_idx'] = range(dev_key.shape[0])
-
-    test_key = split_info[split_info['dataset'] == 'test'].copy()
-    test_key['img_idx'] = range(test_key.shape[0])
-
-    return train_key, dev_key, test_key
-
-
-def load_street_split_info(street_split_dir):
-    """
-    Reads in the pickle files for each split of the street level dataset.
-    :param street_split_dir: (str) directory containing these pickle files
-    :return: a tuple with the data frames for each split
-    """
-    str_split_dict = {}
-    for cur_split in ['train', 'dev', 'test']:
-        cur_split_file = os.path.join(
-            street_split_dir, 'street_{}.pkl'.format(cur_split))
-        try:
-            with open(cur_split_file, 'rb') as file:
-                str_split_dict[cur_split] = pickle.load(file)
-        except FileNotFoundError:
-            print('[ERROR] Street pkl file not found for {}'.format(cur_split))
-
-    return str_split_dict['train'], str_split_dict['dev'], str_split_dict['test']
+    return split_dict_
 
 
 def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num):
@@ -114,15 +88,14 @@ def str_linear_hook(model, input, output):
 def process_sat_image(sat_image, transform):
     """
     Prepare satellite image to be fed to model.
-    :param sat_image: (np.array) in the format (W, H, C)
+    :param sat_image: (np.array) in the format (H, W, C)
     :param transform: (torchvisions.transform)
     :return: image (torch.tensor)
     """
-    # Transpose image from (W, H, C) to (H, W, C) as expected by Torch
-    X_item = np.transpose(sat_img, (1, 0, 2))
+    # Images are (H, W, C) as expected by Torch
 
     # Normalize image (valid ranges for bands are [0, 10,000])
-    X_item = X_item / 10000.
+    X_item = sat_image / 10000.
 
     # Apply transforms
     X_item = transform(X_item)
@@ -148,8 +121,7 @@ if __name__ == '__main__':
     street_model_file = args['street_model']
     street_params_file = args['street_model_params']
     feature_dir = args['feature_dir']
-    split_file = args['split_file']
-    image_dir = args['image_dir']
+    split_dir = args['split_dir']
 
     # Load params dictionaries
     try:
@@ -178,18 +150,13 @@ if __name__ == '__main__':
     utils.load_checkpoint(street_model_file, StreetModel, optimizer=None)
 
     # Load split information
-    sat_train_key, sat_dev_key, sat_test_key = generate_split_keys(split_file)
-    street_train_key, street_dev_key, street_test_key = load_street_split_info(
-        image_dir)
-    split_key_dict = {'sat_train': sat_train_key, 'sat_dev': sat_dev_key,
-                      'sat_test': sat_test_key, 'str_train': street_train_key,
-                      'str_dev': street_dev_key, 'str_test': street_test_key}
+    split_key_dict = load_split_info(split_dir)
 
     # Create datasets
     datasets_path = os.path.join(feature_dir, 'concat_{}.hdf5')
-    split_sizes = {'train': street_train_key.shape[0],
-                   'dev': street_dev_key.shape[0],
-                   'test': street_test_key.shape[0]}
+    split_sizes = {'train': split_key_dict['street_train'].shape[0],
+                   'dev': split_key_dict['street_dev'].shape[0],
+                   'test': split_key_dict['street_test'].shape[0]}
     # * Note: We use the number of features in the next to last linear layer
     feat_size = SatModel.model.final_layers[0].out_features + \
                 StreetModel.model.final_layers[0].out_features
@@ -197,8 +164,8 @@ if __name__ == '__main__':
     feat_db_dict = create_hdf5_feature_datasets(datasets_path, split_sizes, feat_size)
 
     # Gather transforms
-    sat_band_means = utils.load_dict(os.path.join(image_dir, 'band_means.json'))
-    sat_band_sds = utils.load_dict(os.path.join(image_dir, 'band_sds.json'))
+    sat_band_means = utils.load_dict(os.path.join(split_dir, 'band_means.json'))
+    sat_band_sds = utils.load_dict(os.path.join(split_dir, 'band_sds.json'))
     sat_transforms = data_loaders.define_data_transforms(
         'sat', sat_band_means, sat_band_sds)
     str_transforms = data_loaders.define_data_transforms('street', None, None)
@@ -208,19 +175,16 @@ if __name__ == '__main__':
         print('[INFO] Extracting features for {} split'.format(split))
 
         # Load image datasets for the split
-        sat_db = h5py.File(os.path.join(image_dir, 'sat_{}.hdf5'.format(split)), 'r')
-        str_db = h5py.File(os.path.join(image_dir, 'street_{}.h5'.format(split)), 'r')
+        sat_db = h5py.File(os.path.join(split_dir, 'sat_{}.hdf5'.format(split)), 'r')
+        str_db = h5py.File(os.path.join(split_dir, 'street_{}.hdf5'.format(split)), 'r')
 
         # Grab images and labels
         sat_X, sat_Y = sat_db['X'], sat_db['Y']
-        if split == 'train':
-            str_X, str_Y = str_db['gsv_train_images'], str_db['Y']
-        else:
-            str_X, str_Y = str_db['X'], str_db['Y']
+        str_X, str_Y = str_db['X'], str_db['Y']
 
         # Grab keys
         sat_key = split_key_dict['sat_{}'.format(split)]
-        str_key = split_key_dict['str_{}'.format(split)]
+        str_key = split_key_dict['street_{}'.format(split)]
 
         # Helper counters
         cur_sat_idx = -1
@@ -230,7 +194,7 @@ if __name__ == '__main__':
             np.random.seed(42)
             indexes = np.random.randint(
                 0, high=str_key.shape[0],
-                size=int(str_key.shape[0] * street_params['subset_percent']))
+                size=int(str_key.shape[0] * sat_params['subset_percent']))
         else:
             indexes = range(str_key.shape[0])
 
@@ -239,17 +203,14 @@ if __name__ == '__main__':
             # Get sat image, label (we only update if the index has changed as
             # we will mostly grab the same sat image ~10 times)
             uid = str_key['Unique_ID'][i]
-            sat_idx = sat_key.loc[sat_key['Unique_ID'] == uid, 'img_idx'].iloc[0]
+            sat_idx = sat_key.loc[sat_key['Unique_ID'] == uid, 'value'].index.tolist()[0]
             if sat_idx != cur_sat_idx:
                 sat_img = sat_X[sat_idx, :, :, :]
-                sat_y = sat_Y[sat_idx].item()
+                sat_y = sat_Y[sat_idx]
                 cur_sat_idx = sat_idx
 
             # Get str image, label
-            if split == 'train':
-                str_img = str_X[:, :, :, i]
-            else:
-                str_img = str_X[i, :, :, :]
+            str_img = str_X[i, :, :, :]
             str_y = str_Y[i]
 
             # Verify that sat and street target values y are close
@@ -265,11 +226,13 @@ if __name__ == '__main__':
 
             # Get model output (up to next to last linear layer)
             SatModel.eval()
+            SatModel = SatModel.double()
             SatModel.model.final_layers[0].register_forward_hook(sat_linear_hook)
             sat_yhat = SatModel(proc_sat_img[None, ...])
             sat_feat = feat_dict['sat']
 
             StreetModel.eval()
+            SatModel = SatModel.double()
             StreetModel.model.final_layers[0].register_forward_hook(str_linear_hook)
             str_yhat = StreetModel(proc_str_img[None, ...])
             str_feat = feat_dict['str']
