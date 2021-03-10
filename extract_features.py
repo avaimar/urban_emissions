@@ -190,11 +190,11 @@ if __name__ == '__main__':
 
         # Grab indexes to loop over
         indexes = range(str_key.shape[0])
-        #if split == 'train':
-        #    np.random.seed(42)
-        #    indexes = np.random.randint(
-        #        0, high=str_key.shape[0],
-        #        size=int(str_key.shape[0] * street_params['subset_percent']))
+        if split == 'train':
+            np.random.seed(42)
+            indexes = np.random.randint(
+                0, high=str_key.shape[0],
+                size=int(str_key.shape[0] * 0.5))
 
         # Loop over each (sat image, str image) pair in indexes
         for i in indexes:
