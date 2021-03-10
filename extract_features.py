@@ -187,6 +187,7 @@ if __name__ == '__main__':
 
         # Helper counters
         cur_sat_idx = -1
+        processed_counter = 0
 
         # Grab indexes to loop over
         indexes = range(str_key.shape[0])
@@ -241,9 +242,10 @@ if __name__ == '__main__':
             feat_db_dict[split]['Y'][i] = sat_y
 
             # Print information on progress
-            if i % 1000 == 0:
+            if processed_counter % 1000 == 0:
                 print('[INFO] Processing {} split; image {}/{}'.format(
-                    split, i, str_key.shape[0]))
+                    split, processed_counter, indexes.shape[0]))
+            processed_counter += 1
 
         # Close datasets
         sat_db.close()
