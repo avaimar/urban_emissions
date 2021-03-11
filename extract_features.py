@@ -197,11 +197,13 @@ if __name__ == '__main__':
 
         # Grab indexes to loop over
         indexes = range(str_key.shape[0])
+        real_length = len(indexes)
         if split == 'train':
             np.random.seed(42)
             indexes = np.random.randint(
                 0, high=str_key.shape[0],
                 size=int(str_key.shape[0] * train_subset_percent_))
+            real_length = indexes.shape[0]
 
         # Loop over each (sat image, str image) pair in indexes
         for i in indexes:
@@ -250,7 +252,7 @@ if __name__ == '__main__':
             # Print information on progress
             if processed_counter % 1000 == 0:
                 print('[INFO] Processing {} split; image {}/{}'.format(
-                    split, processed_counter, indexes.shape[0]))
+                    split, processed_counter, real_length))
             processed_counter += 1
 
         # Close datasets
