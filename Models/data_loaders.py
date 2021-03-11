@@ -12,6 +12,9 @@ from torchvision import transforms
 import build_dataset
 import utils
 
+# Define Concat constants (mean and std deviation of extracted train features)
+CONCAT_MEAN = -3.5466591
+CONCAT_STD = 478.06863
 
 # Define data transforms
 def define_data_transforms(model_type, training_band_means, training_band_sds):
@@ -272,6 +275,9 @@ class ConcatData(Dataset):
         # Convert label to int in case of classification task
         if 'AQI' in self.output_variable:
             Y_item = int(Y_item)
+
+        # Normalize X
+        X_item = (X_item - CONCAT_MEAN) / CONCAT_STD
 
         # Transform to torch tensor
         X_item = torch.from_numpy(X_item)

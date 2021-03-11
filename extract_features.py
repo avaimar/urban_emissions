@@ -49,7 +49,7 @@ def load_split_info(split_dir_):
 def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num,
                                  train_subset_percent):
     """
-    Creates the HDF5 datasets to store the exctrated features.
+    Creates the HDF5 datasets to store the extracted features.
     :param path: (str) Directory where the datasets should be stored
     :param split_sizes_dict: (dict) The number of data points in each split
     :param feat_size_num: (int) The length of the extracted feature vectors
