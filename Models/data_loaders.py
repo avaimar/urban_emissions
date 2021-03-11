@@ -136,10 +136,9 @@ class SatelliteData(Dataset):
             X_item = self.transform(X_item)
 
         # Reshape Y_item to comply with target Tensor size
-        Y_item = Y_item.reshape((1, ))
+        Y_item = Y_item.reshape((1,))
 
         return X_item, Y_item
-
 
     def __del__(self):
         self.db.close()
@@ -211,7 +210,7 @@ class StreetData(Dataset):
             X_item = self.transform(X_item)
 
         # Reshape Y_item to comply with target Tensor size
-        Y_item = Y_item.reshape((1, ))
+        Y_item = Y_item.reshape((1,))
 
         return X_item, Y_item
 
@@ -234,7 +233,8 @@ class ConcatData(Dataset):
         :param split: (str) one of ['train', 'dev', 'test']
         """
         # Open HDF5 dataset
-        data_path = os.path.join(data_dir, output_variable, 'concat_{}.hdf5')
+        data_path = os.path.join(data_dir, output_variable,
+                                 'Extracted_Features', 'concat_{}.hdf5')
         try:
             self.db = h5py.File(data_path.format(split), 'r')
         except FileNotFoundError:
@@ -310,7 +310,9 @@ def fetch_dataloader(dataset_types, data_dir, output_variable, params):
         elif params['model_type'] == 'street':
             raise Exception('[ERROR] Could not find street data.')
         elif params['model_type'] == 'concat':
-            raise Exception('[ERROR] Could not find concatenated data.')
+            if len(glob.glob(os.path.join(
+                    file_path, 'Extracted_Features', 'concat*'))) == 0:
+                raise Exception('[ERROR] Could not find concatenated data.')
         else:
             raise Exception(
                 '[ERROR] Model Type should be one of {sat, street, concat}')
