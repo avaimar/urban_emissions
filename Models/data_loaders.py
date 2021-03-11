@@ -276,9 +276,6 @@ class ConcatData(Dataset):
         # Transform to torch tensor
         X_item = torch.from_numpy(X_item)
 
-        # Reshape Y_item to comply with target Tensor size
-        #Y_item = Y_item.reshape((1, )) # TODO verify but should not be needed
-
         return X_item, Y_item
 
     def __del__(self):

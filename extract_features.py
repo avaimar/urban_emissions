@@ -46,19 +46,23 @@ def load_split_info(split_dir_):
     return split_dict_
 
 
-def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num):
+def create_hdf5_feature_datasets(path, split_sizes_dict, feat_size_num,
+                                 train_subset_percent):
     """
     Creates the HDF5 datasets to store the exctrated features.
     :param path: (str) Directory where the datasets should be stored
     :param split_sizes_dict: (dict) The number of data points in each split
     :param feat_size_num: (int) The length of the extracted feature vectors
+    :param train_subset_percent: (float) % of random train samples to process
     :return: a dict of the 3 databases, each containing an X and Y dataset
     """
     train_db = h5py.File(path.format('train'), "w")
     train_db.create_dataset(
-        name='X', shape=(split_sizes_dict['train'], feat_size_num), dtype='f')
+        name='X', shape=(int(split_sizes_dict['train'] * train_subset_percent),
+                         feat_size_num), dtype='f')
     train_db.create_dataset(
-        name='Y', shape=(split_sizes_dict['train'], 1), dtype='f')
+        name='Y', shape=(int(split_sizes_dict['train'] * train_subset_percent), 1),
+        dtype='f')
 
     val_db = h5py.File(path.format('dev'), "w")
     val_db.create_dataset(
@@ -152,6 +156,7 @@ if __name__ == '__main__':
     split_key_dict = load_split_info(split_dir)
 
     # Create datasets
+    train_subset_percent_ = 0.5
     datasets_path = os.path.join(feature_dir, 'concat_{}.hdf5')
     split_sizes = {'train': split_key_dict['street_train'].shape[0],
                    'dev': split_key_dict['street_dev'].shape[0],
@@ -160,7 +165,8 @@ if __name__ == '__main__':
     feat_size = SatModel.model.final_layers[0].out_features + \
                 StreetModel.model.final_layers[0].out_features
     print('[INFO] Extracting {} features per image'.format(feat_size))
-    feat_db_dict = create_hdf5_feature_datasets(datasets_path, split_sizes, feat_size)
+    feat_db_dict = create_hdf5_feature_datasets(
+        datasets_path, split_sizes, feat_size, train_subset_percent_)
 
     # Gather transforms
     sat_band_means = utils.load_dict(os.path.join(split_dir, 'band_means.json'))
@@ -195,7 +201,7 @@ if __name__ == '__main__':
             np.random.seed(42)
             indexes = np.random.randint(
                 0, high=str_key.shape[0],
-                size=int(str_key.shape[0] * 0.5))
+                size=int(str_key.shape[0] * train_subset_percent_))
 
         # Loop over each (sat image, str image) pair in indexes
         for i in indexes:
@@ -238,8 +244,8 @@ if __name__ == '__main__':
 
             # Concatenate and save features and labels to feature split file
             concat_feat = np.concatenate((sat_feat, str_feat), axis=1).reshape(feat_size, )
-            feat_db_dict[split]['X'][i] = concat_feat
-            feat_db_dict[split]['Y'][i] = sat_y
+            feat_db_dict[split]['X'][processed_counter] = concat_feat
+            feat_db_dict[split]['Y'][processed_counter] = sat_y
 
             # Print information on progress
             if processed_counter % 1000 == 0:
