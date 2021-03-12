@@ -58,7 +58,7 @@ def visualization(lat,lon,name,mask=True):
 
 
 #example    
-visualization(16.8256,96.1445,'unmasked',mask=False)
+visualization(16.8256,96.1445,'unmasked',mask=True)
 
     
     
