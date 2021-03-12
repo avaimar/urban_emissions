@@ -2,10 +2,9 @@ import argparse
 import h5py
 import numpy as np
 import pandas as pd
-import pickle
 import os
+import torch
 
-import extract_features
 import Models.data_loaders as data_loaders
 import Models.NNs
 import utils
@@ -30,6 +29,39 @@ def create_prediction_datasets():
     dev_db = pd.DataFrame(columns=['Unique_ID', 'label', 'prediction'])
     test_db = pd.DataFrame(columns=['Unique_ID', 'label', 'prediction'])
     return {'train': train_db, 'dev': dev_db, 'test': test_db}
+
+
+def load_concat_key(feature_dir_):
+    """
+    Load the concat key files containing the Unique IDs in order
+    :param feature_dir_: (str) directory where the files are located
+    :return: (dict) of 3 databases, one for each split
+    """
+    split_dict_ = {}
+    for cur_split in ['train', 'dev', 'test']:
+        cur_split_file = os.path.join(
+            feature_dir_, 'concat_key_{}.csv'.format(cur_split))
+        try:
+            split_dict_[cur_split] = pd.read_csv(cur_split_file)
+        except FileNotFoundError:
+            print('[ERROR] Concat Key file not found for {}'.format(cur_split))
+    return split_dict_
+
+
+def process_feature(x_feat):
+    """
+    Preprocess a feature vector to pass to ConcatNN.
+    :return: (torch.tensor)
+    """
+    X_item = np.asarray(x_feat)
+
+    # Normalize X
+    X_item = (X_item - data_loaders.CONCAT_MEAN) / data_loaders.CONCAT_STD
+
+    # Transform to torch tensor
+    X_item = torch.from_numpy(X_item)
+
+    return X_item
 
 
 if __name__ == '__main__':
@@ -57,7 +89,7 @@ if __name__ == '__main__':
     utils.load_checkpoint(concat_model_file, ConcatModel, optimizer=None)
 
     # Load split information
-    split_key_dict = None # TODO need to save and load this
+    split_key_dict = load_concat_key(feature_dir)
 
     # Create datasets
     pred_db_dict = create_prediction_datasets()
@@ -77,7 +109,7 @@ if __name__ == '__main__':
         concat_X, concat_Y = concat_db['X'], concat_db['Y']
 
         # Grab keys
-        concat_key = split_key_dict['concat_{}'.format(split)]
+        concat_key = split_key_dict[split]
 
         # Helper counters
         processed_counter = 0
@@ -85,7 +117,7 @@ if __name__ == '__main__':
         # Grab indexes to loop over
         indexes = range(concat_X.shape[0])
         real_length = len(indexes)
-        if split == 'train':
+        if split == 'train' and train_subset_percent_ < 1:
             np.random.seed(42)
             indexes = np.random.randint(
                 0, high=concat_X.shape[0],
@@ -95,31 +127,23 @@ if __name__ == '__main__':
         # Loop over each data point in indexes
         for i in indexes:
             # Get uid
-            # TODO BELOW HERE
+            uid = concat_key['Unique_ID'][i]
 
             # Get feature vector and label
-            uid = str_key['Unique_ID'][i]
-            sat_idx = sat_key.loc[sat_key['Unique_ID'] == uid, 'value'].index.tolist()[0]
+            feat_x = concat_X[i, :]
+            feat_y = concat_Y[i].item()
 
-            # Get str image, label
-            str_img = str_X[i, :, :, :]
-            str_y = str_Y[i]
-
-            # Process images to be input to model
-            proc_sat_img = extract_features.process_sat_image(sat_img, sat_transforms['dev'])
-            proc_str_img = extract_features.process_str_image(str_img, str_transforms['dev'])
+            # Process features to be input to ConcatNN
+            proc_feat_x = process_feature(feat_x)
 
             # Get model output (up to next to last linear layer)
-            SatModel.eval()
-            SatModel = SatModel.double()
-            SatModel.model.final_layers[0].register_forward_hook(sat_linear_hook)
-            sat_yhat = SatModel(proc_sat_img[None, ...])
-            sat_feat = feat_dict['sat']
+            ConcatModel.eval()
+            ConcatModel = ConcatModel.float()
+            feat_yhat = ConcatModel(proc_feat_x[None, ...]).item()
 
-            # Concatenate and save features and labels to feature split file
-            concat_feat = np.concatenate((sat_feat, str_feat), axis=1).reshape(feat_size, )
-            feat_db_dict[split]['X'][processed_counter] = concat_feat
-            feat_db_dict[split]['Y'][processed_counter] = sat_y
+            # Save uid, label and prediction
+            pred_db_dict[split] = pred_db_dict[split].append(
+                {'Unique_ID': uid, 'label': feat_y, 'prediction': feat_yhat})
 
             # Print information on progress
             if processed_counter % 1000 == 0:
@@ -130,5 +154,7 @@ if __name__ == '__main__':
         # Close dataset
         concat_db.close()
 
-        # Close feature dataset
-        pred_db_dict[split].close()
+        # Save feature dataset
+        pred_db_dict[split].to_csv(
+            os.path.join(feature_dir, 'predict_{}.csv'.format(split)),
+            index=False)
