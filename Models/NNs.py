@@ -14,12 +14,22 @@ class ConcatNet(nn.Module):
     Define the model to train the concatenated features.
     """
 
-    def __init__(self, feat_size=1024, out_size=1):
+    def __init__(self, feat_size=1024, p=0.75, out_size=1):
         super(ConcatNet, self).__init__()
         self.model = nn.Sequential(
+
+            # Layer 1
             nn.Linear(in_features=feat_size, out_features=512),
             nn.ReLU(),
-            nn.Linear(in_features=512, out_features=out_size)
+            nn.Dropout(p),
+
+            # Layer 2
+            nn.Linear(in_features=512, out_features=256),
+            nn.ReLU(),
+            nn.Dropout(p),
+
+            # Layer 3
+            nn.Linear(in_features=256, out_features=out_size),
         )
 
     def forward(self, x):

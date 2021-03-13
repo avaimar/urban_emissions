@@ -218,7 +218,7 @@ if __name__ == '__main__':
     # Define model, and fetch loss function and metrics
     if 'AQI' not in params['output_variable']:
         if params['model_type'] == 'concat':
-            model = Models.NNs.ConcatNet(feat_size=no_channels, out_size=1)
+            model = Models.NNs.ConcatNet(feat_size=no_channels, p=params['p_dropout'], out_size=1)
         elif params['model_type'] == 'sat' or params['model_type'] == 'street':
             model = Models.CNNs.ResNetRegression(
                 no_channels=no_channels, p=params['p_dropout'],
@@ -230,7 +230,7 @@ if __name__ == '__main__':
     else:
         if params['model_type'] == 'concat':
             model = Models.NNs.ConcatNet(
-                feat_size=no_channels, out_size=params['num_classes'])
+                feat_size=no_channels, p=params['p_dropout'], out_size=params['num_classes'])
         elif params['model_type'] == 'sat' or params['model_type'] == 'street':
             model = Models.CNNs.ResNetClassifier(
                 no_channels=no_channels, num_classes=params['num_classes'],
