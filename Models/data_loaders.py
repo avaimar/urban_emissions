@@ -16,6 +16,7 @@ import utils
 CONCAT_MEAN = -3.5466591
 CONCAT_STD = 478.06863
 
+
 # Define data transforms
 def define_data_transforms(model_type, training_band_means, training_band_sds):
     """
