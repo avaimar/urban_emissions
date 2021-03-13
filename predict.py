@@ -9,7 +9,6 @@ import Models.data_loaders as data_loaders
 import Models.NNs
 import utils
 
-
 # Set up command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--concat_model', required=True,
@@ -143,7 +142,8 @@ if __name__ == '__main__':
 
             # Save uid, label and prediction
             pred_db_dict[split] = pred_db_dict[split].append(
-                {'Unique_ID': uid, 'label': feat_y, 'prediction': feat_yhat})
+                {'Unique_ID': uid, 'label': feat_y, 'prediction': feat_yhat},
+                ignore_index=True)
 
             # Print information on progress
             if processed_counter % 1000 == 0:
