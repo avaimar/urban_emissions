@@ -109,13 +109,15 @@ plt.clf()
 # Visualize errors geographically
 fig = px.scatter_geo(
     test_pred, lat=test_pred['lat'], lon=test_pred['lon'],
-    color=test_pred['error'], hover_name=test_pred["Unique_ID"], opacity=0.5)
+    color=test_pred['error'], hover_name=test_pred["Unique_ID"], opacity=0.5,
+    scope='north america', labels={"error": "Error"})
 fig.show()
 
 # Visualize absolute errors geographically
 fig = px.scatter_geo(
     test_pred, lat=test_pred['lat'], lon=test_pred['lon'],
-    color=test_pred['abs_error'], hover_name=test_pred["Unique_ID"], opacity=0.5)
+    color=test_pred['abs_error'], hover_name=test_pred["Unique_ID"], opacity=0.5,
+    scope='north america', labels={"abs_error": "Absolute Error"})
 fig.show()
 
 # Visualize most and least accurate locations

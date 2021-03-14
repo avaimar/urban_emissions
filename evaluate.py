@@ -168,6 +168,8 @@ if __name__ == '__main__':
     test_metrics, _ = evaluate(model, loss_fn, test_dl, metrics, params, logger)
 
     # Save performance metrics
+    for k, v in test_metrics.items():
+        test_metrics[k] = str(v)
     save_metrics_path = os.path.join(eval_output, 'metrics_test.json')
     try:
         utils.save_dict(test_metrics, save_metrics_path)
