@@ -6,6 +6,7 @@ import numpy as np
 
 import utils
 import Models.CNNs
+import Models.NNs
 from Models.data_loaders import fetch_dataloader
 
 
