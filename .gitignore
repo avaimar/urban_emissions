@@ -13,3 +13,4 @@ imagery/streetview/api.pkl
 imagery/api.pkl
 01_Data/03_Processed_data/OZONE/gsv_train_images_size_test.h5
 03_Trained_Models
+__pycache__
